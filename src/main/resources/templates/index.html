@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Meta tags-->
+    <title>Research Interests Tool</title>
+    <meta name="title" content="Research Interests Tool">
+    <meta name="description" content="Explore a tool to scope out your research interests and find new areas of study.">
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+
+    <!--Box icons-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- google font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap" rel="stylesheet">
+
+    <!--CSS link-->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+
+</head>
+
+
+<body>
+
+<!-------------------------------------------HEADER------------------------------------>
+<header class="header" data-header>
+    <div class="container">
+        <!-- The website logo for PC-->
+        <a th:href="@{/#home}" class="logo">
+            <img src="images/Website-logo.png" width="200" height="100" alt="what to research" class="logo-light">
+        </a>
+        <!-- The Navigation Bar-->
+        <nav class="navbar" data-navbar>
+            <div class="navbar-top">
+                <!-- The logo for the hamburger navigation on mobile phones-->
+                <a th:href="@{/#home}" class="logo">
+                    <img src="images/Website-logo.png" width="180" height="24" alt="what to research">
+                </a>
+                <!-- closing button to close the hamburger navigation on mobile-->
+                <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+                    <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+                </button>
+            </div>
+
+            <ul class="navbar-list">
+                <li><a th:href="@{/#home}" class="navbar-link">Home</a></li>
+                <li><a href="#services" class="navbar-link">About</a></li>
+                <li><a href="#" class="navbar-link">How It Works</a></li>
+                <li><a href="#" class="navbar-link">Features</a></li>
+                <li><a href="#" class="navbar-link">Contact</a></li>
+                <!--Space-->
+                <li></li>
+                <li></li>
+                <!--------->
+                <li><a th:href="@{/login}" class="navbar-link loginLink" style="color: black;margin-bottom: 10px;">Log
+                    in</a></li>
+                <li><a th:href="@{/register}" class="navbar-link loginLink" style="color: black; ">Sign Up</a></li>
+            </ul>
+
+            <!--contact info on the hamburger nav bar-->
+            <div class="wrapper">
+                <a href="mailto:info@email.com" class="contact-link">raheebabdulsalam@hotmail.com</a>
+            </div>
+            <!--Social media icons on the hamburger nav bar -->
+            <ul class="social-media-list">
+                <li><a href="#" class="social-media-link">
+                    <ion-icon name="logo-twitter"></ion-icon>
+                </a></li>
+                <li><a href="#" class="social-media-link">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                </a></li>
+                <li><a href="#" class="social-media-link">
+                    <ion-icon name="logo-instagram"></ion-icon>
+                </a></li>
+            </ul>
+        </nav>
+
+        <!--Three dots icon to Open the hamburger nav bar on mobile devices-->
+        <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+            <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+        </button>
+        <div class="overlay" data-nav-toggler data-overlay></div>
+    </div>
+</header>
+
+<!-------------------------------------End of Header---------------------------------------------->
+
+
+<!-------------------Main Content--------------------->
+<main>
+    <article>
+
+        <!--- HOME PAGE -->
+
+        <section id=home class="section hero bg-image" aria-label="home"
+                 style="background-image: url('/images/background.png')">
+            <div class="container">
+
+                <div class="hero-content">
+                    <!--Title and text on the home page-->
+                    <h1 class="h1 hero-title">Explore Your Research Interests</h1>
+                    <p class="hero-text">
+                        Discover new areas of study and find the perfect research topic for your final year project.
+                    </p>
+                    <!--Two action buttons on the home page-->
+                    <div class="btn-wrapper">
+                        <a href="#" class="btn btn-primary">Get Started</a>
+                    </div>
+
+                </div>
+
+                <!-- The image slider on the home page-->
+                <div class="hero-slider" data-slider>
+
+                    <div class="slider-inner">
+
+                        <ul class="slider-container" data-slider-container>
+
+                            <li class="slider-item">
+                                <figure class="img-holder" style="--width: 575; --height: 550;">
+                                    <img src="images/idea-lightbulb.jpg" width="575" height="550" alt=""
+                                         class="img-cover">
+                                </figure>
+                            </li>
+
+                            <li class="slider-item">
+                                <div class="hero-card">
+                                    <figure class="img-holder" style="--width: 575; --height: 550;">
+                                        <img src="images/slider 2.jpg" width="575" height="550" alt="hero banner"
+                                             class="img-cover">
+                                    </figure>
+                                </div>
+                            </li>
+
+                            <li class="slider-item">
+                                <figure class="img-holder" style="--width: 575; --height: 550;">
+                                    <img src="images/slider 3.jpeg" width="575" height="550" alt="" class="img-cover">
+                                </figure>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!--Next and previous button on the home page-->
+                    <button class="slider-btn prev" aria-label="slide to previous" data-slider-prev>
+                        <ion-icon name="arrow-back"></ion-icon>
+                    </button>
+
+                    <button class="slider-btn next" aria-label="slide to next" data-slider-next>
+                        <ion-icon name="arrow-forward"></ion-icon>
+                    </button>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!----------------- #ABOUT----------------------------------->
+
+        <section id="services" class="section service" aria-labelledby="service-label">
+            <div class="container">
+
+                <p class="section-subtitle" id="service-label">What We Do?</p>
+
+                <h2 class="h2 section-title">
+                    Empowering Your Final-Year Project Journey
+                </h2>
+
+                <ul class="grid-list">
+
+                    <li>
+                        <div class="service-card">
+                            <div class="card-icon">
+                            </div>
+                            <h3 class="h4 card-title">Our primary focus</h3>
+                            <p class="card-text">
+                                Our primary focus is on assisting students in the crucial task of selecting a suitable and personally resonant topic for their final-year projects.
+                            </p>
+                            <a href="#" class="btn-text">
+                                <span class="span">Learn More</span>
+                                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                            </a>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="service-card">
+                            <div class="card-icon">
+                            </div>
+                            <h3 class="h4 card-title">Personalized Recommendations</h3>
+                            <p class="card-text">
+                                We go beyond conventional approaches by providing personalized recommendations for potential research or project topics within the expansive field of Computer Science.
+                            </p>
+                            <a href="#" class="btn-text">
+                                <span class="span">Learn More</span>
+                                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                            </a>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="service-card">
+                            <div class="card-icon">
+                            </div>
+                            <h3 class="h4 card-title">Supervisor Alignment</h3>
+                            <p class="card-text">
+                                Streamlines the process of aligning students with compatible supervisors who possess expertise in the chosen research area.
+                            </p>
+                            <a href="#" class="btn-text">
+                                <span class="span">Learn More</span>
+                                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                            </a>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="service-card">
+                            <div class="card-icon">
+                            </div>
+                            <h3 class="h4 card-title">Reshaping the Final-Year Experience</h3>
+                            <p class="card-text">
+                                Through innovative technology and personalized support, we strive to make the research topic selection process more accessible, rewarding, and aligned with each student's individual interests and goals.
+                            </p>
+                            <a href="#" class="btn-text">
+                                <span class="span">Learn More</span>
+                                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                            </a>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </section>
+
+
+
+    </article>
+</main>
+<!--------------------------------------#FOOTER----------------------------------------->
+
+<footer class="footer">
+    <div class="container grid-list">
+
+        <div class="footer-brand">
+
+
+            <a th:href="@{/#home}" class="logo">
+                <img src="images/Website-logo.png" width="170" height="100" alt="what to research" class="logo-light">
+            </a>
+
+
+            <p class="footer-text">
+                &copy; 2024 Raheeb Abdulsalam. <br> All rights reserved.
+            </p>
+
+            <ul class="social-media-list">
+
+                <li>
+                    <a href="#" class="social-media-link">
+                        <i class='bx bxl-facebook-square'></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="social-media-link">
+                        <i class='bx bxl-github'></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="social-media-link">
+                        <i class='bx bxl-linkedin-square'></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" class="social-media-link">
+                        <i class='bx bxl-instagram-alt'></i>
+                    </a>
+                </li>
+
+
+            </ul>
+
+        </div>
+
+        <ul class="footer-list">
+
+            <li>
+                <p class="h4 footer-list-title">Get in Touch</p>
+            </li>
+
+            <li>
+                <address class="footer-text">
+                    Aston University, Aston St, Birmingham B4 7ET, United Kingdom
+                </address>
+            </li>
+
+            <li>
+                <a href="mailto:info@email.com" class="footer-link">raheebabdulsalam@hotmail.com</a>
+            </li>
+
+        </ul>
+
+        <ul class="footer-list">
+
+            <li>
+                <p class="h4 footer-list-title">Learn More</p>
+            </li>
+
+
+            <li>
+                <a href="#" class="footer-link">Terms of Use</a>
+            </li>
+
+            <li>
+                <a href="#" class="footer-link">Privacy Policy</a>
+            </li>
+
+        </ul>
+
+        <div class="footer-list">
+
+            <p class="h4 footer-list-title">Our Newsletter</p>
+
+            <p class="footer-text">
+                Subscribe to our newsletter to get notified when there is new projects.
+            </p>
+
+            <form action="" class="input-wrapper">
+                <input type="email" name="email_address" placeholder="Email Address" required class="input-field">
+
+                <button type="submit" class="submit-btn">Join</button>
+            </form>
+
+        </div>
+
+    </div>
+</footer>
+
+
+<!--------------------------js link----------------------------------------->
+<script src="js/script.js"></script>
+
+<!--- ionicon for the icons in the website-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
