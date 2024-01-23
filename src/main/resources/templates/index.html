@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -36,14 +36,14 @@
 <header class="header" data-header>
     <div class="container">
         <!-- The website logo for PC-->
-        <a th:href="@{/#home}" class="logo">
+        <a th:href="@{/}" class="logo">
             <img src="images/Website-logo.png" width="200" height="100" alt="what to research" class="logo-light">
         </a>
         <!-- The Navigation Bar-->
         <nav class="navbar" data-navbar>
             <div class="navbar-top">
                 <!-- The logo for the hamburger navigation on mobile phones-->
-                <a th:href="@{/#home}" class="logo">
+                <a th:href="@{/}" class="logo">
                     <img src="images/Website-logo.png" width="180" height="24" alt="what to research">
                 </a>
                 <!-- closing button to close the hamburger navigation on mobile-->
@@ -53,18 +53,28 @@
             </div>
 
             <ul class="navbar-list">
-                <li><a th:href="@{/#home}" class="navbar-link">Home</a></li>
-                <li><a href="#services" class="navbar-link">About</a></li>
+                <li><a th:href="@{/}" class="navbar-link">Home</a></li>
+                <li><a th:href="@{/#about}" class="navbar-link">About</a></li>
                 <li><a href="#" class="navbar-link">How It Works</a></li>
                 <li><a href="#" class="navbar-link">Features</a></li>
                 <li><a href="#" class="navbar-link">Contact</a></li>
                 <!--Space-->
                 <li></li>
                 <li></li>
-                <!--------->
-                <li><a th:href="@{/login}" class="navbar-link loginLink" style="color: black;margin-bottom: 10px;">Log
+
+                <!----Sign-up, Login, Logout----->
+                <li  sec:authorize="isAnonymous()"><a th:href="@{/login}" class="navbar-link loginLink" style="color: black;margin-bottom: 10px;">Log
                     in</a></li>
-                <li><a th:href="@{/register}" class="navbar-link loginLink" style="color: black; ">Sign Up</a></li>
+                <li sec:authorize="isAnonymous()"><a th:href="@{/register}" class="navbar-link loginLink" style="color: black; ">Sign Up</a></li>
+
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <a class="navbar-link" th:href="@{/profile}">  Profile</i></a>
+                </li>
+
+                <li sec:authorize="isAuthenticated()">
+                    <form method="post" th:action="@{/logout}">
+                        <input type="submit" class="navbar-link loginLink" style="color: black" value="Logout" >
+                    </form></li>
             </ul>
 
             <!--contact info on the hamburger nav bar-->
@@ -112,7 +122,7 @@
                     <p class="hero-text">
                         Discover new areas of study and find the perfect research topic for your final year project.
                     </p>
-                    <!--Two action buttons on the home page-->
+                    <!--Action button on the home page-->
                     <div class="btn-wrapper">
                         <a href="#" class="btn btn-primary">Get Started</a>
                     </div>
@@ -166,7 +176,7 @@
 
         <!----------------- #ABOUT----------------------------------->
 
-        <section id="services" class="section service" aria-labelledby="service-label">
+        <section id="about" class="section service" aria-labelledby="service-label">
             <div class="container">
 
                 <p class="section-subtitle" id="service-label">What We Do?</p>
@@ -253,7 +263,7 @@
         <div class="footer-brand">
 
 
-            <a th:href="@{/#home}" class="logo">
+            <a th:href="@{/}" class="logo">
                 <img src="images/Website-logo.png" width="170" height="100" alt="what to research" class="logo-light">
             </a>
 

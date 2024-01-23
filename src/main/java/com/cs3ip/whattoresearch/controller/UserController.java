@@ -85,4 +85,40 @@ public class UserController {
     }
 
 
+    /**
+     * Returns the profile page for the currently logged in user.
+     *
+     * @param principal the principal object representing the currently logged in user
+     * @return ModelAndView representing the profile page
+     */
+    @GetMapping("/profile")
+    public ModelAndView editCurrentUser(Principal principal) {
+        ModelAndView mav = new ModelAndView("userProfile");
+        String email = principal.getName();
+        User currentUser = userRepo.findByEmail(email);
+        mav.addObject("user", currentUser);
+        return mav;
+    }
+
+
+    /**
+     * Handles POST requests for editing the user's profile.
+     *
+     * @param user      the User object containing the edited user information
+     * @param principal the principal object representing the currently logged in user
+     * @return ModelAndView representing the updated profile page
+     */
+    @PostMapping("/edit-profile")
+    public ModelAndView saveCurrentUser(@ModelAttribute("user") User user, Principal principal) {
+        ModelAndView mav = new ModelAndView("userProfile");
+        String email = principal.getName();
+        User currentUser = userRepo.findByEmail(email);
+        currentUser.setEmail(user.getEmail());
+//        currentUser.setPassword(user.getPassword());
+        service.save(currentUser);
+        return mav;
+    }
+
+
+
 }

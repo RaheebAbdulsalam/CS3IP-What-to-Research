@@ -42,14 +42,14 @@
 <header class="header" data-header>
   <div class="container">
     <!-- The website logo for PC-->
-    <a th:href="@{/#home}" class="logo">
+    <a th:href="@{/}" class="logo">
       <img src="images/Website-logo.png" width="200" height="100" alt="what to research" class="logo-light">
     </a>
     <!-- The Navigation Bar-->
     <nav class="navbar" data-navbar>
       <div class="navbar-top">
         <!-- The logo for the hamburger navigation on mobile phones-->
-        <a th:href="@{/#home}" class="logo">
+        <a th:href="@{/}" class="logo">
           <img src="images/Website-logo.png" width="180" height="24" alt="what to research">
         </a>
         <!-- closing button to close the hamburger navigation on mobile-->
@@ -59,7 +59,7 @@
       </div>
 
       <ul class="navbar-list">
-        <li><a th:href="@{/#home}" class="navbar-link">Home</a></li>
+        <li><a th:href="@{/}" class="navbar-link">Home</a></li>
         <li><a href="#services" class="navbar-link">About</a></li>
         <li><a href="#" class="navbar-link">How It Works</a></li>
         <li><a href="#" class="navbar-link">Features</a></li>
@@ -145,7 +145,7 @@
     <div class="footer-brand">
 
       <!-- The website logo for PC-->
-      <a href="#home" class="logo">
+      <a th:href="@{/}" class="logo">
         <img src="images/Website-logo.png" width="170" height="100" alt="what to research" class="logo-light">
       </a>
 

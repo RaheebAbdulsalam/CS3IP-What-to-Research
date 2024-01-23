@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -13,6 +13,7 @@
 
 
   <!-- favicon -->
+  <!--  <link rel="shortcut icon" href="./favicon.ico" type="image">-->
   <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 
 
@@ -59,17 +60,32 @@
 
       <ul class="navbar-list">
         <li><a th:href="@{/}" class="navbar-link">Home</a></li>
-        <li><a href="#" class="navbar-link">About</a></li>
+        <li><a href="#services" class="navbar-link">About</a></li>
         <li><a href="#" class="navbar-link">How It Works</a></li>
         <li><a href="#" class="navbar-link">Features</a></li>
         <li><a href="#" class="navbar-link">Contact</a></li>
         <!--Space-->
         <li></li>
         <li></li>
-        <!--------->
-        <li><a th:href="@{/login}" class="navbar-link loginLink" style="color: black;margin-bottom: 10px;">Log
+        <!----Sign-up, Login, Logout----->
+        <li  sec:authorize="isAnonymous()"><a th:href="@{/login}" class="navbar-link loginLink" style="color: black;margin-bottom: 10px;">Log
           in</a></li>
-        <li><a th:href="@{/register}" class="navbar-link loginLink" style="color: black; ">Sign Up</a></li>
+        <li sec:authorize="isAnonymous()"><a th:href="@{/register}" class="navbar-link loginLink" style="color: black; ">Sign Up</a></li>
+
+        <li class="nav-item" sec:authorize="isAuthenticated()">
+          <a class="navbar-link" th:href="@{/profile}">  Profile</i></a>
+        </li>
+
+        <!--admin page -->
+        <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
+          <a class="navbar-link" th:href="@{/admin}">Admin Panel </i></a>
+        </li>
+
+
+        <li sec:authorize="isAuthenticated()">
+          <form method="post" th:action="@{/logout}">
+            <input type="submit" class="navbar-link loginLink" style="color: black" value="Logout" >
+          </form></li>
       </ul>
 
       <!--contact info on the hamburger nav bar-->
@@ -101,72 +117,37 @@
 <!-------------------------------------End of Header---------------------------------------------->
 
 <!-- Main Content -->
-
 <section class="section hero bg-image" aria-label="home" style="background-image: url('/images/background.png')">
 
-  <!-- SignUp Page -->
   <div class="login-container">
     <div class="wrapper">
-      <div class="title">Sign Up</div>
-      <form th:action="@{/process_register}" th:object="${user}" method="post" onsubmit="return validateForm()">
+      <div class="title">User Profile</div>
+      <form method="post" th:action="@{/edit-profile}">
 
-        <!--Error Messgae----->
-        <p class="error" id="error-message" th:if="${errorMessage}"  th:text="${errorMessage}"></p>
-
-        <!-------FirstName-------->
-        <div class="field-container">
-          <div class="field">
-            <input type="text" name="firstName" th:field="*{firstName}" required>
-            <label>First Name</label>
-          </div>
-
-          <div class="field">
-            <input type="text" name="lastName" th:field="*{lastName}" required>
-            <label>Last Name</label>
-          </div>
+        <!-- Username -->
+        <div class="field">
+          <input  type= "text" name="username" th:value="${user.firstName + ' ' + user.lastName}" required>
+          <label>Username</label>
         </div>
 
+        <!-- Student Number -->
         <div class="field">
-          <input type="number"  name="studentNumber" th:field="*{studentNumber}" required>
+          <input type="number"  name="studentNumber" th:field="*{user.studentNumber}" required>
           <label>Student Number</label>
         </div>
 
 
+        <!-- Email -->
         <div class="field">
-          <input type="email" name="email" th:field="*{email}" required>
+          <input type="email" name="email" th:field="*{user.email}" required>
           <label>Email Address</label>
         </div>
 
-        <!-------Password-------->
-        <div class="field-container">
-          <div class="field">
-            <input type="password" name="password" th:field="*{password}"  required>
-            <label>Password</label>
-          </div>
-
-          <!-------Confirm Password-------->
-          <div class="field">
-            <input type="password" name="confirmPassword" required>
-            <label>Repeat Password</label>
-          </div>
-        </div>
-
-
-        <div class="content">
-          <div class="checkbox">
-            <input type="checkbox" id="remember-me">
-            <label for="remember-me">Remember me</label>
-          </div>
-
-        </div>
-
         <div class="field">
-          <input type="submit" value="Submit">
+          <input type="submit"  value="Update Profile">
         </div>
-
-        <div class="signup-link">Already have an account? <a th:href="@{/login}">Login here</a></div>
       </form>
-    </div>
+  </div>
   </div>
 </section>
 
@@ -190,8 +171,7 @@
 
         <li>
           <a href="#" class="social-media-link">
-            <!-- <ion-icon name="logo-facebook"></ion-icon> -->
-            <!-- <i class="devicon-facebook-plain"></i> -->
+
             <i class='bx bxl-facebook-square' ></i>
           </a>
         </li>
@@ -284,7 +264,6 @@
 <!--- ionicon for the icons in the website-->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
 </body>
 
 </html>

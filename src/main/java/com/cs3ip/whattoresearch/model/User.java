@@ -25,6 +25,9 @@ public class User {
     @Column(name = "last_name", nullable = false, length = 20)
     private String lastName;
 
+    @Column(name = "student_number", unique = true, length = 9)
+    private String studentNumber;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name="users_roles",
@@ -73,6 +76,15 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+
+    public String getStudentNumber() {
+        return studentNumber;
+    }
+
+    public void setStudentNumber(String studentNumber) {
+        this.studentNumber = studentNumber;
     }
 
     public Set<Role> getRoles() {

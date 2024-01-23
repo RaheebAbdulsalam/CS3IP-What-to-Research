@@ -12,7 +12,7 @@
   width: 480px;
   background: #fff;
   border-radius: 15px;
-  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
   padding: 20px;
 }
 
@@ -75,7 +75,7 @@ form .field input:valid {
 
 form .field input:focus ~ label,
 form .field input:valid ~ label {
-  top: 0%;
+  top: 0;
   font-size: 16px;
   color: #4158d0;
   background: #fff;
@@ -109,9 +109,6 @@ form .content label {
   padding-left: 5px;
 }
 
-form .content .pass-link {
-  color: "";
-}
 
 form .field input[type="submit"] {
   color: #fff;
