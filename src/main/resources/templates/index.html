@@ -23,9 +23,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap" rel="stylesheet">
 
     <!--CSS link-->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
-
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/responsive.css}">
 
 </head>
 
@@ -37,14 +36,14 @@
     <div class="container">
         <!-- The website logo for PC-->
         <a th:href="@{/}" class="logo">
-            <img src="images/Website-logo.png" width="200" height="100" alt="what to research" class="logo-light">
+            <img src="/images/Website-logo.png" width="200" height="100" alt="what to research" class="web-logo">
         </a>
         <!-- The Navigation Bar-->
         <nav class="navbar" data-navbar>
             <div class="navbar-top">
                 <!-- The logo for the hamburger navigation on mobile phones-->
                 <a th:href="@{/}" class="logo">
-                    <img src="images/Website-logo.png" width="180" height="24" alt="what to research">
+                    <img th:src="@{/images/Website-logo.png}" src="#" width="180" height="24" alt="what to research">
                 </a>
                 <!-- closing button to close the hamburger navigation on mobile-->
                 <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
@@ -57,24 +56,32 @@
                 <li><a th:href="@{/#about}" class="navbar-link">About</a></li>
                 <li><a href="#" class="navbar-link">How It Works</a></li>
                 <li><a href="#" class="navbar-link">Features</a></li>
-                <li><a href="#" class="navbar-link">Contact</a></li>
+                <li><a th:href="@{/#contact}" class="navbar-link">Contact</a></li>
                 <!--Space-->
                 <li></li>
                 <li></li>
-
                 <!----Sign-up, Login, Logout----->
-                <li  sec:authorize="isAnonymous()"><a th:href="@{/login}" class="navbar-link loginLink" style="color: black;margin-bottom: 10px;">Log
+                <li sec:authorize="isAnonymous()"><a th:href="@{/login}" class="navbar-link loginLink"
+                                                     style="color: black;margin-bottom: 10px;">Log
                     in</a></li>
-                <li sec:authorize="isAnonymous()"><a th:href="@{/register}" class="navbar-link loginLink" style="color: black; ">Sign Up</a></li>
+                <li sec:authorize="isAnonymous()"><a th:href="@{/register}" class="navbar-link loginLink"
+                                                     style="color: black; ">Sign Up</a></li>
 
                 <li class="nav-item" sec:authorize="isAuthenticated()">
-                    <a class="navbar-link" th:href="@{/profile}">  Profile</i></a>
+                    <a class="navbar-link" th:href="@{/profile}">
+                        <ion-icon name="person-circle-outline" style="font-size: 2em;"></ion-icon>
+                    </a>
                 </li>
 
                 <li sec:authorize="isAuthenticated()">
                     <form method="post" th:action="@{/logout}">
-                        <input type="submit" class="navbar-link loginLink" style="color: black" value="Logout" >
-                    </form></li>
+                        <button type="submit" class="navbar-link loginLink"
+                                style="color: black; display: flex; align-items: center;">
+                            <ion-icon name="log-out-outline" style="margin-right: 5px;"></ion-icon>
+                            Logout
+                        </button>
+                    </form>
+                </li>
             </ul>
 
             <!--contact info on the hamburger nav bar-->
@@ -124,8 +131,11 @@
                     </p>
                     <!--Action button on the home page-->
                     <div class="btn-wrapper">
-                        <a href="#" class="btn btn-primary">Get Started</a>
+                        <a th:href="${#authorization.expression('isAuthenticated()') ? '/research' : '/login'}" class="btn btn-primary">
+                            Get Started
+                        </a>
                     </div>
+
 
                 </div>
 
@@ -138,7 +148,7 @@
 
                             <li class="slider-item">
                                 <figure class="img-holder" style="--width: 575; --height: 550;">
-                                    <img src="images/idea-lightbulb.jpg" width="575" height="550" alt=""
+                                    <img th:src="@{/images/slide(1).jpg}" src="#" width="575" height="550" alt="slide 1"
                                          class="img-cover">
                                 </figure>
                             </li>
@@ -146,7 +156,7 @@
                             <li class="slider-item">
                                 <div class="hero-card">
                                     <figure class="img-holder" style="--width: 575; --height: 550;">
-                                        <img src="images/slider 2.jpg" width="575" height="550" alt="hero banner"
+                                        <img th:src="@{/images/slide(2).png}" src="#" width="575" height="550" alt="slide 2"
                                              class="img-cover">
                                     </figure>
                                 </div>
@@ -154,7 +164,7 @@
 
                             <li class="slider-item">
                                 <figure class="img-holder" style="--width: 575; --height: 550;">
-                                    <img src="images/slider 3.jpeg" width="575" height="550" alt="" class="img-cover">
+                                    <img th:src="@{/images/slide(3).png}" src="#" width="575" height="550" alt="slide 3" class="img-cover" >
                                 </figure>
                             </li>
 
@@ -190,60 +200,69 @@
                     <li>
                         <div class="service-card">
                             <div class="card-icon">
+                                <i class="bx bx-show"></i>
                             </div>
                             <h3 class="h4 card-title">Our primary focus</h3>
                             <p class="card-text">
-                                Our primary focus is on assisting students in the crucial task of selecting a suitable and personally resonant topic for their final-year projects.
+                                Our primary focus is on assisting students in the crucial task of selecting a suitable
+                                and personally resonant topic for their final-year projects.
                             </p>
-                            <a href="#" class="btn-text">
-                                <span class="span">Learn More</span>
-                                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
-                            </a>
+<!--                            <a href="#" class="btn-text">-->
+<!--                                <span class="span">Learn More</span>-->
+<!--                                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>-->
+<!--                            </a>-->
                         </div>
                     </li>
 
                     <li>
                         <div class="service-card">
                             <div class="card-icon">
+                                <i class="bx bx-file-find"></i>
                             </div>
                             <h3 class="h4 card-title">Personalized Recommendations</h3>
                             <p class="card-text">
-                                We go beyond conventional approaches by providing personalized recommendations for potential research or project topics within the expansive field of Computer Science.
+                                We go beyond conventional approaches by providing personalized recommendations for
+                                potential research or project topics within the expansive field of Computer Science.
                             </p>
-                            <a href="#" class="btn-text">
-                                <span class="span">Learn More</span>
-                                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
-                            </a>
+<!--                            <a href="#" class="btn-text">-->
+<!--                                <span class="span">Learn More</span>-->
+<!--                                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>-->
+<!--                            </a>-->
                         </div>
                     </li>
 
                     <li>
                         <div class="service-card">
                             <div class="card-icon">
+                                <i class='bx bxs-user-account'></i>
                             </div>
                             <h3 class="h4 card-title">Supervisor Alignment</h3>
                             <p class="card-text">
-                                Streamlines the process of aligning students with compatible supervisors who possess expertise in the chosen research area.
+                                Streamlines the process of aligning students with compatible supervisors who possess
+                                expertise in the chosen research area.
                             </p>
-                            <a href="#" class="btn-text">
-                                <span class="span">Learn More</span>
-                                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
-                            </a>
+<!--                            <a href="#" class="btn-text">-->
+<!--                                <span class="span">Learn More</span>-->
+<!--                                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>-->
+<!--                            </a>-->
                         </div>
                     </li>
 
                     <li>
                         <div class="service-card">
                             <div class="card-icon">
+                                <i class="bx bx-happy"></i>
                             </div>
                             <h3 class="h4 card-title">Reshaping the Final-Year Experience</h3>
                             <p class="card-text">
-                                Through innovative technology and personalized support, we strive to make the research topic selection process more accessible, rewarding, and aligned with each student's individual interests and goals.
+                                Through innovative technology and personalized support, we strive to make the research
+                                topic selection process more accessible, rewarding, and aligned with each student's
+                                individual interests and goals.
                             </p>
-                            <a href="#" class="btn-text">
-                                <span class="span">Learn More</span>
-                                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
-                            </a>
+<!--                            <a href="#" class="btn-text">-->
+<!--                                <span class="span">Learn More</span>-->
+<!--                                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>-->
+<!--                            </a>-->
                         </div>
                     </li>
 
@@ -251,115 +270,80 @@
             </div>
         </section>
 
+        <!------------------- #CONTACT ------------------------------->
+        <section id="contact" class="section service bg-image" aria-labelledby="contact-label" style="background-image: url('/images/background.png')">
+            <div class="container">
+
+                <p class="section-subtitle" id="contact-label" style="color: white">Get In Touch</p>
+
+                <h2 class="h2 section-title" style="color: white">Reach Out for Assistance – We're Here to Help!</h2>
+
+                <form method="post" action="#">
+                    <div class="input-box">
+                        <input type="text" name="name" placeholder="Full Name" required>
+                        <input type="email" name="email" placeholder="Email Address" required>
+                    </div>
+                    <textarea name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+                    <input type="submit" value="Send Message" class="btn">
+                </form>
+
+            </div>
+        </section>
 
 
     </article>
 </main>
-<!--------------------------------------#FOOTER----------------------------------------->
 
+<!--------------------------------------#FOOTER----------------------------------------->
 <footer class="footer">
     <div class="container grid-list">
 
-        <div class="footer-brand">
-
-
+        <!-- Footer Logo Section -->
+        <div class="footer-logo">
             <a th:href="@{/}" class="logo">
-                <img src="images/Website-logo.png" width="170" height="100" alt="what to research" class="logo-light">
+                <img th:src="@{/images/Website-logo.png}" src="#" width="200" alt="what to research" class="web-logo">
             </a>
-
-
-            <p class="footer-text">
-                &copy; 2024 Raheeb Abdulsalam. <br> All rights reserved.
-            </p>
-
-            <ul class="social-media-list">
-
-                <li>
-                    <a href="#" class="social-media-link">
-                        <i class='bx bxl-facebook-square'></i>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#" class="social-media-link">
-                        <i class='bx bxl-github'></i>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#" class="social-media-link">
-                        <i class='bx bxl-linkedin-square'></i>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#" class="social-media-link">
-                        <i class='bx bxl-instagram-alt'></i>
-                    </a>
-                </li>
-
-
-            </ul>
-
         </div>
 
+        <!-- Footer Lists -->
         <ul class="footer-list">
-
-            <li>
-                <p class="h4 footer-list-title">Get in Touch</p>
-            </li>
-
-            <li>
-                <address class="footer-text">
-                    Aston University, Aston St, Birmingham B4 7ET, United Kingdom
-                </address>
-            </li>
-
-            <li>
-                <a href="mailto:info@email.com" class="footer-link">raheebabdulsalam@hotmail.com</a>
-            </li>
-
+            <li><p class="h4 footer-list-title">Address</p></li>
+            <li><address class="footer-text"> Aston University, Aston St, Birmingham B4 7ET,<br> United Kingdom</address> </li>
         </ul>
 
         <ul class="footer-list">
-
-            <li>
-                <p class="h4 footer-list-title">Learn More</p>
-            </li>
-
-
-            <li>
-                <a href="#" class="footer-link">Terms of Use</a>
-            </li>
-
-            <li>
-                <a href="#" class="footer-link">Privacy Policy</a>
-            </li>
-
+            <li><p class="h4 footer-list-title">Learn More</p></li>
+            <li><a href="#" class="footer-link">Terms of Use</a></li>
+            <li><a href="#" class="footer-link">Privacy Policy</a></li>
         </ul>
 
         <div class="footer-list">
-
             <p class="h4 footer-list-title">Our Newsletter</p>
-
-            <p class="footer-text">
-                Subscribe to our newsletter to get notified when there is new projects.
-            </p>
-
+            <p class="footer-text"> Get notified when there is new projects. </p>
+            <!-- Newsletter Form -->
             <form action="" class="input-wrapper">
                 <input type="email" name="email_address" placeholder="Email Address" required class="input-field">
-
                 <button type="submit" class="submit-btn">Join</button>
             </form>
-
         </div>
 
     </div>
+
+    <!-- Social Media Icons -->
+    <div class="centered-container">
+        <ul class="social-media-list">
+            <li><a href="#" class="social-media-link"> <i class='bx bxl-facebook-square'></i> </a> </li>
+            <li> <a href="#" class="social-media-link"> <i class='bx bxl-linkedin-square'></i> </a> </li>
+            <li> <a href="#" class="social-media-link"> <i class='bx bxl-instagram-alt'></i> </a> </li>
+        </ul>
+        <!-- Footer Text -->
+        <p class="footer-text">
+            &copy; 2024 Raheeb Abdulsalam. All rights reserved.
+        </p>
+    </div>
 </footer>
-
-
 <!--------------------------js link----------------------------------------->
-<script src="js/script.js"></script>
+<script th:src="@{js/script.js}"></script>
 
 <!--- ionicon for the icons in the website-->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

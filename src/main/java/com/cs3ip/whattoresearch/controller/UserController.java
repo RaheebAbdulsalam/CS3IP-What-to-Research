@@ -12,9 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 
-/**
- * Rest controller for handling home page and registration related requests.
- */
 @RestController
 @RequestMapping("/")
 public class UserController {
@@ -24,22 +21,12 @@ public class UserController {
     @Autowired
     private UserRepository userRepo;
 
-    /**
-     * Returns home page.
-     * @param model Model object
-     * @param principal Principal object
-     * @return ModelAndView object of the home page
-     */
     @GetMapping()
     public ModelAndView viewHomePage(Model model, Principal principal) {
         ModelAndView mav = new ModelAndView("index");
         return mav;
     }
 
-    /**
-     * Returns registration page.
-     * @return ModelAndView object of the registration page
-     */
     @GetMapping("/register")
     public ModelAndView showRegistrationForm() {
         ModelAndView mav = new ModelAndView("signup_form");
@@ -47,12 +34,6 @@ public class UserController {
         return mav;
     }
 
-    /**
-     * Returns page for registering the user.
-     * @param user User object
-     * @param result BindingResult object
-     * @return ModelAndView of the success page or the registration page with error message
-     */
     @PostMapping("/process_register")
     public ModelAndView processRegister(@Valid User user, BindingResult result) {
         ModelAndView mav;
@@ -73,11 +54,6 @@ public class UserController {
     }
 
 
-    /**
-     * Returns the login page.
-     *
-     * @return ModelAndView representing the login page
-     */
     @GetMapping("/login")
     public ModelAndView loginPage() {
         ModelAndView mav = new ModelAndView("login");
@@ -85,12 +61,6 @@ public class UserController {
     }
 
 
-    /**
-     * Returns the profile page for the currently logged in user.
-     *
-     * @param principal the principal object representing the currently logged in user
-     * @return ModelAndView representing the profile page
-     */
     @GetMapping("/profile")
     public ModelAndView editCurrentUser(Principal principal) {
         ModelAndView mav = new ModelAndView("userProfile");
@@ -101,13 +71,6 @@ public class UserController {
     }
 
 
-    /**
-     * Handles POST requests for editing the user's profile.
-     *
-     * @param user      the User object containing the edited user information
-     * @param principal the principal object representing the currently logged in user
-     * @return ModelAndView representing the updated profile page
-     */
     @PostMapping("/edit-profile")
     public ModelAndView saveCurrentUser(@ModelAttribute("user") User user, Principal principal) {
         ModelAndView mav = new ModelAndView("userProfile");

@@ -24,9 +24,9 @@ public class UserService {
         String encodedPassword= encoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
 
-        //Save a new user as a customer
-        Role roleCustomer=roleRepo.findByName("USER");
-        user.addRole(roleCustomer);
+        //Save a new user as a student
+        Role studentRole=roleRepo.findByName("STUDENT");
+        user.addRole(studentRole);
         userRepo.save(user);
     }
 

@@ -27,9 +27,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap" rel="stylesheet">
 
   <!--CSS link-->
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/form.css">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="stylesheet" th:href="@{/css/responsive.css}">
+  <link rel="stylesheet" th:href="@{/css/form.css}">
 
 </head>
 
@@ -43,14 +43,14 @@
   <div class="container">
     <!-- The website logo for PC-->
     <a th:href="@{/}" class="logo">
-      <img src="images/Website-logo.png" width="200" height="100" alt="what to research" class="logo-light">
+      <img th:src="@{/images/Website-logo.png}" src="#" width="200" height="100" alt="what to research" class="web-logo">
     </a>
     <!-- The Navigation Bar-->
     <nav class="navbar" data-navbar>
       <div class="navbar-top">
         <!-- The logo for the hamburger navigation on mobile phones-->
         <a th:href="@{/}" class="logo">
-          <img src="images/Website-logo.png" width="180" height="24" alt="what to research">
+          <img th:src="@{/images/Website-logo.png}" src="#" width="180" height="24" alt="what to research">
         </a>
         <!-- closing button to close the hamburger navigation on mobile-->
         <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
@@ -60,10 +60,10 @@
 
       <ul class="navbar-list">
         <li><a th:href="@{/}" class="navbar-link">Home</a></li>
-        <li><a href="#services" class="navbar-link">About</a></li>
+        <li><a th:href="@{/#about}" class="navbar-link">About</a></li>
         <li><a href="#" class="navbar-link">How It Works</a></li>
         <li><a href="#" class="navbar-link">Features</a></li>
-        <li><a href="#" class="navbar-link">Contact</a></li>
+        <li><a th:href="@{/#contact}" class="navbar-link">Contact</a></li>
         <!--Space-->
         <li></li>
         <li></li>
@@ -138,113 +138,55 @@
 </section>
 
 <!--------------------------------------#FOOTER----------------------------------------->
-
 <footer class="footer">
   <div class="container grid-list">
 
-    <div class="footer-brand">
-
-      <!-- The website logo for PC-->
+    <!-- Footer Logo Section -->
+    <div class="footer-logo">
       <a th:href="@{/}" class="logo">
-        <img src="images/Website-logo.png" width="170" height="100" alt="what to research" class="logo-light">
+        <img th:src="@{/images/Website-logo.png}" src="#" width="200" alt="what to research" class="web-logo">
       </a>
-
-      <p class="footer-text">
-        &copy; 2024 Raheeb Abdulsalam. <br> All rights reserved.
-      </p>
-
-      <ul class="social-media-list">
-
-        <li>
-          <a href="#" class="social-media-link">
-
-            <i class='bx bxl-facebook-square' ></i>
-          </a>
-        </li>
-
-        <li>
-          <a href="#" class="social-media-link">
-            <i class='bx bxl-github' ></i>
-          </a>
-        </li>
-
-        <li>
-          <a href="#" class="social-media-link">
-            <i class='bx bxl-linkedin-square'></i>
-          </a>
-        </li>
-
-        <li>
-          <a href="#" class="social-media-link">
-            <i class='bx bxl-instagram-alt' ></i>
-          </a>
-        </li>
-
-
-
-      </ul>
-
     </div>
 
+    <!-- Footer Lists -->
     <ul class="footer-list">
-
-      <li>
-        <p class="h4 footer-list-title">Get in Touch</p>
-      </li>
-
-      <li>
-        <address class="footer-text">
-          Aston University, Aston St, Birmingham B4 7ET, United Kingdom
-        </address>
-      </li>
-
-      <li>
-        <a href="mailto:info@email.com" class="footer-link">raheebabdulsalam@hotmail.com</a>
-      </li>
-
+      <li><p class="h4 footer-list-title">Address</p></li>
+      <li><address class="footer-text"> Aston University, Aston St, Birmingham B4 7ET,<br> United Kingdom</address> </li>
     </ul>
 
     <ul class="footer-list">
-
-      <li>
-        <p class="h4 footer-list-title">Learn More</p>
-      </li>
-
-
-      <li>
-        <a href="#" class="footer-link">Terms of Use</a>
-      </li>
-
-      <li>
-        <a href="#" class="footer-link">Privacy Policy</a>
-      </li>
-
+      <li><p class="h4 footer-list-title">Learn More</p></li>
+      <li><a href="#" class="footer-link">Terms of Use</a></li>
+      <li><a href="#" class="footer-link">Privacy Policy</a></li>
     </ul>
 
     <div class="footer-list">
-
       <p class="h4 footer-list-title">Our Newsletter</p>
-
-      <p class="footer-text">
-        Subscribe to our newsletter to get notified when there is new projects.
-      </p>
-
+      <p class="footer-text"> Get notified when there is new projects. </p>
+      <!-- Newsletter Form -->
       <form action="" class="input-wrapper">
         <input type="email" name="email_address" placeholder="Email Address" required class="input-field">
-
         <button type="submit" class="submit-btn">Join</button>
       </form>
-
     </div>
 
   </div>
+
+  <!-- Social Media Icons -->
+  <div class="centered-container">
+    <ul class="social-media-list">
+      <li><a href="#" class="social-media-link"> <i class='bx bxl-facebook-square'></i> </a> </li>
+      <li> <a href="#" class="social-media-link"> <i class='bx bxl-linkedin-square'></i> </a> </li>
+      <li> <a href="#" class="social-media-link"> <i class='bx bxl-instagram-alt'></i> </a> </li>
+    </ul>
+    <!-- Footer Text -->
+    <p class="footer-text">
+      &copy; 2024 Raheeb Abdulsalam. All rights reserved.
+    </p>
+  </div>
 </footer>
-
-
-
-
 <!--------------------------js link----------------------------------------->
-<script src="js/script.js"></script>
+<script th:src="@{js/script.js}"></script>
 
 <!--- ionicon for the icons in the website-->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

@@ -4,14 +4,14 @@
   /******************** colors *******************************/
 
   --violet: rgb(185, 117, 209);
+  --purple-haze: hsl(267, 27%, 22%);
+  --dark-purple: rgb(29, 7, 42);
   --white: hsla(0, 0%, 100%, 1);
-  --dark-gray: hsla(0, 0%, 100%, 0.03);
   --gray: hsla(0, 0%, 100%, 0.08);
+  --dark-gray: hsla(0, 0%, 100%, 0.03);
   --light-gray: hsla(0, 0%, 100%, 0.12);
   --lighter-gray: hsla(0, 0%, 100%, 0.7);
-  --purple-haze: hsl(267, 27%, 22%);
   --raisin-black: hsla(216, 14%, 14%, 1);
-  --dark-purple: rgb(29, 7, 42);
   --black-coral: hsla(220, 12%, 43%, 1);
 
   /****************** spacing *******************************/
@@ -255,7 +255,7 @@ body.nav-active {
 }
 
 .header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -287,13 +287,11 @@ body.nav-active {
   gap: 16px;
 }
 
-.header.active .logo-light,
-.header .logo-dark {
+.header.active .web-logo{
   display: none;
 }
 
-.header .logo-light,
-.header.active .logo-dark {
+.header .web-logo {
   display: block;
 }
 
@@ -310,7 +308,7 @@ body.nav-active {
   position: fixed;
   top: 0;
   left: -300px;
-  background-color: var(--raisin-black);
+  background-color: var(--dark-purple);
   color: var(--white);
   max-width: 300px;
   width: 100%;
@@ -503,7 +501,7 @@ body.nav-active {
 
 
 /*-----------------------------------*\
-  #ABOUT PAGE
+            ABOUT PAGE
 \*-----------------------------------*/
 
 .service {
@@ -518,6 +516,7 @@ body.nav-active {
   padding: 40px;
   box-shadow: var(--shadow-2);
   border-radius: var(--radius-6);
+  height: 100%;
 }
 
 .service-card .card-icon {
@@ -547,7 +546,6 @@ body.nav-active {
   gap: 4px;
   margin-block-start: 10px;
   color: var(--violet);
-  font-weight: var(--fw-700);
   transition: var(--transition-1);
 }
 
@@ -556,11 +554,68 @@ body.nav-active {
 }
 
 
+/*-----------------------------------*\
+             CONTACT FORM
+\*-----------------------------------*/
+#contact form{
+  max-width: 70rem;
+  text-align: center;
+  margin: 1rem auto 3rem;
+}
+
+#contact form .input-box{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+}
+
+#contact form .input-box input,
+#contact form textarea{
+  width: 100%;
+  padding: 1.5rem;
+  font-size: 1.6rem;
+  color: var(--dark-purple);
+  background: var(--white);
+  border-radius: .8rem;
+  margin:.7rem 0;
+  font-family: 'Manrope', sans-serif;
+}
+
+#contact form .input-box input{
+  width: 49%;
+}
+
+#contact form textarea{
+  resize: none;
+}
+
+#contact form .btn{
+  margin-top: 2rem;
+  cursor:pointer ;
+}
+
+.btn{
+  display: inline-block;
+  padding: 1rem 2.8rem;
+  background: var(--white);
+  border-radius: 4rem;
+  box-shadow: 0 0 1rem var(--white);
+  font-size: 1.6rem;
+  color: var(--dark-purple);
+  letter-spacing: .1rem;
+  font-weight: 600;
+  transition: .5s ease;
+}
+
+.btn:hover{
+  box-shadow: none;
+}
 
 
 
 /*-----------------------------------*\
-  #FOOTER
+                FOOTER
 \*-----------------------------------*/
 
 .footer {
@@ -569,7 +624,7 @@ body.nav-active {
   color: var(--lighter-gray);
 }
 
-.footer-brand .footer-text {
+.footer-logo .footer-text {
   margin-block: 20px;
 }
 
@@ -599,7 +654,6 @@ body.nav-active {
 .input-field {
   background-color: var(--dark-gray);
   color: var(--lighter-gray);
-  font-size: var(--fs-7);
   padding: 12px 16px;
   border: 1px solid ;
   border-radius: var(--radius-6);
@@ -623,10 +677,20 @@ body.nav-active {
   font-weight: 700;
 }
 
+/* Center align the social media list and footer text */
+.centered-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Add this line to vertically center */
+  text-align: center;
+  margin-top: 30px;
+}
 
-
-
-
+.social-media-link i {
+  color: var(--white);
+  font-size: 40px;
+}
 
 
 

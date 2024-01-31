@@ -98,28 +98,35 @@ for (let i = 0, len = sliders.length; i < len; i++) { initSlider(sliders[i]); }
 
 
 
-/***************** In the about page when user clicks on Learn more *********************/
+/***************** In the sign-up form to limit the student number to 9 digits *********************/
 
-const accordions = document.querySelectorAll("[data-accordion]");
+const studentNumberInput = document.getElementById('studentNumber');
+const errorElement = document.getElementById('studentNumberError');
 
-let lastActiveAccordion = accordions[0];
+studentNumberInput.addEventListener('input', function (event) {
+    let inputValue = event.target.value;
+    // Remove non-numeric characters
+    inputValue = inputValue.replace(/\D/g, '');
+    // Limit to 9 digits
+    inputValue = inputValue.slice(0, 9);
+    // Update the input value
+    event.target.value = inputValue;
 
-const initAccordion = function (currentAccordion) {
-
-    const accordionBtn = currentAccordion.querySelector("[data-accordion-btn]");
-
-    const expandAccordion = function () {
-        if (lastActiveAccordion && lastActiveAccordion !== currentAccordion) {
-            lastActiveAccordion.classList.remove("expanded");
-        }
-
-        currentAccordion.classList.toggle("expanded");
-
-        lastActiveAccordion = currentAccordion;
+    // Validate minimum length
+    if (inputValue.length < 9) {
+        errorElement.textContent = 'Student number must be at least 9 digits.';
+        studentNumberInput.setCustomValidity('Student number must be at least 9 digits.');
+    } else {
+        errorElement.textContent = '';
+        studentNumberInput.setCustomValidity('');
     }
+});
 
-    accordionBtn.addEventListener("click", expandAccordion);
+// Add an event listener to reset the error when the field is focused
+studentNumberInput.addEventListener('focus', function () {
+    errorElement.textContent = '';
+    studentNumberInput.setCustomValidity('');
+});
 
-}
 
-for (let i = 0, len = accordions.length; i < len; i++) { initAccordion(accordions[i]); }
+

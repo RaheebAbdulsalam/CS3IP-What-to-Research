@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+
+    <title>Admin Panel</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- CSS -->
+    <link th:href="@{/css/admin.css}" rel="stylesheet"/>
+
+</head>
+
+<div class="container">
+    <!---------------------------------------- Side Nav bar starts --------------------------------------------->
+    <div class="navigation">
+        <ul>
+            <li>
+                <a>
+                   <span class="title" style="margin-left: 54px;"> <img src="images/Website-logo.png" width="150" height="60"
+                                             alt="what to research"></span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/admin}" href="#">
+                    <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/admin/user}" href="#">
+                    <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+                    <span class="title">Users</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/admin/projects}" href="#">
+                    <span class="icon"><ion-icon name="copy-outline"></ion-icon></span>
+                    <span class="title">Projects</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/admin/supervisors}" href="#">
+                    <span class="icon"><ion-icon name="people-circle-outline"></ion-icon></span>
+                    <span class="title">Supervisors</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/admin/messages}">
+                    <span class="icon"><ion-icon name="chatbox-outline"></ion-icon></span>
+                    <span class="title">Messages</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="document.getElementById('logout-form').submit()">
+                    <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                    <span class="title">Sign Out</span>
+                </a>
+
+                <form id="logout-form" method="post" th:action="@{/logout}">
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+                </form>
+            </li>
+        </ul>
+    </div>
+    <!----------------------------- Side Nav bar Ends ------------------------------------------>
+
+                                 <!--     Main Section -->
+
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+                <ion-icon name="grid-outline"></ion-icon>
+            </div>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <div class="cardbox" style="height: 1000px; padding-left: 50px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4">
+<!--                            <h1 style="text-decoration: underline;">Welcome to What to Research Tool Admin Panel</h1>-->
+                            <h1 style="text-decoration: underline;">Welcome to the Admin Panel</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Script -->
+<script type="module"
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script>
+    // Menu toggle
+    let toggle = document.querySelector('.toggle');
+    let navigation = document.querySelector('.navigation');
+    let main = document.querySelector('.main');
+
+    toggle.onclick = function () {
+        navigation.classList.toggle('active');
+        main.classList.toggle('active');
+    }
+    // adding hover class over selected category
+    let list = document.querySelectorAll('.navigation li');
+
+    function activeLink() {
+        list.forEach((item) =>
+            item.classList.remove('hovered'));
+        this.classList.add('hovered');
+    }
+
+    list.forEach((item) =>
+        item.addEventListener('mouseover', activeLink));
+</script>
+
+
+
+
+
+
+</html>
