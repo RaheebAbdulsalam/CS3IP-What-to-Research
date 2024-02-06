@@ -100,12 +100,12 @@
 <!-------------------------------------End of Header---------------------------------------------->
 
 <!-- Main Content -->
-<section class="section hero bg-image" aria-label="home" style="background-image: url('/images/background.png')">
+<section class="section bg-image" aria-label="home">
 
     <div class="login-container">
         <div class="wrapper">
             <div class="title">Search Form</div>
-            <form th:action="@{/search}" method="post" class="form">
+            <form th:action="@{/#}" method="post" class="form">
 
                 <div class="form-group">
                     <label for="year">Current Academic Year</label>
@@ -117,13 +117,25 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="project-type">Preferred Research Type</label>
-                    <select id="project-type" name="project-type">
+                    <label for="project-methodology">Preferred Research Methodology</label>
+                    <select id="project-methodology" name="project-methodology">
                         <option value="Software Development">Software Development</option>
                         <option value="Experimental Research">Experimental Research</option>
                         <option value="Case Studies">Case Studies</option>
                         <option value="Theoretical Research">Theoretical Research</option>
                         <option value="No Preferences">No Preferences</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="project-type">Preferred Research Type</label>
+                    <select id="project-type" name="project-type">
+                        <option value="Mobile App Development">Mobile App Development</option>
+                        <option value="Website Development">Website Development</option>
+                        <option value="Game Development">Game Development</option>
+                        <option value="Machine Learning">Machine Learning</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="Not Applicable">Not Applicable</option>
                     </select>
                 </div>
 

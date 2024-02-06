@@ -24,7 +24,7 @@ body{
     bottom:0.00000001px;
     width: 300px;
     height: 100%;
-    background: linear-gradient(-135deg, #c850c0, #4158d0);
+    background: linear-gradient(-135deg, #4158d0, #3b0837);
     border-left: 10% solid var(--black1);
     transition: 0.5s;
     overflow: hidden;

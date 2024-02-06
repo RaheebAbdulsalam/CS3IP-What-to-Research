@@ -120,7 +120,7 @@
         <!--- HOME PAGE -->
 
         <section id=home class="section hero bg-image" aria-label="home"
-                 style="background-image: url('/images/background.png')">
+                >
             <div class="container">
 
                 <div class="hero-content">
@@ -131,7 +131,7 @@
                     </p>
                     <!--Action button on the home page-->
                     <div class="btn-wrapper">
-                        <a th:href="${#authorization.expression('isAuthenticated()') ? '/research' : '/login'}" class="btn btn-primary">
+                        <a th:href="${#authorization.expression('isAuthenticated()') ? '/research/research-form' : '/login'}" class="btn btn-primary">
                             Get Started
                         </a>
                     </div>
@@ -271,7 +271,7 @@
         </section>
 
         <!------------------- #CONTACT ------------------------------->
-        <section id="contact" class="section service bg-image" aria-labelledby="contact-label" style="background-image: url('/images/background.png')">
+        <section id="contact" class="section service bg-image" aria-labelledby="contact-label">
             <div class="container">
 
                 <p class="section-subtitle" id="contact-label" style="color: white">Get In Touch</p>

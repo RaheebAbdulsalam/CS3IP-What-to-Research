@@ -8,10 +8,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/research")
-public class ResearchController {
+public class ProjectController {
 
     // Returns research form page
-    @GetMapping
+    @GetMapping("/research-form")
     public ModelAndView getResearchForm() {
         ModelAndView mav = new ModelAndView("/research-form");
         return mav;

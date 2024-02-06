@@ -3,7 +3,7 @@
 :root {
   /******************** colors *******************************/
 
-  --violet: rgb(185, 117, 209);
+  --violet: rgb(126, 61, 145);
   --purple-haze: hsl(267, 27%, 22%);
   --dark-purple: rgb(29, 7, 42);
   --white: hsla(0, 0%, 100%, 1);
@@ -153,9 +153,8 @@ body.nav-active {
 }
 
 .bg-image {
-  background-repeat: no-repeat;
-  background-position: center;
   background-size: cover;
+  background: linear-gradient(-50deg, var(--dark-purple), var(--violet)) no-repeat center;
 }
 
 .h1,
@@ -285,6 +284,7 @@ body.nav-active {
   justify-content: space-between;
   align-items: center;
   gap: 16px;
+
 }
 
 .header.active .web-logo{
@@ -395,7 +395,6 @@ body.nav-active {
 \*-----------------------------------*/
 
 .hero {
-  padding-block-start: calc(var(--section-padding) + 70px);
   text-align: center;
 }
 
@@ -466,12 +465,13 @@ body.nav-active {
   align-items: flex-start;
   gap: 8px;
   transition: var(--transition-2);
+  width: fit-content;
 }
 
 .hero .slider-item {
   min-width: 100%;
   width: 100%;
-  border-radius: var(--radius-10);
+  border-radius: var(--radius-circle);
   overflow: hidden;
 }
 
@@ -619,9 +619,9 @@ body.nav-active {
 \*-----------------------------------*/
 
 .footer {
-  background-color: var(--dark-purple);
+  background: linear-gradient(-50deg, var(--dark-purple), var( --violet));
   padding-block: 60px 100px;
-  color: var(--lighter-gray);
+  color: var(--white);
 }
 
 .footer-logo .footer-text {
