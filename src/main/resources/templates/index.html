@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--Meta tags-->
-    <title>Research Interests Tool</title>
+    <title>What to Research</title>
     <meta name="title" content="Research Interests Tool">
     <meta name="description" content="Explore a tool to scope out your research interests and find new areas of study.">
 
@@ -24,7 +24,6 @@
 
     <!--CSS link-->
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/responsive.css}">
 
 </head>
 
@@ -53,9 +52,8 @@
 
             <ul class="navbar-list">
                 <li><a th:href="@{/}" class="navbar-link">Home</a></li>
-                <li><a th:href="@{/#about}" class="navbar-link">About</a></li>
-                <li><a href="#" class="navbar-link">How It Works</a></li>
-                <li><a href="#" class="navbar-link">Features</a></li>
+                <li><a th:href="@{/#how-it-works}" class="navbar-link">How It Works</a></li>
+                <li><a th:href="@{/#about}" class="navbar-link">Features</a></li>
                 <li><a th:href="@{/#contact}" class="navbar-link">Contact</a></li>
                 <!--Space-->
                 <li></li>
@@ -148,7 +146,7 @@
 
                             <li class="slider-item">
                                 <figure class="img-holder" style="--width: 575; --height: 550;">
-                                    <img th:src="@{/images/slide(1).jpg}" src="#" width="575" height="550" alt="slide 1"
+                                    <img th:src="@{/images/student_idea.jpg}" src="#"  alt="slide 1"
                                          class="img-cover">
                                 </figure>
                             </li>
@@ -156,7 +154,7 @@
                             <li class="slider-item">
                                 <div class="hero-card">
                                     <figure class="img-holder" style="--width: 575; --height: 550;">
-                                        <img th:src="@{/images/slide(2).png}" src="#" width="575" height="550" alt="slide 2"
+                                        <img th:src="@{/images/student 2.jpg}" src="#"  alt="slide 2"
                                              class="img-cover">
                                     </figure>
                                 </div>
@@ -164,7 +162,13 @@
 
                             <li class="slider-item">
                                 <figure class="img-holder" style="--width: 575; --height: 550;">
-                                    <img th:src="@{/images/slide(3).png}" src="#" width="575" height="550" alt="slide 3" class="img-cover" >
+                                    <img th:src="@{/images/student 4.jpg}" src="#" alt="slide 3" class="img-cover" >
+                                </figure>
+                            </li>
+
+                            <li class="slider-item">
+                                <figure class="img-holder" style="--width: 575; --height: 550;">
+                                    <img th:src="@{/images/student 6.jpg}" src="#" alt="slide 4" class="img-cover" >
                                 </figure>
                             </li>
 
@@ -184,12 +188,12 @@
         </section>
 
 
-        <!----------------- #ABOUT----------------------------------->
+        <!----------------- #HOW IT WORKS----------------------------------->
 
-        <section id="about" class="section service" aria-labelledby="service-label">
+        <section id="how-it-works" class="section service" aria-labelledby="service-label">
             <div class="container">
 
-                <p class="section-subtitle" id="service-label">What We Do?</p>
+                <p class="section-subtitle" id="service-label">How it works?</p>
 
                 <h2 class="h2 section-title">
                     Empowering Your Final-Year Project Journey
@@ -200,69 +204,51 @@
                     <li>
                         <div class="service-card">
                             <div class="card-icon">
-                                <i class="bx bx-show"></i>
+                                <i class="bx bx-user-plus"></i>
                             </div>
-                            <h3 class="h4 card-title">Our primary focus</h3>
+                            <h3 class="h4 card-title">Sign Up</h3>
                             <p class="card-text">
-                                Our primary focus is on assisting students in the crucial task of selecting a suitable
-                                and personally resonant topic for their final-year projects.
+                                Start by signing up for an account on the platform.
                             </p>
-<!--                            <a href="#" class="btn-text">-->
-<!--                                <span class="span">Learn More</span>-->
-<!--                                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>-->
-<!--                            </a>-->
                         </div>
                     </li>
 
                     <li>
                         <div class="service-card">
                             <div class="card-icon">
-                                <i class="bx bx-file-find"></i>
+                                <i class="bx bx-edit"></i>
                             </div>
-                            <h3 class="h4 card-title">Personalized Recommendations</h3>
+                            <h3 class="h4 card-title">Complete Form</h3>
                             <p class="card-text">
-                                We go beyond conventional approaches by providing personalized recommendations for
-                                potential research or project topics within the expansive field of Computer Science.
+                                Fill out a form with your preferences, interests, and academic background to help us
+                                personalize recommendations for you.
                             </p>
-<!--                            <a href="#" class="btn-text">-->
-<!--                                <span class="span">Learn More</span>-->
-<!--                                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>-->
-<!--                            </a>-->
                         </div>
                     </li>
 
                     <li>
                         <div class="service-card">
                             <div class="card-icon">
-                                <i class='bx bxs-user-account'></i>
+                                <i class='bx bx-search'></i>
                             </div>
-                            <h3 class="h4 card-title">Supervisor Alignment</h3>
+                            <h3 class="h4 card-title">Search for Project</h3>
                             <p class="card-text">
-                                Streamlines the process of aligning students with compatible supervisors who possess
-                                expertise in the chosen research area.
+                                Utilize our search feature to explore potential research or project topics that align with
+                                your interests and goals.
                             </p>
-<!--                            <a href="#" class="btn-text">-->
-<!--                                <span class="span">Learn More</span>-->
-<!--                                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>-->
-<!--                            </a>-->
                         </div>
                     </li>
 
                     <li>
                         <div class="service-card">
                             <div class="card-icon">
-                                <i class="bx bx-happy"></i>
+                                <i class='bx bx-check-circle'></i>
                             </div>
-                            <h3 class="h4 card-title">Reshaping the Final-Year Experience</h3>
+                            <h3 class="h4 card-title">Finalize Selection</h3>
                             <p class="card-text">
-                                Through innovative technology and personalized support, we strive to make the research
-                                topic selection process more accessible, rewarding, and aligned with each student's
-                                individual interests and goals.
+                                Once you've found a suitable project topic, finalize your selection and begin working on
+                                your final-year project with confidence.
                             </p>
-<!--                            <a href="#" class="btn-text">-->
-<!--                                <span class="span">Learn More</span>-->
-<!--                                <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>-->
-<!--                            </a>-->
                         </div>
                     </li>
 
@@ -270,9 +256,115 @@
             </div>
         </section>
 
-        <!------------------- #CONTACT ------------------------------->
-        <section id="contact" class="section service bg-image" aria-labelledby="contact-label">
+
+        <!------------------------ #FEATURES ----------------------------------------->
+
+        <section  id="about" class="about " aria-labelledby="about-label">
             <div class="container">
+
+                <figure class="about-banner">
+                    <img th:src="@{/images/student 8.jpg}" src="#"  width="800" height="580" alt="about banner" style=" border-radius: 15%; width: 100%;"
+                    >
+                </figure>
+
+                <div class="about-content">
+
+                    <p class="section-subtitle" id="about-label">What Makes the Tool Special?</p>
+
+                    <h2 class="h2 section-title">
+                        Empowering Your Final-Year Project Journey
+                    </h2>
+
+                    <ul>
+
+                        <li class="about-item">
+                            <div class="accordion-card expanded" data-accordion>
+
+                                <h3 class="card-title">
+                                    <button class="accordion-btn" data-accordion-btn>
+                                        <ion-icon name="chevron-down-outline" aria-hidden="true" class="down"></ion-icon>
+
+                                        <span class="span h5">Our primary focus</span>
+                                    </button>
+                                </h3>
+
+                                <p class="accordion-content">
+                                    Our primary focus is on assisting students in the crucial task of selecting a suitable
+                                    and personally resonant topic for their final-year projects.
+                                </p>
+
+                            </div>
+                        </li>
+
+                        <li class="about-item">
+                            <div class="accordion-card" data-accordion>
+
+                                <h3 class="card-title">
+                                    <button class="accordion-btn" data-accordion-btn>
+                                        <ion-icon name="chevron-down-outline" aria-hidden="true" class="down"></ion-icon>
+
+                                        <span class="span h5">Personalized Recommendations</span>
+                                    </button>
+                                </h3>
+
+                                <p class="accordion-content">
+                                    We go beyond conventional approaches by providing personalized recommendations for
+                                    potential research or project topics within the expansive field of Computer Science.
+                                </p>
+
+                            </div>
+                        </li>
+
+                        <li class="about-item">
+                            <div class="accordion-card" data-accordion>
+
+                                <h3 class="card-title">
+                                    <button class="accordion-btn" data-accordion-btn>
+                                        <ion-icon name="chevron-down-outline" aria-hidden="true" class="down"></ion-icon>
+
+                                        <span class="span h5">Supervisor Alignment</span>
+                                    </button>
+                                </h3>
+
+                                <p class="accordion-content">
+                                    Streamlines the process of aligning students with compatible supervisors who possess
+                                    expertise in the chosen research area.
+                                </p>
+
+                            </div>
+                        </li>
+
+
+                        <li class="about-item">
+                            <div class="accordion-card" data-accordion>
+
+                                <h3 class="card-title">
+                                    <button class="accordion-btn" data-accordion-btn>
+                                        <ion-icon name="chevron-down-outline" aria-hidden="true" class="down"></ion-icon>
+
+                                        <span class="span h5">Reshaping Final-Year Experience</span>
+                                    </button>
+                                </h3>
+
+                                <p class="accordion-content">
+                                    Through innovative technology and personalized support, we strive to make the research
+                                    topic selection process more accessible, rewarding, and aligned with each student's
+                                    individual interests and goals.
+                                </p>
+
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!------------------- #CONTACT ------------------------------->
+        <section id="contact" class="section service" aria-labelledby="contact-label">
+            <div class="container" >
 
                 <p class="section-subtitle" id="contact-label" style="color: white">Get In Touch</p>
 

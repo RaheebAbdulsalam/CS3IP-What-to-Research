@@ -78,7 +78,7 @@ public class UserController {
         User currentUser = userRepo.findByEmail(email);
         currentUser.setEmail(user.getEmail());
 //        currentUser.setPassword(user.getPassword());
-        service.save(currentUser);
+        service.saveUser(currentUser);
         return mav;
     }
 

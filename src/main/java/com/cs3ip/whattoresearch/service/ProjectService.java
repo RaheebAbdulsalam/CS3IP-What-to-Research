@@ -5,15 +5,6 @@ import com.cs3ip.whattoresearch.model.Project;
 import com.cs3ip.whattoresearch.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 
@@ -41,7 +32,7 @@ public class ProjectService {
         project.setDescription(projectDetails.getDescription());
         project.setMethodology(projectDetails.getMethodology());
         project.setPreferredLanguages(projectDetails.getPreferredLanguages());
-        project.setProgrammingSkills(projectDetails.getProgrammingSkills());
+        project.setProgrammingSkill(projectDetails.getProgrammingSkill());
         return projectRepository.save(project);
     }
 

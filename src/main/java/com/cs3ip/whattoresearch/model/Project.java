@@ -5,15 +5,16 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
+
 @Entity
-@Table(name = "projects")
+@Table(name = "project")
 public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(name = "project_title", nullable = false)
     private String projectTitle;
 
     @Column(nullable = false)
@@ -22,30 +23,25 @@ public class Project {
     @Column(nullable = false)
     private String methodology;
 
-    @Column(nullable = false)
-    private String projectType;
+    @ManyToOne
+    @JoinColumn(name = "project_type_id")
+    private ProjectCategory projectCategory;
 
-    @ElementCollection
-    @CollectionTable(name = "preferred_languages", joinColumns = @JoinColumn(name = "project_id"))
-    @Column(name = "language")
-    private List<String> preferredLanguages;
+    @ManyToOne
+    @JoinColumn(name = "programming_skill_id")
+    private SkillLevel programmingSkill;
 
-    @Column(nullable = false)
-    private String programmingSkills;
+    @ManyToMany
+    @JoinTable(
+            name = "project_language",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "language_id")
+    )
+    private List<Language> preferredLanguages;
 
-    public Project(Integer id, String projectTitle, String description, String methodology, String projectType, List<String> preferredLanguages, String programmingSkills) {
-        this.id = id;
-        this.projectTitle = projectTitle;
-        this.description = description;
-        this.methodology = methodology;
-        this.projectType = projectType;
-        this.preferredLanguages = preferredLanguages;
-        this.programmingSkills = programmingSkills;
-    }
 
-    public Project() {
+    // Getters and setters
 
-    }
 
     public Integer getId() {
         return id;
@@ -79,27 +75,27 @@ public class Project {
         this.methodology = methodology;
     }
 
-    public String getProjectType() {
-        return projectType;
+    public ProjectCategory getProjectCategory() {
+        return projectCategory;
     }
 
-    public void setProjectType(String projectType) {
-        this.projectType = projectType;
+    public void setProjectCategory(ProjectCategory projectCategory) {
+        this.projectCategory = projectCategory;
     }
 
-    public List<String> getPreferredLanguages() {
+    public SkillLevel getProgrammingSkill() {
+        return programmingSkill;
+    }
+
+    public void setProgrammingSkill(SkillLevel programmingSkill) {
+        this.programmingSkill = programmingSkill;
+    }
+
+    public List<Language> getPreferredLanguages() {
         return preferredLanguages;
     }
 
-    public void setPreferredLanguages(List<String> preferredLanguages) {
+    public void setPreferredLanguages(List<Language> preferredLanguages) {
         this.preferredLanguages = preferredLanguages;
-    }
-
-    public String getProgrammingSkills() {
-        return programmingSkills;
-    }
-
-    public void setProgrammingSkills(String programmingSkills) {
-        this.programmingSkills = programmingSkills;
     }
 }

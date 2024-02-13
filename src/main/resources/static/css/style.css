@@ -244,7 +244,6 @@ body.nav-active {
   gap: 25px;
 }
 
-
 /*****************************-----------------------------------*************************************\
                                              HEADER
                                 \*-----------------------------------*/
@@ -501,7 +500,7 @@ body.nav-active {
 
 
 /*-----------------------------------*\
-            ABOUT PAGE
+            How it works
 \*-----------------------------------*/
 
 .service {
@@ -517,6 +516,12 @@ body.nav-active {
   box-shadow: var(--shadow-2);
   border-radius: var(--radius-6);
   height: 100%;
+  border: 2px solid transparent;
+}
+
+.service-card:hover{
+  border-color: var(--violet);
+  transform: scale(1.1);
 }
 
 .service-card .card-icon {
@@ -557,6 +562,13 @@ body.nav-active {
 /*-----------------------------------*\
              CONTACT FORM
 \*-----------------------------------*/
+#contact .container{
+  background: linear-gradient(-50deg, var(--dark-purple), var(--violet)) no-repeat center;
+  padding: 60px;
+  border-radius: 15%;
+}
+
+
 #contact form{
   max-width: 70rem;
   text-align: center;
@@ -695,3 +707,231 @@ body.nav-active {
 
 
 
+
+
+/*-----------------------------------*\
+  #ABOUT
+\*-----------------------------------*/
+
+
+.about .container {
+  display: grid;
+  gap: 50px;
+}
+
+.about .section-title { margin-block-end: 35px; }
+
+.accordion-card .card-title { padding-block-end: 20px; }
+
+.accordion-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.accordion-btn ion-icon {
+  font-size: 1.5rem;
+  color: var(--purple-haze);
+  transition: var(--transition-1);
+}
+
+.accordion-card.expanded .accordion-btn ion-icon {
+  transform: rotate(0.5turn);
+}
+
+.accordion-btn .span { transition: var(--transition-1); }
+
+.accordion-btn:is(:hover, :focus-visible) .span,
+.accordion-card.expanded .accordion-btn .span { color: var(--violet); }
+
+.accordion-content {
+  padding-inline-start: 24px;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.accordion-card.expanded .accordion-content {
+  max-height: max-content;
+  padding-block-end: 20px;
+}
+
+
+
+
+
+
+/**************************************-----------------------------------*******************************************************\
+                                  #MEDIA QUERIES FOR RESPONSIVE DESIGN
+\**************************************-----------------------------------*******************************************************/
+
+/************************ responsive for large than 575px screen *****************************/
+
+@media (min-width: 575px) {
+  .container {
+    max-width: 540px;
+    width: 100%;
+    margin-inline: auto;
+  }
+
+}
+
+/************************* responsive for large than 768px screen ***************************************/
+
+@media (min-width: 768px) {
+
+  :root {
+    --section-padding: 120px;
+  }
+
+  .container {
+    max-width: 720px;
+  }
+
+  .grid-list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .header .btn {
+    display: block;
+    margin-inline-start: auto;
+    padding: 8px 20px;
+  }
+
+  .header.active .btn {
+    background-color: var(--violet);
+    border-color: var(--violet);
+    color: var(--white);
+  }
+
+  .hero-content {
+    max-width: 85%;
+    margin-inline: auto;
+  }
+
+  .hero-text {
+    --fs-5: 2rem;
+  }
+
+  .service .section-title {
+    max-width: 30ch;
+    margin-inline: auto;
+  }
+
+
+  .about .container {
+    grid-template-columns: 1fr 0.7fr;
+    align-items: center;
+  }
+
+}
+
+
+/************* responsive for large than 992px screen **************************/
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+
+  .nav-open-btn,
+  .navbar>*:not(.navbar-list),
+  .overlay {
+    display: none;
+  }
+
+  .navbar,
+  .navbar.active {
+    all: unset;
+    display: block;
+    margin-inline: auto 24px;
+  }
+
+  .navbar-list {
+    display: flex;
+    gap: 30px;
+  }
+
+  .navbar-link {
+    color: var(--white);
+    transition: var(--transition-1);
+  }
+
+  .navbar-link:is(:hover, :focus-visible) {
+    opacity: 0.7;
+  }
+
+  .header.active .navbar-link {
+    color: var(--purple-haze);
+  }
+
+  .header.active .navbar-link:is(:hover, :focus-visible) {
+    opacity: 1;
+    color: var(--violet);
+  }
+
+  .header .btn {
+    margin-inline-start: 0;
+  }
+
+  .hero {
+    padding-block-start: calc(var(--section-padding) + 50px);
+    text-align: left;
+  }
+
+  .hero .container {
+    grid-template-columns: 1fr 0.8fr;
+    align-items: center;
+  }
+
+  .hero-content {
+    max-width: unset;
+    margin-inline: 0;
+  }
+
+  .btn-wrapper {
+    justify-content: flex-start;
+  }
+
+  .footer .grid-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+}
+
+
+
+/*************Responsive for scree larger than 1200px *************/
+
+@media (min-width: 1200px) {
+
+
+  .container {
+    max-width: 1140px;
+  }
+
+  .hero-text {
+    padding-inline-end: 100px;
+  }
+
+  .service .grid-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  address.footer-text {
+    padding-inline-end: 100px;
+    margin-block-end: 16px;
+  }
+
+}
+
+
+
+/*******************Responsive for scree larger than 1400px *******************************/
+
+@media (min-width: 1400px) {
+
+  .container {
+    max-width: 1320px;
+  }
+
+}

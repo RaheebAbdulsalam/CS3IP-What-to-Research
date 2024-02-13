@@ -34,7 +34,7 @@ public class UserService {
         return userRepo.findAll();
     }
 
-    public User get(Integer id) {
+    public User getUserId(Integer id) {
         return userRepo.findById(id).get();
     }
 
@@ -42,7 +42,7 @@ public class UserService {
         return roleRepo.findAll();
     }
 
-    public void save(User user) {
+    public void saveUser(User user) {
         BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
         String encodedPassword= encoder.encode(user.getPassword());
         user.setPassword(encodedPassword);

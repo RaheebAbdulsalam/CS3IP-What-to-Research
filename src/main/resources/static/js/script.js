@@ -1,5 +1,8 @@
 
-/********************** add event listener on multiple elements ****************************/
+
+/**
+ * add event listener on multiple elements
+ */
 
 const addEventOnElements = function (elements, eventType, callback) {
     for (let i = 0, len = elements.length; i < len; i++) {
@@ -9,7 +12,9 @@ const addEventOnElements = function (elements, eventType, callback) {
 
 
 
-/********************** NAVBAR TOGGLE FOR MOBILE *******************************/
+/**
+ * NAVBAR TOGGLE FOR MOBILE
+ */
 
 const navbar = document.querySelector("[data-navbar]");
 const navTogglers = document.querySelectorAll("[data-nav-toggler]");
@@ -25,7 +30,10 @@ addEventOnElements(navTogglers, "click", toggleNavbar);
 
 
 
-/*************************** HEADER ***** active header when window scroll down to 100px ************************/
+/**
+ * HEADER
+ * active header when window scroll down to 100px
+ */
 
 const header = document.querySelector("[data-header]");
 
@@ -39,7 +47,9 @@ window.addEventListener("scroll", function () {
 
 
 
-/*************************** IMAGE SLIDER IN THE HOME PAGE *****************************/
+/**
+ * SLIDER
+ */
 
 const sliders = document.querySelectorAll("[data-slider]");
 
@@ -55,7 +65,9 @@ const initSlider = function(currentSlider) {
         sldierContainer.style.transform = `translateX(-${sldierContainer.children[currentSlidePos].offsetLeft}px)`;
     }
 
-    /*** NEXT SLIDE*/
+    /**
+     * NEXT SLIDE
+     */
 
     const slideNext = function () {
         const slideEnd = currentSlidePos >= sldierContainer.childElementCount - 1;
@@ -71,7 +83,9 @@ const initSlider = function(currentSlider) {
 
     sliderNextBtn.addEventListener("click", slideNext);
 
-    /*** PREVIOUS SLIDE*/
+    /**
+     * PREVIOUS SLIDE
+     */
 
     const slidePrev = function () {
 
@@ -95,6 +109,42 @@ const initSlider = function(currentSlider) {
 }
 
 for (let i = 0, len = sliders.length; i < len; i++) { initSlider(sliders[i]); }
+
+
+
+/**
+ * ACCORDION
+ */
+
+const accordions = document.querySelectorAll("[data-accordion]");
+
+let lastActiveAccordion = accordions[0];
+
+const initAccordion = function (currentAccordion) {
+
+    const accordionBtn = currentAccordion.querySelector("[data-accordion-btn]");
+
+    const expandAccordion = function () {
+        if (lastActiveAccordion && lastActiveAccordion !== currentAccordion) {
+            lastActiveAccordion.classList.remove("expanded");
+        }
+
+        currentAccordion.classList.toggle("expanded");
+
+        lastActiveAccordion = currentAccordion;
+    }
+
+    accordionBtn.addEventListener("click", expandAccordion);
+
+}
+
+for (let i = 0, len = accordions.length; i < len; i++) { initAccordion(accordions[i]); }
+
+
+
+
+
+
 
 
 
@@ -127,6 +177,4 @@ studentNumberInput.addEventListener('focus', function () {
     errorElement.textContent = '';
     studentNumberInput.setCustomValidity('');
 });
-
-
 
