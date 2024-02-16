@@ -26,6 +26,7 @@ public class WebSecurityConfig {
         return new CustomUserDetailsService();
     }
 
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -69,6 +70,7 @@ public class WebSecurityConfig {
 
         return http.build();
     }
+
 
 
 }

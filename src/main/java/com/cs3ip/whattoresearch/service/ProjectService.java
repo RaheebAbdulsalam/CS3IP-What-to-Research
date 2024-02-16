@@ -14,7 +14,7 @@ public class ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
 
-    public List<Project> getAllProducts() {
+    public List<Project> getAllProjects() {
         return projectRepository.findAll();
     }
 
@@ -36,8 +36,11 @@ public class ProjectService {
         return projectRepository.save(project);
     }
 
-    public void deleteProduct(Integer id) {
+    public void deleteProject(Integer id) {
         projectRepository.deleteById(id);
     }
+
+
+
 }
 

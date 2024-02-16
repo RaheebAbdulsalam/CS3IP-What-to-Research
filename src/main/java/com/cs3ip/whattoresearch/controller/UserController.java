@@ -1,5 +1,6 @@
 package com.cs3ip.whattoresearch.controller;
 
+import com.cs3ip.whattoresearch.model.Contact;
 import com.cs3ip.whattoresearch.model.User;
 import com.cs3ip.whattoresearch.repository.UserRepository;
 import com.cs3ip.whattoresearch.service.UserService;
@@ -20,12 +21,6 @@ public class UserController {
     private UserService service;
     @Autowired
     private UserRepository userRepo;
-
-    @GetMapping()
-    public ModelAndView viewHomePage(Model model, Principal principal) {
-        ModelAndView mav = new ModelAndView("index");
-        return mav;
-    }
 
     @GetMapping("/register")
     public ModelAndView showRegistrationForm() {

@@ -41,8 +41,6 @@ public class Project {
 
 
     // Getters and setters
-
-
     public Integer getId() {
         return id;
     }
