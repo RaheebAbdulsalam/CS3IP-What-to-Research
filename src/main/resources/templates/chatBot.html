@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,6 @@
     <title>What to Research</title>
     <meta name="title" content="Research Interests Tool">
     <meta name="description" content="Explore a tool to scope out your research interests and find new areas of study.">
-
 
     <!-- favicon -->
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
@@ -25,12 +24,11 @@
 
     <!--CSS link-->
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/form.css}">
 
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
-
 
 <body>
 
@@ -46,8 +44,7 @@
             <div class="navbar-top">
                 <!-- The logo for the hamburger navigation on mobile phones-->
                 <a th:href="@{/}" class="logo">
-                    <img th:src="@{/images/Website-logo.png}" src="#" width="200" alt="what to research"
-                         class="web-logo">
+                    <img th:src="@{/images/Website-logo.png}" src="#" width="180" height="24" alt="what to research">
                 </a>
                 <!-- closing button to close the hamburger navigation on mobile-->
                 <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
@@ -60,40 +57,18 @@
                 <li><a th:href="@{/#how-it-works}" class="navbar-link">How It Works</a></li>
                 <li><a th:href="@{/#about}" class="navbar-link">Features</a></li>
                 <li><a th:href="@{/#contact}" class="navbar-link">Contact</a></li>
+
                 <!--Space-->
                 <li></li>
                 <li></li>
-                <!----Sign-up, Login, Logout----->
-                <li sec:authorize="isAnonymous()"><a th:href="@{/login}" class="navbar-link loginLink"
-                                                     style="color: black;margin-bottom: 10px;">Log
+                <!--------->
+                <li><a th:href="@{/login}" class="navbar-link loginLink" style="color: black;margin-bottom: 10px;">Log
                     in</a></li>
-                <li sec:authorize="isAnonymous()"><a th:href="@{/register}" class="navbar-link loginLink"
-                                                     style="color: black; ">Sign Up</a></li>
+                <li><a th:href="@{/register}" class="navbar-link loginLink" style="color: black; ">Sign Up</a></li>
 
-                <!------------------------------Drop Down menu-------------------------------->
-                <div class="dropdown-menu">
-                    <button class="dropButton" style="color: white">
-                        <ion-icon name="person-circle-outline" style="font-size: 2em;"></ion-icon>
-                    </button>
-                    <div class="dropdown-content">
-                        <a sec:authorize="isAuthenticated()" th:href="@{/profile}"> My Profile</ion-icon></a>
-                        <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin}">Admin Panel </i></a>
-                        <a>
-                            <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}">
-                                <button type="submit" class="navbar-link loginLink"
-                                        style="color: black; display: flex; align-items: center;">
-                                    <ion-icon name="log-out-outline" style="margin-right: 5px;"></ion-icon>
-                                    Logout
-                                </button>
-                            </form>
-                        </a>
-                    </div>
-                </div>
-                <!------------------------------End of Drop Down menu-------------------------------->
                 <li><a th:href="@{/wishlist}" class="navbar-link">
                     <ion-icon name="heart-outline" style="font-size: 30px"></ion-icon>
                 </a></li>
-
             </ul>
 
             <!--contact info on the hamburger nav bar-->
@@ -124,60 +99,38 @@
 
 <!-------------------------------------End of Header---------------------------------------------->
 
+
 <!-- Main Content -->
 <section class="section bg-image" aria-label="home">
-    <!-- Student Profile -->
-    <div class="student-profile py-4">
-        <div class="container" th:action="@{/edit-profile}">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="card shadow-sm">
 
-                        <div class="card-header bg-transparent text-center">
-                            <div class="profile-info">
-                                <img class="profile_img" th:src="@{/images/profile image.jpg}" alt="">
-                                <h3 th:text="${user.firstName + ' ' + user.lastName}"></h3>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="card shadow-sm">
-                            <div class="card-body pt-0">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th>Email Address</th>
-                                        <td th:text="${user.email}"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Academic Year</th>
-                                        <td>Final Year</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Student Number</th>
-                                        <td th:text="${user.studentNumber}">Student Number</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Buttons -->
-                    <div class="button-container">
-                        <div class="btn-wrapper">
-                            <a class="btn btn-primary">Change Email</a>
-                        </div>
-                        <div class="btn-wrapper">
-                            <a class="btn btn-primary">Change Password</a>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
+    <div class="container" style=" background: linear-gradient(-135deg, #c850c0, #4158d0); padding: 30px 10px; border: 1px solid #ccc;
+  border-radius: 7px;">
+        <h2 style="color: white; text-align: center">ChatGPT Search</h2>
+        <br>
+        <br>
+        <form id="chatForm">
+            <label for="query" style="color: white">Enter your question:</label><br>
+            <input type="text" id="query" name="query" required
+                   value="Could you suggest some compelling topics for final year projects in Computer Science?"><br>
+            <input type="submit" value="Search">
+        </form>
+        <label for="response" style="color: white">Response:</label><br>
+        <div id="response" class="answer"></div>
     </div>
+
+    <script>
+        document.getElementById("chatForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            var query = document.getElementById("query").value;
+            fetch("/api/v1/ask?query=" + encodeURIComponent(query))
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("response").innerHTML = "<p>" + data + "</p>";
+                });
+        });
+    </script>
 </section>
+
 
 <!--------------------------------------#FOOTER----------------------------------------->
 <footer class="footer">

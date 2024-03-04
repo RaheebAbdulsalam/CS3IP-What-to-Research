@@ -1,12 +1,13 @@
 package com.cs3ip.whattoresearch.chatGPT;
 
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -22,6 +23,13 @@ public class ChatGPTController {
 
     private static RestTemplate restTemplate=new RestTemplate();
 
+
+    @GetMapping("/chat-bot")
+    public ModelAndView getGpt() {
+        ModelAndView mav = new ModelAndView("/chatBot");
+        return mav;
+    }
+
     @RequestMapping(value="/ask",method = RequestMethod.GET,produces= MediaType.APPLICATION_JSON_VALUE)
     public String ask(@RequestParam String query) {
         ChatRequest request = new ChatRequest(model, query);
@@ -30,8 +38,10 @@ public class ChatGPTController {
         // call the API
         ChatResponse chatResponse = restTemplate.postForObject(apiUrl, new HttpEntity<>(request,headers), ChatResponse.class);
 
-
         // return the first response
         return chatResponse.getChoices().get(0).getMessage().getContent();
     }
+
+
+
 }

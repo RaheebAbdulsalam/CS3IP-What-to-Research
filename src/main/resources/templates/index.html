@@ -122,31 +122,25 @@
     <article>
 
         <!--- HOME PAGE -->
-        <section id=home class="section hero bg-image" aria-label="home"
-                >
+        <section id=home class="section hero bg-image" aria-label="home">
             <div class="container">
 
                 <div class="hero-content">
-                    <!--Title and text-->
                     <h1 class="h1 hero-title">Explore Your Research Interests</h1>
                     <p class="hero-text">
                         Discover new areas of study and find the perfect research topic for your final year project.
                     </p>
-                    <!--Action button on the home page-->
+                    <!--Action button-->
                     <div class="btn-wrapper">
                         <a th:href="${#authorization.expression('isAuthenticated()') ? '/research/research-form' : '/login'}" class="btn btn-primary">
                             Get Started
                         </a>
                     </div>
-
-
                 </div>
 
                 <!-- The image slider-->
                 <div class="hero-slider" data-slider>
-
                     <div class="slider-inner">
-
                         <ul class="slider-container" data-slider-container>
 
                             <li class="slider-item">
@@ -187,8 +181,8 @@
                     <button class="slider-btn next" aria-label="slide to next" data-slider-next>
                         <ion-icon name="arrow-forward"></ion-icon>
                     </button>
-
                 </div>
+
             </div>
         </section>
 

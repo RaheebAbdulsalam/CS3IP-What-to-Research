@@ -69,12 +69,10 @@ public class UserController {
         ModelAndView mav = new ModelAndView("userProfile");
         String email = principal.getName();
         User currentUser = userRepo.findByEmail(email);
+        currentUser.setStudentNumber(user.getStudentNumber());
         currentUser.setEmail(user.getEmail());
-//        currentUser.setPassword(user.getPassword());
-        service.saveUser(currentUser);
+        service.updateUserProfile(currentUser);
         return mav;
     }
-
-
 
 }

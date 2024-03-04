@@ -49,6 +49,9 @@ public class UserService {
         userRepo.save(user);
     }
 
+    public void updateUserProfile(User user) {
+        userRepo.save(user);
+    }
 
     public boolean emailExists(String email) {
         Optional<User> userOptional = Optional.ofNullable(userRepo.findByEmail(email));

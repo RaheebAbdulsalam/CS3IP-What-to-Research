@@ -123,20 +123,28 @@
     <table >
         <thead>
         <tr>
+            <th>Wishlist</th>
             <th>Project Title</th>
-<!--            <th>Description</th>-->
             <th>Type</th>
             <th> Methodology</th>
             <th>Recommended Languages</th>
             <th>Supervisor</th>
             <th>Actions</th>
 
+
         </tr>
         </thead>
         <tbody>
         <tr th:each="project : ${projects}">
+
+            <td>
+                <form th:action="@{/wishlist}" method="post">
+                    <input type="hidden" name="projectId" th:value="${project.id}">
+                    <button type="submit"> <ion-icon name="heart-outline" style="font-size: 30px; text-align: center;" ></ion-icon></button>
+                </form>
+            </td>
+
             <td><strong th:text="${project.projectTitle}"></strong></td>
-<!--            <td th:text="${project.description}"></td>-->
             <td th:each="type : ${project.types}" th:text="${type.name}"></td>
             <td th:each="methodology:${project.projectMethodology}"
                 th:text="${methodology.methodology_type}"></td>
@@ -147,10 +155,9 @@
             <td th:each="supervisor : ${project.supervisor}" th:text="${supervisor.name}"></td>
 
             <td>
-                <form th:action="@{/wishlist}" method="post">
-                    <input type="hidden" name="projectId" th:value="${project.id}">
-                    <button type="submit"> <ion-icon name="heart-outline" style="font-size: 20px"></ion-icon></button>
-                </form>
+                <div class="btn-wrapper">
+                    <a class="btn btn-primary" th:href="@{/}" style="background: linear-gradient(-135deg, #c850c0, #4158d0);color: white ">Details</a>
+                </div>
             </td>
 
         </tr>
@@ -158,10 +165,16 @@
         </tbody>
     </table>
 
+        <div class="btn-wrapper">
+            <a class="btn btn-primary" th:href="@{/api/v1/chat-bot}">ChatGPT</a>
+        </div>
+
 
 </div>
 
 </section>
+
+
 
 
 <!--------------------------------------#FOOTER----------------------------------------->
