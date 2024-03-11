@@ -34,7 +34,24 @@ public class ProjectController {
         return modelAndView;
     }
 
+//    @GetMapping("/project-detail")
+//    public ModelAndView getProjectDetail(String projectMethodology, String projectType, String favLanguage, String programmingSkills) {
+//        List<String> favLanguages = Arrays.asList(favLanguage.split(","));
+//        int languageSize = favLanguages.size();
+//        List<Project> projectDetail = projectFilterService.searchProjects(projectMethodology, projectType, favLanguages, languageSize, programmingSkills);
+//        ModelAndView modelAndView = new ModelAndView("/projectDetail");
+//        modelAndView.addObject("projects", projectDetail);
+//        return modelAndView;
+//    }
 
+
+    @GetMapping("/display/{id}")
+    public ModelAndView getProjectDetail(@PathVariable("id") Integer id) {
+        ModelAndView mav = new ModelAndView("/projectDetail");
+        Project project=projectFilterService.getProjectById(id);
+        mav.addObject("project", project);
+        return mav;
+    }
 
 }
 

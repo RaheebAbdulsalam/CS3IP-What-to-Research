@@ -45,11 +45,10 @@ public class WebSecurityConfig {
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .requestMatchers("/updateProfile").authenticated()
                 .requestMatchers("/profile").authenticated()
-                .requestMatchers("/edit-profile").authenticated()
                 .requestMatchers("/research/research-form").authenticated()
                 .requestMatchers("/research/search").authenticated()
+                .requestMatchers("/research/display/{id}").authenticated()
                 // ONLY ADMINS CAN ACCESS ADMIN PAGES
                 .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
                 .anyRequest().permitAll()

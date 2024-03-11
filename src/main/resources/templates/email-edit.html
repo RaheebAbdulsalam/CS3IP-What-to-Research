@@ -84,41 +84,30 @@
 
 <!-------------------------------------End of Header---------------------------------------------->
 
-<!-- Main Content -->
-<section class="section bg-image" aria-label="home" >
 
-  <!-- Login Page -->
+
+<!-- Main Content -->
+
+<section class="section bg-image" aria-label="home">
+
   <div class="login-container">
     <div class="wrapper">
-      <div class="title">Login</div>
-      <h3 style="color: #9b59b6;text-align:center;">You have signed up successfully!</h3>
-      <form th:action="@{/login}" method="post">
-        <p th:if="${param.error}" class="error">Invalid username or password.</p>
+      <div class="title">Edit Email</div>
+
+      <form th:action="@{/#}" method="post">
         <div class="field">
-          <input type="text" name="email" required>
+          <input type="email" name="newEmail" th:value="${user.email}" required>
           <label>Email Address</label>
         </div>
         <div class="field">
-          <input type="password" name="password" required>
-          <label>Password</label>
+          <input type="submit">
         </div>
-        <div class="content">
-          <div class="checkbox">
-            <input type="checkbox" id="remember-me">
-            <label for="remember-me">Remember me</label>
-          </div>
-          <div class="pass-link">
-            <a href="#">Forgot password?</a>
-          </div>
-        </div>
-        <div class="field">
-          <input type="submit" value="Login">
-        </div>
-        <div class="signup-link">Not a member yet? <a th:href="@{/register}">Create an Account</a></div>
       </form>
+
     </div>
   </div>
 </section>
+
 <!--------------------------------------#FOOTER----------------------------------------->
 <footer class="footer">
   <div class="container">
@@ -167,7 +156,6 @@
 <!--- ionicon for the icons in the website-->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
 </body>
 
 </html>

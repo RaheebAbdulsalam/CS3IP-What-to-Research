@@ -14,103 +14,86 @@
     <!-- favicon -->
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 
-
     <!--Box icons-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-
-    <!-- google font link -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap" rel="stylesheet">
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css">
 
     <!--CSS link-->
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/form.css}">
 
+
 </head>
+
 <body>
 
-
-
 <!-------------------------------------------HEADER------------------------------------>
-<header class="header" data-header>
+<header class="header" custom-header>
     <div class="container">
-        <!-- The website logo for PC-->
+
+        <!-- The website logo for Desktop Screen-->
         <a th:href="@{/}" class="logo">
-            <img th:src="@{/images/Website-logo.png}" src="#" width="200" alt="what to research" class="web-logo">
+            <img src="/images/Website-logo.png" width="200" height="100" alt="what to research" class="main-logo">
         </a>
+
         <!-- The Navigation Bar-->
-        <nav class="navbar" data-navbar>
-            <div class="navbar-top">
+        <nav class="navbar" navigation>
+
+            <div class="navTop">
+
                 <!-- The logo for the hamburger navigation on mobile phones-->
                 <a th:href="@{/}" class="logo">
-                    <img th:src="@{/images/Website-logo.png}" src="#" width="200" alt="what to research" class="web-logo">
+                    <img th:src="@{/images/Website-logo.png}" src="#" width="180" height="24" alt="what to research">
                 </a>
-                <!-- closing button to close the hamburger navigation on mobile-->
-                <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+
+                <!-- closing button to close the hamburger navigation on small screens-->
+                <button class="close-button" aria-label="close the navigation" nav-toggle>
                     <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
                 </button>
             </div>
 
-            <ul class="navbar-list">
+            <ul class="navbar-items">
                 <li><a th:href="@{/}" class="navbar-link">Home</a></li>
                 <li><a th:href="@{/#how-it-works}" class="navbar-link">How It Works</a></li>
-                <li><a th:href="@{/#about}" class="navbar-link">Features</a></li>
+                <li><a th:href="@{/#feature}" class="navbar-link">Features</a></li>
                 <li><a th:href="@{/#contact}" class="navbar-link">Contact</a></li>
                 <!--Space-->
                 <li></li>
                 <li></li>
-                <!----Sign-up, Login, Logout----->
-                <li  sec:authorize="isAnonymous()"><a th:href="@{/login}" class="navbar-link loginLink" style="color: black;margin-bottom: 10px;">Log
-                    in</a></li>
-                <li sec:authorize="isAnonymous()"><a th:href="@{/register}" class="navbar-link loginLink" style="color: black; ">Sign Up</a></li>
 
-                <!------------------------------Drop Down menu-------------------------------->
-                <div class="dropdown-menu">
+                <!------------------------------Drop Down menu when logged in-------------------------------->
+                <div sec:authorize="isAuthenticated()" class="dropdown-menu">
                     <button class="dropButton" style="color: white">
                         <ion-icon name="person-circle-outline" style="font-size: 2em;"></ion-icon>
                     </button>
                     <div class="dropdown-content">
-                        <a  sec:authorize="isAuthenticated()" th:href="@{/profile}"> My Profile</ion-icon></a>
-                        <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin}">Admin Panel </i></a>
-                        <a> <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}">
-                            <button type="submit" class="navbar-link loginLink" style="color: black; display: flex; align-items: center;">
-                                <ion-icon name="log-out-outline" style="margin-right: 5px;"></ion-icon>
-                                Logout
-                            </button>
-                        </form></a>
+                        <a sec:authorize="isAuthenticated()" th:href="@{/profile}"> My Profile</a>
+                        <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin}">Admin Panel</a>
+                        <a>
+                            <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}">
+                                <button type="submit" class="navbar-link"
+                                        style="color: var(--black); display: flex; align-items: center;">
+                                    <ion-icon name="log-out-outline" style="margin-right: 5px;"></ion-icon>
+                                    Logout
+                                </button>
+                            </form>
+                        </a>
                     </div>
                 </div>
-                <!------------------------------End of Drop Down menu-------------------------------->
-                <li><a th:href="@{/wishlist}" class="navbar-link"><ion-icon name="heart-outline" style="font-size: 30px"></ion-icon></a></li>
 
-
-            </ul>
-
-            <!--contact info on the hamburger nav bar-->
-            <div class="wrapper">
-                <a href="mailto:info@email.com" class="contact-link">raheebabdulsalam@hotmail.com</a>
-            </div>
-            <!--Social media icons on the hamburger nav bar -->
-            <ul class="social-media-list">
-                <li><a href="#" class="social-media-link">
-                    <ion-icon name="logo-twitter"></ion-icon>
-                </a></li>
-                <li><a href="#" class="social-media-link">
-                    <ion-icon name="logo-facebook"></ion-icon>
-                </a></li>
-                <li><a href="#" class="social-media-link">
-                    <ion-icon name="logo-instagram"></ion-icon>
-                </a></li>
+                <li><a sec:authorize="isAuthenticated()" th:href="@{/wishlist}" class="navbar-link"><ion-icon name="heart-outline" style="font-size: 30px"></ion-icon></a></li>
             </ul>
         </nav>
 
-        <!--Three dots icon to Open the hamburger nav bar on mobile devices-->
-        <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <!--Three dots icon to Open the hamburger nav bar on small screens-->
+        <button class="open-button" aria-label="open menu" nav-toggle>
             <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
         </button>
-        <div class="overlay" data-nav-toggler data-overlay></div>
+
+        <!--covers the entire page when menu is active, to prevent users from interacting with the content underneath it on small screens -->
+        <div class="overlay" nav-toggle overlay></div>
     </div>
 </header>
 
@@ -125,8 +108,8 @@
         <tr>
             <th>Wishlist</th>
             <th>Project Title</th>
-            <th>Type</th>
-            <th> Methodology</th>
+<!--            <th>Type</th>-->
+            <th>Methodology</th>
             <th>Recommended Languages</th>
             <th>Supervisor</th>
             <th>Actions</th>
@@ -145,7 +128,7 @@
             </td>
 
             <td><strong th:text="${project.projectTitle}"></strong></td>
-            <td th:each="type : ${project.types}" th:text="${type.name}"></td>
+<!--            <td th:each="type : ${project.types}" th:text="${type.name}"></td>-->
             <td th:each="methodology:${project.projectMethodology}"
                 th:text="${methodology.methodology_type}"></td>
             <td>
@@ -156,7 +139,7 @@
 
             <td>
                 <div class="btn-wrapper">
-                    <a class="btn btn-primary" th:href="@{/}" style="background: linear-gradient(-135deg, #c850c0, #4158d0);color: white ">Details</a>
+                    <a class="btn btn-primary" th:href="@{/research/display/{id}(id=${project.id})}" style="background: linear-gradient(-135deg, #c850c0, #4158d0);color: white ">Details</a>
                 </div>
             </td>
 
@@ -202,9 +185,11 @@
                 <p>Aston University, Aston St, Birmingham B4 7ET, United Kingdom</p>
                 <br>
                 <div class="social-icons">
-                    <a href="#" class="social-icon"><i class='bx bxl-facebook-square'></i></a>
-                    <a href="#" class="social-icon"><i class='bx bxl-linkedin-square'></i></a>
-                    <a href="#" class="social-icon"> <i class='bx bxl-instagram-alt'></i></a>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/astonuniversity" class="social-icon"><i class='bx bxl-facebook-square'></i></a>
+                        <a href="https://www.instagram.com/astonuniversity?igsh=bm1raG5kaXN2bTh0" class="social-icon"> <i class='bx bxl-instagram-alt'></i></a>
+                        <a href="https://www.linkedin.com/school/aston-university/mycompany/verification/" class="social-icon"><i class='bx bxl-linkedin-square'></i></a>
+                    </div>
                 </div>
             </div>
 
@@ -216,7 +201,7 @@
     </p>
 </footer>
 <!--------------------------js link----------------------------------------->
-<script th:src="@{js/script.js}"></script>
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
 
 <!--- ionicon for the icons in the website-->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

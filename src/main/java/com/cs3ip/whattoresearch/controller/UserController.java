@@ -5,9 +5,11 @@ import com.cs3ip.whattoresearch.repository.UserRepository;
 import com.cs3ip.whattoresearch.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
 
 import java.security.Principal;
 
@@ -55,7 +57,7 @@ public class UserController {
 
 
     @GetMapping("/profile")
-    public ModelAndView editCurrentUser(Principal principal) {
+    public ModelAndView userProfilePage(Principal principal) {
         ModelAndView mav = new ModelAndView("userProfile");
         String email = principal.getName();
         User currentUser = userRepo.findByEmail(email);
@@ -64,15 +66,8 @@ public class UserController {
     }
 
 
-    @PostMapping("/edit-profile")
-    public ModelAndView saveCurrentUser(@ModelAttribute("user") User user, Principal principal) {
-        ModelAndView mav = new ModelAndView("userProfile");
-        String email = principal.getName();
-        User currentUser = userRepo.findByEmail(email);
-        currentUser.setStudentNumber(user.getStudentNumber());
-        currentUser.setEmail(user.getEmail());
-        service.updateUserProfile(currentUser);
-        return mav;
-    }
-
 }
+
+
+
+

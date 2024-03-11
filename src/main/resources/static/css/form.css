@@ -1,6 +1,3 @@
-
-/* Login page */
-
 .login-container {
   flex: 1;
   display: flex;
@@ -25,7 +22,8 @@
   color: #fff;
   user-select: none;
   border-radius: 15px 15px 0 0;
-  background: linear-gradient(-135deg, #c850c0, #4158d0);
+  background: linear-gradient(-135deg, #442b66, #d5b5ff);
+
 }
 
 .wrapper form {
@@ -58,7 +56,7 @@
 
 .wrapper form .field input:focus,
 form .field input:valid {
-  border-color: #4158d0;
+  border-color: #c298c9;
 }
 
 .wrapper form .field label {
@@ -70,14 +68,13 @@ form .field input:valid {
   font-size: 17px;
   pointer-events: none;
   transform: translateY(-50%);
-  transition: all 0.3s ease;
 }
 
 form .field input:focus ~ label,
 form .field input:valid ~ label {
   top: 0;
   font-size: 16px;
-  color: #4158d0;
+  color: #372948;
   background: #fff;
   transform: translateY(-50%);
 }
@@ -100,7 +97,6 @@ form .content .checkbox {
 form .content input {
   width: 15px;
   height: 15px;
-  background: red;
 }
 
 form .content label {
@@ -115,10 +111,8 @@ form .field input[type="submit"] {
   border: none;
   padding-left: 0;
   margin-top: -10px;
-  font-size: 20px;
-  font-weight: 500;
   cursor: pointer;
-  background: linear-gradient(-135deg, #c850c0, #4158d0);
+  background: linear-gradient(-135deg, #442b66, #d5b5ff);
   transition: all 0.3s ease;
 }
 
@@ -134,7 +128,7 @@ form .signup-link {
 
 form .pass-link a,
 form .signup-link a {
-  color: #4158d0;
+  color: #4d0a5b;
   text-decoration: none;
 }
 
@@ -145,7 +139,7 @@ form .signup-link a:hover {
 
 
 
-
+/***************Research Form *************************/
 .form-group {
   margin-bottom: 20px;
 }
@@ -185,7 +179,7 @@ form .signup-link a:hover {
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
-  background: linear-gradient(-135deg, #c850c0, #4158d0);
+  background: linear-gradient(-135deg, #442b66, #d5b5ff);
   transition: all 0.3s ease;
 }
 

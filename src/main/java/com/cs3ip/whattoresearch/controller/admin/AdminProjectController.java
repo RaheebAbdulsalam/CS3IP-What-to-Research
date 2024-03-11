@@ -108,7 +108,7 @@ public class AdminProjectController {
     // Returns project details page
     @GetMapping("/show/{id}")
     public ModelAndView getProjectDetail(@PathVariable("id") Integer id) {
-        ModelAndView mav = new ModelAndView("admin/projectDetail");
+        ModelAndView mav = new ModelAndView("/admin/adminProjectDetail");
         Project project=projectService.getProjectById(id);
         mav.addObject("project", project);
         return mav;
