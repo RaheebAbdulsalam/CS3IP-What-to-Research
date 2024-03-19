@@ -24,41 +24,6 @@
   <link rel="stylesheet" th:href="@{/css/style.css}">
   <link rel="stylesheet" th:href="@{/css/form.css}">
 
-  <style>
-    h1 {
-      font-size: 4rem;
-      color: var(--light-purple);
-    }
-
-    h3 {
-      color: var(--light-purple);
-    }
-
-    .project-detail p {
-      margin: 1rem 0;
-      color: white;
-      background: linear-gradient(-50deg, var(--dark-purple), var(--purple-haze));
-      padding: 5px;
-      border-radius: 10px;
-    }
-
-    .project-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .project-header h1 {
-      font-size: 4rem;
-      color: var(--light-purple);
-    }
-
-    .project-header form {
-      margin-left: auto;
-    }
-
-
-  </style>
 
 </head>
 
@@ -118,7 +83,7 @@
           </div>
         </div>
 
-        <li><a sec:authorize="isAuthenticated()" th:href="@{/shortlist}" class="navbar-link"><ion-icon name="heart-outline" style="font-size: 30px"></ion-icon></a></li>
+        <li><a sec:authorize="isAuthenticated()" th:href="@{/wishlist}" class="navbar-link"><ion-icon name="heart-outline" style="font-size: 30px"></ion-icon></a></li>
       </ul>
     </nav>
 
@@ -136,67 +101,43 @@
 
 <!-- Main Content -->
 
-<section class="section bg-image" aria-label="home">
+<section class="section bg-image" aria-label="home" >
 
-  <div class="container project-detail" th:each="project : ${project}">
+  <!-- SignUp Page -->
+  <div class="login-container">
+    <div class="wrapper">
+      <div class="title">Update Account</div>
+      <br>
+      <p th:text="${message}" style="text-align: center; color: var(--purple)"></p>
+      <form th:action="@{/edit-profile}" th:object="${user}" method="post">
 
-    <div style="display: inline-flex; align-items: center; cursor: pointer;" onclick="goBack()">
-      <ion-icon name="play-back-outline" style="color: var(--white); font-size: 30px;"></ion-icon>
-      <span style="color: var(--white); margin-left: 5px;">Back</span>
-    </div>
-    <script>
-      function goBack() {
-        window.history.back();
-      }
-    </script>
+        <!-------FirstName-------->
+        <div class="field-container">
+          <div class="field">
+            <input type="text" name="firstName" th:field="*{firstName}" required>
+            <label>First Name</label>
+          </div>
 
+          <div class="field">
+            <input type="text" name="lastName" th:field="*{lastName}" required>
+            <label>Last Name</label>
+          </div>
+        </div>
 
+        <div class="field">
+          <input type="email" name="email" th:field="*{email}" required>
+          <label>Email Address</label>
+        </div>
 
+        <br>
+        <div class="field">
+          <input type="submit" value="Update">
+        </div>
 
-    <div id="shortlist-success-message" style="display: none; color: var(--light-purple);">You have successfully saved this project.</div>
-    <div class="project-header">
-      <h1 th:text="${project.projectTitle}"></h1>
-      <!-- Add Project to the shortlist -->
-      <form id="add-to-shortlist-form" th:action="@{/shortlist}" method="post">
-        <input type="hidden" name="projectId" th:value="${project.id}">
-        <button type="button" onclick="addToShortlist()"> <ion-icon name="heart-outline" style="font-size: 30px; text-align: center;color: var(--light-purple)"></ion-icon></button>
       </form>
     </div>
-
-    <p th:text="${project.description}"></p>
-    <h3>Project Type:</h3>
-    <p th:each="type : ${project.types}" th:text="${type.name}"></p>
-    <h3>Project Methodology:</h3>
-    <p th:each="methodology:${project.projectMethodology}" th:text="${methodology.methodology_type}"></p>
-    <h3>Recommended Programming Language:</h3>
-    <p th:each="language, iterStat : ${project.preferredLanguages}" th:text="${iterStat.first} ? ${language.language} : ${language.language}"></p>
-    <h3>Supervisor Detail:</h3>
-
-          <table class="profile-table">
-            <tr>
-              <th>Name</th>
-              <td th:text="${project.supervisor.name}"> </td>
-            </tr>
-
-            <tr>
-              <th>Email Address</th>
-              <td th:text="${project.supervisor.email}"></td>
-            </tr>
-            <tr>
-              <th>Area of Specialization</th>
-              <td th:text="${project.supervisor.specialisation}"></td>
-            </tr>
-          </table>
-    <div class="btn-wrapper">
-      <a class="btn btn-primary" th:href="'mailto:' + ${project.supervisor.email}">Contact Supervisor</a>
-    </div>
-
-
-
-
   </div>
 </section>
-
 
 <!--------------------------------------#FOOTER----------------------------------------->
 <footer class="footer">
@@ -243,11 +184,10 @@
 <!--------------------------js link----------------------------------------->
 <script type="text/javascript" th:src="@{/js/script.js}"></script>
 
-
-
 <!--- ionicon for the icons in the website-->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
 
 </html>

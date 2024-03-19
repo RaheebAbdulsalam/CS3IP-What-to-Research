@@ -134,14 +134,16 @@
                             </table>
                         </div>
                     </div>
+
                     <div class="button-container">
                         <div class="btn-wrapper">
-                            <a class="btn btn-primary" th:href="@{/#}">Change Email</a>
+                            <a class="btn btn-primary" th:href="@{profile/edit-profile}">Update Profile</a>
                         </div>
                         <div class="btn-wrapper">
-                            <a class="btn btn-primary">Change Password</a>
+                            <a class="btn btn-primary" th:href="@{profile/change-password}">Change Password</a>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -192,7 +194,7 @@
 
 
 <!--------------------------js link----------------------------------------->
-<script th:src="@{js/script.js}"></script>
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
 
 <!--- ionicon for the icons in the website-->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

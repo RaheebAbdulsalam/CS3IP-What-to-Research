@@ -1,60 +1,146 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>User Details</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <!-- favicon -->
+  <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+
+  <title>Admin Panel</title>
+
+  <!-- Google Font-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- CSS -->
+  <link th:href="@{/css/admin.css}" rel="stylesheet"/>
+
 </head>
-<body>
+
 <div class="container">
-  <div>
-    <br>
-    <h3>User Details</h3>
+  <!---------------------------------------- Side Nav bar starts --------------------------------------------->
+  <div class="navigation">
+    <ul>
+      <li>
+        <a>
+                   <span class="title" style="margin-left: 54px;"> <img th:src="@{/images/Website-logo.png}" src="#" width="150" height="60"
+                                                                        alt="what to research"></span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/}" href="#">
+          <span class="icon"><ion-icon name="arrow-back-circle-outline"></ion-icon></ion-icon></span>
+          <span class="title">Back</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/admin/user}" href="#">
+          <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+          <span class="title">Users</span>
+        </a>
+      </li>
+
+      <li>
+        <a th:href="@{/admin/projects}" href="#">
+          <span class="icon"><ion-icon name="copy-outline"></ion-icon></span>
+          <span class="title">Projects</span>
+        </a>
+      </li>
+
+      <li>
+        <a th:href="@{/admin/supervisors}" href="#">
+          <span class="icon"><ion-icon name="people-circle-outline"></ion-icon></span>
+          <span class="title">Supervisors</span>
+        </a>
+      </li>
+
+      <li>
+        <a th:href="@{/admin/messages}">
+          <span class="icon"><ion-icon name="chatbox-outline"></ion-icon></span>
+          <span class="title">Messages</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" onclick="document.getElementById('logout-form').submit()">
+          <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+          <span class="title">Sign Out</span>
+        </a>
+
+        <form id="logout-form" method="post" th:action="@{/logout}">
+          <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+        </form>
+      </li>
+    </ul>
   </div>
-  <form th:action="@{/admin/user/save}" th:object="${user}" method="post">
-    <input type="hidden" th:field="*{id}" />
-    <table class="table">
-      <tbody>
-      <tr>
-        <td><label>E-mail: </label></td>
-        <td><input type="email" th:field="*{email}" required class="form-control"/></td>
-      </tr>
-      <tr>
-        <td><label>Password: </label></td>
-        <td><input type="password" th:field="*{password}" required minlength="6" maxlength="10" class="form-control"/></td>
-      </tr>
-      <tr>
-        <td><label>First Name: </label></td>
-        <td><input type="text" th:field="*{firstName}" required minlength="2" maxlength="20" class="form-control"/></td>
-      </tr>
-      <tr>
-        <td><label>Last Name: </label></td>
-        <td><input type="text" th:field="*{lastName}" required minlength="2" maxlength="20" class="form-control"/></td>
-      </tr>
+  <!----------------------------- Side Nav bar Ends ------------------------------------------>
 
-      <tr>
-        <td><label>Student Number: </label></td>
-        <td><input type="text" th:field="*{studentNumber}" required minlength="9" maxlength="9" class="form-control"/></td>
-      </tr>
+  <!--     Main Section -->
 
-      <tr>
-        <td><label>Roles: </label></td>
-        <td>
-          <div th:each="role: ${listRoles}">
-            <div class="form-check">
-              <input type="checkbox" th:field="*{roles}" th:value="${role.id}" class="form-check-input"/>
-              <label class="form-check-label" th:for="${role.id}" th:text="${role.name}"></label>
+  <div class="main">
+    <div class="topBar">
+
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+
+      <div class="cardBox" style="height: 1000px; padding-left: 50px;">
+        <div class="container">
+          <div class="row">
+            <h1>Edit Project</h1>
+            <br>
+            <div class="form">
+
+
+              <form  th:object="${user}" th:action="@{/admin/user/edit/{id}(id=${user.id})}" method="post"
+                     enctype="multipart/form-data">
+
+                <div>
+                  <label>First Name:</label>
+                  <input type="text" th:field="*{firstName}" required>
+                </div>
+
+                <div>
+                  <label>Last Name:</label>
+                  <input type="text" th:field="*{lastName}" required>
+                </div>
+
+                <div>
+                  <label>Email Address:</label>
+                  <input type="email" th:field="*{email}" required>
+                </div>
+
+                <div>
+                  <label>Student Number:</label>
+                  <input type="text" th:field="*{studentNumber}" required minlength="9" maxlength="9">
+                </div>
+
+
+                <div>
+                  <label>User Role:</label>
+                  <select multiple="multiple" th:field="*{roles}"
+                          th:options="${allRoles}" required>
+                    <option th:each="role : ${allRoles}" th:value="${role.id}"
+                            th:text="${role.name}"></option>
+                  </select>
+                </div>
+
+                <button type="submit" class="btn btn-action">Update</button>
+              </form>
+
             </div>
           </div>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-    <button type="submit" class="btn btn-primary">Update</button>
-  </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-</body>
+
+<!-- Ionic Icons -->
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+
+
 </html>

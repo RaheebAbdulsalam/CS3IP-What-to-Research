@@ -83,7 +83,7 @@
                     </div>
                 </div>
 
-                <li><a sec:authorize="isAuthenticated()" th:href="@{/wishlist}" class="navbar-link"><ion-icon name="heart-outline" style="font-size: 30px"></ion-icon></a></li>
+                <li><a sec:authorize="isAuthenticated()" th:href="@{/shortlist}" class="navbar-link"><ion-icon name="heart-outline" style="font-size: 30px"></ion-icon></a></li>
             </ul>
         </nav>
 
@@ -101,34 +101,32 @@
 
 <section class="section bg-image" aria-label="home">
     <div class="container">
+        <h1 style="color: var(--light-purple)">Short List</h1>
         <table >
             <thead>
             <tr>
                 <th>Project Title</th>
-                <th>Type</th>
-                <th> Methodology</th>
-                <th>Recommended Languages</th>
                 <th>Supervisor</th>
-                <th>Actions</th>
+                <th>Details</th>
+                <th>Remove</th>
 
             </tr>
             </thead>
             <tbody>
             <tr th:each="favouriteProject : ${favouriteProjects}">
                 <td><strong th:text="${favouriteProject.project.projectTitle}"></strong></td>
-                <td th:each="type : ${favouriteProject.project.types}" th:text="${type.name}"></td>
-                <td th:each="methodology:${favouriteProject.project.projectMethodology}"
-                    th:text="${methodology.methodology_type}"></td>
-                <td>
-                <span th:each="language, iterStat : ${favouriteProject.project.preferredLanguages}"
-                      th:text="${iterStat.first} ? ${language.language} : ${', ' + language.language}"></span>
-                </td>
                 <td th:each="supervisor : ${favouriteProject.project.supervisor}" th:text="${supervisor.name}"></td>
 
                 <td>
-                    <form th:action="@{/wishlist/__${favouriteProject.id}__}" method="post">
+                    <div class="btn-wrapper">
+                        <a class="btn btn-primary" th:href="@{/shortlist/display/{id}(id=${favouriteProject.project.id})}" style="background: linear-gradient(-135deg, #c850c0, #4158d0);color: white ">Details</a>
+                    </div>
+                </td>
+
+                <td>
+                    <form th:action="@{/shortlist/__${favouriteProject.id}__}" method="post">
                         <input type="hidden" name="_method" value="DELETE"/>
-                        <button type="submit" onclick="return confirm('Are you sure you want to remove this project from your wishlist?')">
+                        <button type="submit" onclick="return confirm('Are you sure you want to remove this project from your shortlist?')">
                             <ion-icon name="heart-dislike-outline"></ion-icon></ion-icon>
                         </button>
                     </form>

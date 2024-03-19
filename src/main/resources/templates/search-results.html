@@ -20,6 +20,8 @@
     <!--Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css">
 
+
+
     <!--CSS link-->
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/form.css}">
@@ -99,65 +101,50 @@
 
 <!-------------------------------------End of Header---------------------------------------------->
 
-
-
 <section class="section bg-image" aria-label="home">
     <div class="container">
-    <table >
-        <thead>
-        <tr>
-            <th>Wishlist</th>
-            <th>Project Title</th>
-<!--            <th>Type</th>-->
-            <th>Methodology</th>
-            <th>Recommended Languages</th>
-            <th>Supervisor</th>
-            <th>Actions</th>
+        <table>
+            <thead>
+            <tr>
+                <th>Project Title</th>
+                <th>Type</th>
+                <th>Methodology</th>
+                <th>Recommended Languages</th>
+                <th>Supervisor</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="project, projectIndex : ${projects}" class="project-row" th:style="${projectIndex.index} < 5 ? '' : 'display:none'">
 
+                            <td><strong th:text="${project.projectTitle}"></strong></td>
+                            <td th:each="type : ${project.types}" th:text="${type.name}"></td>
+                            <td th:each="methodology:${project.projectMethodology}"
+                                th:text="${methodology.methodology_type}"></td>
+                            <td>
+                                <span th:each="language, iterStat : ${project.preferredLanguages}"
+                                      th:text="${iterStat.first} ? ${language.language} : ${', ' + language.language}"></span>
+                            </td>
+                            <td th:each="supervisor : ${project.supervisor}" th:text="${supervisor.name}"></td>
+                            <td>
+                                <div class="btn-wrapper">
+                                    <a class="btn btn-primary" th:href="@{/research/display/{id}(id=${project.id})}" style="background: linear-gradient(-135deg, #c850c0, #4158d0);color: white ">Details</a>
+                                </div>
+                            </td>
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="project : ${projects}">
+            </tr>
+            </tbody>
+        </table>
 
-            <td>
-                <form th:action="@{/wishlist}" method="post">
-                    <input type="hidden" name="projectId" th:value="${project.id}">
-                    <button type="submit"> <ion-icon name="heart-outline" style="font-size: 30px; text-align: center;" ></ion-icon></button>
-                </form>
-            </td>
-
-            <td><strong th:text="${project.projectTitle}"></strong></td>
-<!--            <td th:each="type : ${project.types}" th:text="${type.name}"></td>-->
-            <td th:each="methodology:${project.projectMethodology}"
-                th:text="${methodology.methodology_type}"></td>
-            <td>
-                <span th:each="language, iterStat : ${project.preferredLanguages}"
-                      th:text="${iterStat.first} ? ${language.language} : ${', ' + language.language}"></span>
-            </td>
-            <td th:each="supervisor : ${project.supervisor}" th:text="${supervisor.name}"></td>
-
-            <td>
-                <div class="btn-wrapper">
-                    <a class="btn btn-primary" th:href="@{/research/display/{id}(id=${project.id})}" style="background: linear-gradient(-135deg, #c850c0, #4158d0);color: white ">Details</a>
-                </div>
-            </td>
-
-        </tr>
-
-        </tbody>
-    </table>
+        <!-- Add a button to load more rows -->
+        <button id="load-more-btn" class="btn btn-primary">Load More</button>
 
         <div class="btn-wrapper">
-            <a class="btn btn-primary" th:href="@{/api/v1/chat-bot}">ChatGPT</a>
+            <span style="color: var(--white)">Not happy with the provided projects? </span>
+            <a class="btn btn-primary" th:href="@{/api/v1/chat-bot}">Try our AI tool</a>
         </div>
-
-
-</div>
-
+    </div>
 </section>
-
-
 
 
 <!--------------------------------------#FOOTER----------------------------------------->
@@ -203,6 +190,30 @@
 <!--------------------------js link----------------------------------------->
 <script type="text/javascript" th:src="@{/js/script.js}"></script>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        const rows = document.querySelectorAll('.project-row');
+        let visibleRowCount = 5;
+
+        // Function to handle 'Load More' button click
+        function loadMoreProjects() {
+            for (let i = 0; i < rows.length; i++) {
+                if (i >= visibleRowCount) {
+                    rows[i].style.display = 'table-row';
+                }
+            }
+            // Update the visible row count
+            visibleRowCount = rows.length;
+            // Hide the 'Load More' button
+            loadMoreBtn.style.display = 'none';
+        }
+        // Attach click event listener to the 'Load More' button
+        loadMoreBtn.addEventListener('click', loadMoreProjects);
+    });
+</script>
+
+
 <!--- ionicon for the icons in the website-->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -210,3 +221,4 @@
 </body>
 
 </html>
+

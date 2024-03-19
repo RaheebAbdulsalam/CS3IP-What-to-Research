@@ -24,14 +24,15 @@
         <ul>
             <li>
                 <a>
-                   <span class="title" style="margin-left: 54px;"> <img th:src="@{/images/Website-logo.png}" src="#" width="150" height="60"
+                   <span class="title" style="margin-left: 54px;"> <img th:src="@{/images/Website-logo.png}" src="#"
+                                                                        width="150" height="60"
                                                                         alt="what to research"></span>
                 </a>
             </li>
             <li>
-                <a th:href="@{/admin}" href="#">
-                    <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                    <span class="title">Dashboard</span>
+                <a th:href="@{/}" href="#">
+                    <span class="icon"><ion-icon name="arrow-back-circle-outline"></ion-icon></ion-icon></span>
+                    <span class="title">Back</span>
                 </a>
             </li>
             <li>
@@ -78,79 +79,79 @@
     <!--     Main Section -->
 
     <div class="main">
-        <div class="topbar">
-            <div class="toggle">
-                <ion-icon name="grid-outline"></ion-icon>
-            </div>
 
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
 
-            <div class="cardbox" style="height: 1000px; padding-left: 50px;">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <h1>Edit Project</h1>
-                            <br>
-                            <div class="form">
-                                <form class="add-form" th:object="${project}" th:action="@{/admin/projects/edit/{id}(id=${project.id})}" method="post" enctype="multipart/form-data">
+        <div class="cardBox" style="height: 1000px; padding-left: 50px;">
+            <div class="container">
+                <div class="row">
+                    <h1>Edit Project</h1>
+                    <br>
+                    <div class="form">
+                        <form class="add-form" th:object="${project}"
+                              th:action="@{/admin/projects/edit/{id}(id=${project.id})}" method="post"
+                              enctype="multipart/form-data">
 
 
-                                    <div>
-                                        <label>Name:</label>
-                                        <input type="text" th:field="*{projectTitle}" required>
-                                    </div>
-
-                                    <div>
-                                        <label>Description:</label>
-                                        <textarea th:field="*{description}" required></textarea>
-                                    </div>
-
-                                    <div>
-                                        <label>Type:</label>
-                                        <select  th:field="*{types}" th:options="${allTypes}" required>
-                                            <option th:each="type : ${allTypes}" th:value="${type.id}" th:text="${type.name}"></option>
-
-                                        </select>
-                                    </div>
-
-                                    <div>
-                                        <label>Methodology:</label>
-                                        <select th:field="*{projectMethodology}" th:options="${allMethodologies}" required>
-                                            <option th:each="methodology : ${allMethodologies}" th:value="${methodology.id}" th:text="${methodology.methodology_type}"></option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label>Programming Language:</label>
-                                        <select multiple="multiple" th:field="*{preferredLanguages}" th:options="${allLanguages}" required>
-                                            <option th:each="language : ${allLanguages}" th:value="${language.id}" th:text="${language.language}" th:selected="${project.preferredLanguages.contains(language)}"></option>
-                                        </select>
-                                    </div>
-
-                                    <div>
-                                        <label>Skill Level:</label>
-                                        <select th:field="*{programmingSkill}" th:options="${allLevels}" required>
-                                            <option th:each="level : ${allLevels}" th:value="${level.id}" th:text="${level.skillLevel}"></option>
-                                        </select>
-                                    </div>
-
-                                    <div>
-                                        <label>Supervisor:</label>
-                                        <select th:field="*{supervisor}" th:options="${supervisors}" required>
-                                            <option th:each="supervisor : ${supervisors}" th:value="${supervisor.id}" th:text="${supervisor.name}"></option>
-                                        </select>
-                                    </div>
-
-
-
-                                    <button type="submit" class="btn btn-info">Save</button>
-                                </form>
-
+                            <div>
+                                <label>Name:</label>
+                                <input type="text" th:field="*{projectTitle}" required>
                             </div>
-                        </div>
+
+                            <div>
+                                <label>Description:</label>
+                                <textarea th:field="*{description}" required></textarea>
+                            </div>
+
+                            <div>
+                                <label>Type:</label>
+                                <select th:field="*{types}" th:options="${allTypes}" required>
+                                    <option th:each="type : ${allTypes}" th:value="${type.id}"
+                                            th:text="${type.name}"></option>
+
+                                </select>
+                            </div>
+
+                            <div>
+                                <label>Methodology:</label>
+                                <select th:field="*{projectMethodology}" th:options="${allMethodologies}" required>
+                                    <option th:each="methodology : ${allMethodologies}" th:value="${methodology.id}"
+                                            th:text="${methodology.methodology_type}"></option>
+                                </select>
+                            </div>
+                            <div>
+                                <label>Programming Language:</label>
+                                <select multiple="multiple" th:field="*{preferredLanguages}"
+                                        th:options="${allLanguages}" required>
+                                    <option th:each="language : ${allLanguages}" th:value="${language.id}"
+                                            th:text="${language.language}"
+                                            th:selected="${project.preferredLanguages.contains(language)}"></option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label>Skill Level:</label>
+                                <select th:field="*{programmingSkill}" th:options="${allLevels}" required>
+                                    <option th:each="level : ${allLevels}" th:value="${level.id}"
+                                            th:text="${level.skillLevel}"></option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label>Supervisor:</label>
+                                <select th:field="*{supervisor}" th:options="${supervisors}" required>
+                                    <option th:each="supervisor : ${supervisors}" th:value="${supervisor.id}"
+                                            th:text="${supervisor.name}"></option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-action">Save</button>
+                        </form>
+
                     </div>
                 </div>
             </div>
@@ -158,12 +159,9 @@
     </div>
 </div>
 
-<!-- Script -->
-<script type="module"
-        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-<script th:src="@{/js/admin.js}"></script>
+<!-- Ionic Icons -->
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 
 </html>

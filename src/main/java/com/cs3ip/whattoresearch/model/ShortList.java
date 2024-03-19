@@ -4,8 +4,8 @@ package com.cs3ip.whattoresearch.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "wish-list")
-public class WishList {
+@Table(name = "short-list")
+public class ShortList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,9 +19,9 @@ public class WishList {
     private Integer userId;
 
 
-    public WishList() {}
+    public ShortList() {}
 
-    public WishList(Integer userId, Project project) {
+    public ShortList(Integer userId, Project project) {
         this.userId = userId;
         this.project=project;
     }

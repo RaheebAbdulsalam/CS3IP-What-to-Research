@@ -1,5 +1,6 @@
 package com.cs3ip.whattoresearch.service;
 
+import com.cs3ip.whattoresearch.exception.ResourceNotFoundException;
 import com.cs3ip.whattoresearch.model.Role;
 import com.cs3ip.whattoresearch.model.User;
 import com.cs3ip.whattoresearch.repository.RoleRepository;
@@ -14,9 +15,9 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
-    private UserRepository userRepo;
+    private UserRepository userRepository;
     @Autowired
-    private RoleRepository roleRepo;
+    private RoleRepository roleRepository;
 
     public void saveWithDefaultRole(User user){
 
@@ -25,38 +26,54 @@ public class UserService {
         user.setPassword(encodedPassword);
 
         //Save a new user as a student
-        Role studentRole=roleRepo.findByName("STUDENT");
+        Role studentRole=roleRepository.findByName("STUDENT");
         user.addRole(studentRole);
-        userRepo.save(user);
+        userRepository.save(user);
     }
 
     public List<User> listAll(){
-        return userRepo.findAll();
+        return userRepository.findAll();
     }
 
     public User getUserId(Integer id) {
-        return userRepo.findById(id).get();
+        return userRepository.findById(id).get();
     }
 
     public List<Role> getRoles() {
-        return roleRepo.findAll();
+        return roleRepository.findAll();
     }
 
     public void saveUser(User user) {
         BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
         String encodedPassword= encoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-        userRepo.save(user);
+        userRepository.save(user);
     }
 
     public boolean emailExists(String email) {
-        Optional<User> userOptional = Optional.ofNullable(userRepo.findByEmail(email));
+        Optional<User> userOptional = Optional.ofNullable(userRepository.findByEmail(email));
         return userOptional.isPresent();
     }
 
+    public void updateProfile(User user) {
+        userRepository.save(user);
+    }
 
-//    public void updateUserEmail(User user) {
-//        userRepo.save(user);
-//    }
 
+    public User getUserById(Integer id) {
+        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+    }
+    public User updateUser(Integer id, User userDetails) {
+        User user = getUserById(id);
+        user.setFirstName(userDetails.getFirstName());
+        user.setLastName(userDetails.getLastName());
+        user.setEmail(userDetails.getEmail());
+        user.setStudentNumber(userDetails.getStudentNumber());
+        user.setRoles(userDetails.getRoles());
+        return userRepository.save(user);
+    }
+
+    public void removeUser(Integer id) {
+        userRepository.deleteById(id);
+    }
 }

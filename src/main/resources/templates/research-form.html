@@ -83,7 +83,7 @@
                     </div>
                 </div>
 
-                <li><a sec:authorize="isAuthenticated()" th:href="@{/wishlist}" class="navbar-link"><ion-icon name="heart-outline" style="font-size: 30px"></ion-icon></a></li>
+                <li><a sec:authorize="isAuthenticated()" th:href="@{/shortlist}" class="navbar-link"><ion-icon name="heart-outline" style="font-size: 30px"></ion-icon></a></li>
             </ul>
         </nav>
 
@@ -115,7 +115,6 @@
                         <option value="No Preferences">No Preferences</option>
                         <option value="Software Development">Software Development</option>
                         <option value="Experimental Research">Experimental Research</option>
-                        <option value="Case Studies">Case Studies</option>
                         <option value="Theoretical Research">Theoretical Research</option>
                     </select>
                 </div>
@@ -129,6 +128,7 @@
                         <option value="Game Development">Game Development</option>
                         <option value="Machine Learning">Machine Learning</option>
                         <option value="Data Science">Data Science</option>
+                        <option value="Robotics">Robotics</option>
                     </select>
                 </div>
 
@@ -150,6 +150,16 @@
                     <div class="checkbox-group">
                         <input type="checkbox" id="c#" name="favLanguage" value="C#" class="fav-language-checkbox">
                         <label for="c#">C#</label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="c" name="favLanguage" value="C" class="fav-language-checkbox">
+                        <label for="c">C</label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="c++" name="favLanguage" value="C++" class="fav-language-checkbox">
+                        <label for="c++">C+</label>
                     </div>
 
                     <div id="favLanguageError" class="text-danger" style="display: none; color: #6e03a2">Please select at least one programming language.</div>

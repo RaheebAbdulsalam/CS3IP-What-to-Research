@@ -73,14 +73,6 @@ public class AdminProjectController {
     }
 
 
-    // method for deleting projects, and reloading page
-    @PostMapping("/{id}")
-    public RedirectView deleteProject(@PathVariable("id") Integer id) {
-        projectService.deleteProject(id);
-        return new RedirectView("/admin/projects");
-    }
-
-
 
     // returns a ModelAndView of the update product page
     @GetMapping("/edit/{id}")
@@ -113,6 +105,15 @@ public class AdminProjectController {
         mav.addObject("project", project);
         return mav;
     }
+
+
+    // method for deleting projects
+    @PostMapping("/{id}")
+    public RedirectView deleteProject(@PathVariable("id") Integer id) {
+        projectService.deleteProject(id);
+        return new RedirectView("/admin/projects");
+    }
+
 
 
 

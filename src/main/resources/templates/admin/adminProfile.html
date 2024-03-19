@@ -16,6 +16,8 @@
     <!-- CSS -->
     <link th:href="@{/css/admin.css}" rel="stylesheet"/>
 
+
+
 </head>
 
 <div class="container">
@@ -29,9 +31,9 @@
                 </a>
             </li>
             <li>
-                <a th:href="@{/admin}" href="#">
-                    <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                    <span class="title">Dashboard</span>
+                <a th:href="@{/}" href="#">
+                    <span class="icon"><ion-icon name="arrow-back-circle-outline"></ion-icon></ion-icon></span>
+                    <span class="title">Back</span>
                 </a>
             </li>
             <li>
@@ -78,36 +80,33 @@
                                  <!--     Main Section -->
 
     <div class="main">
-        <div class="topbar">
-            <div class="toggle">
-                <ion-icon name="grid-outline"></ion-icon>
-            </div>
-
             <br>
             <br>
             <br>
             <br>
             <br>
 
-            <div class="cardbox" style="height: 1000px; padding-left: 50px;">
+            <div class="cardBox" style="height: 1000px; padding-left: 50px;">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-4">
-                            <h1 style="text-decoration: underline;">Welcome to the Admin Panel</h1>
-                        </div>
+
+                        <h1>Welcome to your Admin Dashboard</h1>
+                        <br>
+                        <h1 th:text="${user.firstName + ' ' + user.lastName}" style="color:var(--violet)"></h1>
+
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </div>
 
-<!-- Script -->
-<script type="module"
-        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-<script th:src="@{/js/admin.js}"></script>
+
+<!-- Ionic Icons -->
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+
 
 
 </html>

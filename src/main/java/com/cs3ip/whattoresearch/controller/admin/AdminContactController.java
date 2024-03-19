@@ -24,13 +24,6 @@ public class AdminContactController {
         return mav;
     }
 
-    // method for deleting messages, and reloading page
-    @DeleteMapping("/{id}")
-    public RedirectView deleteMessages(@PathVariable("id") Long id) {
-        contactService.deleteMessage(id);
-        return new RedirectView("/admin/messages");
-    }
-
     // method for displaying a message by id
     @GetMapping("/show/{id}")
     public ModelAndView showMessage(@PathVariable("id") Long id) {
@@ -38,6 +31,13 @@ public class AdminContactController {
         Contact contact = contactService.getMessageById(id);
         mav.addObject("messages", contact);
         return mav;
+    }
+
+    // method for deleting messages, and reloading page
+    @PostMapping("/{id}")
+    public RedirectView deleteMessages(@PathVariable("id") Long id) {
+        contactService.deleteMessage(id);
+        return new RedirectView("/admin/messages");
     }
 
 

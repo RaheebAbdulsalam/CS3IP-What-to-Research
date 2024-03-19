@@ -1,56 +1,149 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Message Details</title>
-  <!-- CSS -->
-  <link th:href="@{/css/admin.css}" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+
+    <title>Admin Panel</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- CSS -->
+    <link th:href="@{/css/admin.css}" rel="stylesheet"/>
+
 </head>
-<body>
-<div style="display: flex; justify-content: center; align-items: center; height: 65vh;">
+
+<div class="container">
+    <!---------------------------------------- Side Nav bar starts --------------------------------------------->
+    <div class="navigation">
+        <ul>
+            <li>
+                <a>
+                   <span class="title" style="margin-left: 54px;"> <img th:src="@{/images/Website-logo.png}" src="#"
+                                                                        width="150" height="60"
+                                                                        alt="what to research"></span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/}" href="#">
+                    <span class="icon"><ion-icon name="arrow-back-circle-outline"></ion-icon></ion-icon></span>
+                    <span class="title">Back</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/admin/user}" href="#">
+                    <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+                    <span class="title">Users</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/admin/projects}" href="#">
+                    <span class="icon"><ion-icon name="copy-outline"></ion-icon></span>
+                    <span class="title">Projects</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/admin/supervisors}" href="#">
+                    <span class="icon"><ion-icon name="people-circle-outline"></ion-icon></span>
+                    <span class="title">Supervisors</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/admin/messages}">
+                    <span class="icon"><ion-icon name="chatbox-outline"></ion-icon></span>
+                    <span class="title">Messages</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="document.getElementById('logout-form').submit()">
+                    <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                    <span class="title">Sign Out</span>
+                </a>
+
+                <form id="logout-form" method="post" th:action="@{/logout}">
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+                </form>
+            </li>
+        </ul>
+    </div>
+    <!----------------------------- Side Nav bar Ends ------------------------------------------>
+
+    <!--     Main Section -->
+
+    <div class="main">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <div class="cardBox" style="height: 1000px; padding-left: 50px;">
+            <div class="container">
+                <div class="row">
+
+                    <h1>Project Detail</h1>
+
+                        <br>
+
+                        <table th:each="project : ${project}">
+
+                            <tr>
+                                <th>Description</th>
+                                <td th:text="${project.description}"></td>
+                            </tr>
+
+                            <tr>
+                                <th>Supervisor</th>
+                                <td th:each="supervisor : ${project.supervisor}" th:text="${supervisor.name}"></td>
+                            </tr>
+
+                            <tr>
+                                <th>Type</th>
+                                <td th:each="type : ${project.types}" th:text="${type.name}"></td>
+                            </tr>
 
 
-  <table th:each="project : ${project}">
-
-    <tr>
-      <th>Description</th>
-      <td th:text="${project.description}"></td>
-    </tr>
-
-    <tr>
-      <th>Supervisor</th>
-      <td th:each="supervisor : ${project.supervisor}" th:text="${supervisor.name}"></td>
-    </tr>
-
-    <tr>
-      <th>Type</th>
-      <td th:each="type : ${project.types}" th:text="${type.name}"></td>
-    </tr>
+                            <tr>
+                                <th>Methodology</th>
+                                <td th:each="methodology:${project.projectMethodology}"
+                                    th:text="${methodology.methodology_type}"></td>
+                            </tr>
 
 
-<tr>
-  <th>Methodology</th>
-  <td th:each="methodology:${project.projectMethodology}"
-         th:text="${methodology.methodology_type}"></td>
-  </tr>
-
-
-    <tr>
-      <th>Programming Language</th>
-      <td>
+                            <tr>
+                                <th>Programming Language</th>
+                                <td>
         <span th:each="language, iterStat : ${project.preferredLanguages}"
               th:text="${iterStat.first} ? ${language.language} : ${', ' + language.language}"></span>
-      </td>
+                                </td>
 
-    </tr>
+                            </tr>
 
-<tr>
-  <th>Skill Level</th>
-    <td th:each="level:${project.programmingSkill}"
-        th:text="${level.skillLevel}"></td>
-</tr>
-  </table>
+                            <tr>
+                                <th>Skill Level</th>
+                                <td th:each="level:${project.programmingSkill}"
+                                    th:text="${level.skillLevel}"></td>
+                            </tr>
+                        </table>
+
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-</body>
+<!-- Ionic Icons -->
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+
 </html>
