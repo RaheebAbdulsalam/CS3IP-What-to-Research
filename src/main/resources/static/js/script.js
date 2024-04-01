@@ -106,6 +106,23 @@ studentNumberInput.addEventListener('focus', function () {
     studentNumberInput.setCustomValidity('');
 });
 
+
+/************ Function to check if both passwords are the same **************/
+function checkPasswords(event) {
+
+    const password = document.getElementsByName('password')[0].value;
+    const confirmPassword = document.getElementsByName('confirmPassword')[0].value;
+
+    if (password !== confirmPassword) {
+        event.preventDefault(); // Prevent form submission
+        alert('Those Passwords did not match! Please try again');
+    }
+}
+    const signupForm = document.getElementById('signupForm');
+    signupForm.addEventListener('submit', checkPasswords);
+
+
+
 /*********************** Add Project to the shortlist *********************/
 function addToShortlist() {
     let wishlistForm = document.getElementById('add-to-shortlist-form');

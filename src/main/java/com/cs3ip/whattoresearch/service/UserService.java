@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service class for managing users.
+ */
 @Service
 public class UserService {
 
@@ -19,30 +22,53 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepository;
 
+    /**
+     * Saves a new user with the default role of STUDENT.
+     *
+     * @param user The user to be saved.
+     */
     public void saveWithDefaultRole(User user){
-
         BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
         String encodedPassword= encoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-
-        //Save a new user as a student
         Role studentRole=roleRepository.findByName("STUDENT");
         user.addRole(studentRole);
         userRepository.save(user);
     }
 
+    /**
+     * Retrieves a list of all users.
+     *
+     * @return A list of all users.
+     */
     public List<User> listAll(){
         return userRepository.findAll();
     }
 
-    public User getUserId(Integer id) {
-        return userRepository.findById(id).get();
+    /**
+     * Retrieves a user by ID.
+     *
+     * @param id The ID of the user.
+     * @return The user with the specified ID.
+     * @throws ResourceNotFoundException If no user is found with the specified ID.
+     */
+    public User getUserById(Integer id) {
+        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
     }
-
+    /**
+     * Retrieves a list of all roles.
+     *
+     * @return A list of all roles.
+     */
     public List<Role> getRoles() {
         return roleRepository.findAll();
     }
 
+    /**
+     * Saves a user.
+     *
+     * @param user The user to be saved.
+     */
     public void saveUser(User user) {
         BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
         String encodedPassword= encoder.encode(user.getPassword());
@@ -50,19 +76,25 @@ public class UserService {
         userRepository.save(user);
     }
 
+    /**
+     * Checks if a user with the email exists.
+     *
+     * @param email The email to check.
+     * @return True if a user with the email exists.
+     */
     public boolean emailExists(String email) {
         Optional<User> userOptional = Optional.ofNullable(userRepository.findByEmail(email));
         return userOptional.isPresent();
     }
 
-    public void updateProfile(User user) {
-        userRepository.save(user);
-    }
-
-
-    public User getUserById(Integer id) {
-        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
-    }
+    /**
+     * Updates the details of a user.
+     *
+     * @param id          The ID of the user to update.
+     * @param userDetails The updated user details.
+     * @return The updated user.
+     * @throws ResourceNotFoundException If no user is found with the ID.
+     */
     public User updateUser(Integer id, User userDetails) {
         User user = getUserById(id);
         user.setFirstName(userDetails.getFirstName());
@@ -73,6 +105,11 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    /**
+     * Removes a user by ID.
+     *
+     * @param id The ID of the user to remove.
+     */
     public void removeUser(Integer id) {
         userRepository.deleteById(id);
     }

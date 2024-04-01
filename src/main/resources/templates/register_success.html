@@ -90,8 +90,12 @@
   <!-- Login Page -->
   <div class="login-container">
     <div class="wrapper">
+
+          <ion-icon class="success" name="checkmark-circle-outline"></ion-icon>
+          <p style="text-align: center">You have signed up successfully!</p>
+      <br>
+
       <div class="title">Login</div>
-      <h3 style="color: #9b59b6;text-align:center;">You have signed up successfully!</h3>
       <form th:action="@{/login}" method="post">
         <p th:if="${param.error}" class="error">Invalid username or password.</p>
         <div class="field">
@@ -133,7 +137,7 @@
       <div class="footer-column">
         <h3>Learn More</h3>
         <ul>
-          <li><a href="#">FAQ</a></li>
+          <li><a th:href="@{/faq}">FAQ</a></li>
           <li><a href="#">Terms of Use</a></li>
           <li><a href="#">Privacy Policy</a></li>
         </ul>

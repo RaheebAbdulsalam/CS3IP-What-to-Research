@@ -59,9 +59,12 @@
                 <li><a th:href="@{/#how-it-works}" class="navbar-link">How It Works</a></li>
                 <li><a th:href="@{/#feature}" class="navbar-link">Features</a></li>
                 <li><a th:href="@{/#contact}" class="navbar-link">Contact</a></li>
+                <li><a sec:authorize="isAuthenticated()" th:href="@{/research/research-form}" class="navbar-link">Search</a></li>
+                <li><a sec:authorize="isAuthenticated()" th:href="@{/supervisors}" class="navbar-link">Supervisors</a></li>
                 <!--Space-->
                 <li></li>
                 <li></li>
+
 
                 <!------------------------------Drop Down menu when logged in-------------------------------->
                 <div sec:authorize="isAuthenticated()" class="dropdown-menu">
@@ -83,7 +86,7 @@
                     </div>
                 </div>
 
-                <li><a sec:authorize="isAuthenticated()" th:href="@{/wishlist}" class="navbar-link"><ion-icon name="heart-outline" style="font-size: 30px"></ion-icon></a></li>
+                <li><a sec:authorize="isAuthenticated()" th:href="@{/shortlist}" class="navbar-link"><ion-icon name="heart-outline" style="font-size: 30px"></ion-icon></a></li>
             </ul>
         </nav>
 
@@ -137,9 +140,6 @@
 
                     <div class="button-container">
                         <div class="btn-wrapper">
-                            <a class="btn btn-primary" th:href="@{profile/edit-profile}">Update Profile</a>
-                        </div>
-                        <div class="btn-wrapper">
                             <a class="btn btn-primary" th:href="@{profile/change-password}">Change Password</a>
                         </div>
                     </div>
@@ -165,7 +165,7 @@
             <div class="footer-column">
                 <h3>Learn More</h3>
                 <ul>
-                    <li><a href="#">FAQ</a></li>
+                    <li><a th:href="@{/faq}">FAQ</a></li>
                     <li><a href="#">Terms of Use</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                 </ul>

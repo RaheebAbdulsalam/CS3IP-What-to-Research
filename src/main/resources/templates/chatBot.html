@@ -59,6 +59,9 @@
                 <li><a th:href="@{/#how-it-works}" class="navbar-link">How It Works</a></li>
                 <li><a th:href="@{/#feature}" class="navbar-link">Features</a></li>
                 <li><a th:href="@{/#contact}" class="navbar-link">Contact</a></li>
+                <li><a sec:authorize="isAuthenticated()" th:href="@{/research/research-form}" class="navbar-link">Search</a></li>
+
+                <li><a sec:authorize="isAuthenticated()" th:href="@{/supervisors}" class="navbar-link">Supervisors</a></li>
                 <!--Space-->
                 <li></li>
                 <li></li>
@@ -83,7 +86,7 @@
                     </div>
                 </div>
 
-                <li><a sec:authorize="isAuthenticated()" th:href="@{/wishlist}" class="navbar-link"><ion-icon name="heart-outline" style="font-size: 30px"></ion-icon></a></li>
+                <li><a sec:authorize="isAuthenticated()" th:href="@{/shortlist}" class="navbar-link"><ion-icon name="heart-outline" style="font-size: 30px"></ion-icon></a></li>
             </ul>
         </nav>
 
@@ -121,13 +124,15 @@
     <script>
         document.getElementById("chatForm").addEventListener("submit", function (event) {
             event.preventDefault();
-            var query = document.getElementById("query").value;
+            let query = document.getElementById("query").value;
             fetch("/api/v1/ask?query=" + encodeURIComponent(query))
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById("response").innerHTML = "<p>" + data + "</p>";
                 });
         });
+
+
     </script>
 </section>
 
@@ -146,7 +151,7 @@
             <div class="footer-column">
                 <h3>Learn More</h3>
                 <ul>
-                    <li><a href="#">FAQ</a></li>
+                    <li><a th:href="@{/faq}">FAQ</a></li>
                     <li><a href="#">Terms of Use</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                 </ul>

@@ -11,36 +11,45 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
+
+/**
+ * RESTful Controller for controlling projects.
+ */
 @RestController
 @RequestMapping("/admin/projects")
 public class AdminProjectController {
     @Autowired
     private ProjectService projectService;
-
     @Autowired
     private ProjectTypeService projectTypeService;
-
     @Autowired
     private ProjectMethodologyService projectMethodologyService;
-
     @Autowired
     private ProjectLanguageService projectLanguageService;
-
     @Autowired
     private SkillLevelService skillLevelService;
-
     @Autowired
     private SupervisorService supervisorService;
 
-    // Returns admin project page
+    /**
+     * Retrieves the admin projects page displaying a list of projects.
+     *
+     * @return A ModelAndView object for the admin projects page view.
+     */
+
     @GetMapping
-    public ModelAndView getAdminProjectPage(@RequestParam(required = false) String query) {
+    public ModelAndView getAdminProjectPage() {
         ModelAndView mav = new ModelAndView("admin/projects");
         List<Project> projects = projectService.getAllProjects();
         mav.addObject("projects", projects);
         return mav;
     }
 
+    /**
+     * Retrieves all projects.
+     *
+     * @return A ResponseEntity containing a list of projects.
+     */
     @GetMapping("/list")
     public ResponseEntity<List<Project>> getAllProjects() {
         List<Project> projects = projectService.getAllProjects();
@@ -51,7 +60,11 @@ public class AdminProjectController {
     }
 
 
-    // returns page to add project
+    /**
+     * Retrieves the page for adding a new project.
+     *
+     * @return A ModelAndView object for the add project page view.
+     */
     @GetMapping("/create")
     public ModelAndView getAddProjectPage() {
         ModelAndView mav = new ModelAndView("admin/addProject");
@@ -65,7 +78,12 @@ public class AdminProjectController {
     }
 
 
-    // creates a project and returns to project page
+    /**
+     * Creates a new project.
+     *
+     * @param project The Project object representing the new project.
+     * @return A RedirectView object redirecting to the admin projects page.
+     */
     @PostMapping
     public RedirectView createProject(@ModelAttribute("project") Project project) {
         projectService.createProject(project);
@@ -73,8 +91,12 @@ public class AdminProjectController {
     }
 
 
-
-    // returns a ModelAndView of the update product page
+    /**
+     * Retrieves the page for updating a project.
+     *
+     * @param id The ID of the project to be updated.
+     * @return A ModelAndView object for the update project page view.
+     */
     @GetMapping("/edit/{id}")
     public ModelAndView getUpdateProjectPage(@PathVariable("id") Integer id) {
         ModelAndView mav = new ModelAndView("admin/projectEditForm");
@@ -85,19 +107,29 @@ public class AdminProjectController {
         mav.addObject("allLanguages", projectLanguageService.getAllLanguages());
         mav.addObject("allLevels",skillLevelService.getAllLevels());
         mav.addObject("supervisors", supervisorService.getAllSupervisors());
-//        mav.addObject("supervisors",supervisorService.getAllSupervisors());
         return mav;
     }
 
-    // method for updating a product
+    /**
+     * Updates a project.
+     *
+     * @param id      The ID of the project to be updated.
+     * @param project The Project object containing updated project information.
+     * @return A RedirectView object redirecting to the admin projects page.
+     */
     @PostMapping("/edit/{id}")
     public RedirectView updateProject(@PathVariable("id") Integer id, @ModelAttribute Project project) {
-        Project updatedProject = projectService.updateProject(id, project);
+        projectService.updateProject(id, project);
         return new RedirectView("/admin/projects");
     }
 
 
-    // Returns project details page
+    /**
+     * Retrieves the page displaying details of the selected project.
+     *
+     * @param id The ID of the project.
+     * @return A ModelAndView object for the project detail page view.
+     */
     @GetMapping("/show/{id}")
     public ModelAndView getProjectDetail(@PathVariable("id") Integer id) {
         ModelAndView mav = new ModelAndView("/admin/adminProjectDetail");
@@ -106,15 +138,17 @@ public class AdminProjectController {
         return mav;
     }
 
-
-    // method for deleting projects
+    /**
+     * Deletes a project.
+     *
+     * @param id The ID of the project to be deleted.
+     * @return A RedirectView object redirecting to the admin projects page.
+     */
     @PostMapping("/{id}")
     public RedirectView deleteProject(@PathVariable("id") Integer id) {
         projectService.deleteProject(id);
         return new RedirectView("/admin/projects");
     }
-
-
 
 
 }

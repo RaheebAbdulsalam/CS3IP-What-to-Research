@@ -186,3 +186,7 @@ form .signup-link a:hover {
 .form-group input[type="submit"]:active {
   transform: scale(0.95);
 }
+
+.error{
+  text-align: center;
+}

@@ -1,19 +1,18 @@
 package com.cs3ip.whattoresearch.controller.admin;
 
 
-import com.cs3ip.whattoresearch.model.Project;
 import com.cs3ip.whattoresearch.model.Supervisor;
 import com.cs3ip.whattoresearch.service.SupervisorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
+/**
+ * RESTful Controller for controlling supervisors.
+ */
 @RestController
 @RequestMapping("/admin/supervisors")
 public class AdminSupervisorController {
@@ -22,9 +21,13 @@ public class AdminSupervisorController {
     private SupervisorService supervisorService;
 
 
-    // Returns admin project page
+    /**
+     * Retrieves the admin supervisor page displaying a list of supervisors.
+     *
+     * @return A ModelAndView object for the admin supervisor page view.
+     */
     @GetMapping
-    public ModelAndView getSupervisorsPage(@RequestParam(required = false) String query) {
+    public ModelAndView getSupervisorsPage() {
         ModelAndView mav = new ModelAndView("admin/supervisors");
         List<Supervisor> supervisors = supervisorService.getAllSupervisors();
         mav.addObject("supervisors", supervisors);
@@ -32,16 +35,11 @@ public class AdminSupervisorController {
     }
 
 
-    @GetMapping("/list")
-    public ResponseEntity<List<Supervisor>> getAllSupervisors() {
-        List<Supervisor> supervisors = supervisorService.getAllSupervisors();
-        if (supervisors.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(supervisors, HttpStatus.OK);
-    }
-
-    // returns page to add project
+    /**
+     * Retrieves the page for adding a new supervisor.
+     *
+     * @return A ModelAndView object for the add supervisor page view.
+     */
     @GetMapping("/create")
     public ModelAndView getAddProjectPage() {
         ModelAndView mav = new ModelAndView("admin/addSupervisor");
@@ -49,7 +47,12 @@ public class AdminSupervisorController {
         return mav;
     }
 
-    // creates a project and returns to project page
+    /**
+     * Adds a new supervisor.
+     *
+     * @param supervisor The Supervisor object representing the new supervisor.
+     * @return A RedirectView object redirecting to the admin supervisor page.
+     */
     @PostMapping
     public RedirectView addSupervisor(@ModelAttribute("supervisor") Supervisor supervisor) {
         supervisorService.addSupervisor(supervisor);
@@ -57,7 +60,12 @@ public class AdminSupervisorController {
     }
 
 
-    // method for deleting projects, and reloading page
+    /**
+     * Removes a supervisor.
+     *
+     * @param id The ID of the supervisor to be removed.
+     * @return A RedirectView object redirecting to the admin supervisor page.
+     */
     @PostMapping("/{id}")
     public RedirectView removeSupervisor(@PathVariable("id") Integer id) {
        supervisorService.removeSupervisor(id);

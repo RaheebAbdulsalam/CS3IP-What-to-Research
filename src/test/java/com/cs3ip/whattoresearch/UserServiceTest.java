@@ -75,7 +75,7 @@ public class UserServiceTest {
 
         when(userRepository.findById(1)).thenReturn(Optional.of(user));
 
-        User result = userService.getUserId(1);
+        User result = userService.getUserById(1);
 
         assertNotNull(result);
         assertEquals(1, result.getId());

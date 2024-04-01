@@ -59,6 +59,7 @@
                 <li><a th:href="@{/#how-it-works}" class="navbar-link">How It Works</a></li>
                 <li><a th:href="@{/#feature}" class="navbar-link">Features</a></li>
                 <li><a th:href="@{/#contact}" class="navbar-link">Contact</a></li>
+                <li><a sec:authorize="isAuthenticated()" th:href="@{/supervisors}" class="navbar-link">Supervisors</a></li>
                 <!--Space-->
                 <li></li>
                 <li></li>
@@ -74,7 +75,7 @@
                         <a>
                             <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}">
                                 <button type="submit" class="navbar-link"
-                                        style="color: var(--black); display: flex; align-items: center;">
+                                        style="color: black; display: flex; align-items: center;">
                                     <ion-icon name="log-out-outline" style="margin-right: 5px;"></ion-icon>
                                     Logout
                                 </button>
@@ -111,8 +112,7 @@
 
                 <div class="form-group">
                     <label for="project-methodology">Preferred Research Methodology</label>
-                    <select id="project-methodology" name="projectMethodology" required>
-                        <option value="No Preferences">No Preferences</option>
+                    <select id="project-methodology" name="projectMethodology" required onchange="updateProjectTypeOptions()">
                         <option value="Software Development">Software Development</option>
                         <option value="Experimental Research">Experimental Research</option>
                         <option value="Theoretical Research">Theoretical Research</option>
@@ -122,7 +122,6 @@
                 <div class="form-group">
                     <label for="project-type">Preferred Research Type</label>
                     <select id="project-type" name="projectType" required>
-                        <option value="No Preferences">No Preferences</option>
                         <option value="Mobile App Development">Mobile App Development</option>
                         <option value="Website Development">Website Development</option>
                         <option value="Game Development">Game Development</option>
@@ -192,11 +191,11 @@
             </form>
 
 
-
+            <!-- Check that at least one programming language is checked -->
             <script>
                 document.getElementById('researchForm').addEventListener('submit', function(event) {
-                    var checkboxes = document.querySelectorAll('.fav-language-checkbox');
-                    var checked = Array.prototype.slice.call(checkboxes).some(function(checkbox) {
+                    let checkboxes = document.querySelectorAll('.fav-language-checkbox');
+                    let checked = Array.prototype.slice.call(checkboxes).some(function(checkbox) {
                         return checkbox.checked;
                     });
                     if (!checked) {
@@ -204,6 +203,26 @@
                         document.getElementById('favLanguageError').style.display = 'block';
                     }
                 });
+
+                function updateProjectTypeOptions() {
+                    let methodologySelect = document.getElementById('project-methodology');
+                    let typeSelect = document.getElementById('project-type');
+                    // Enable all options
+                    for (let i = 0; i < typeSelect.options.length; i++) {
+                        typeSelect.options[i].disabled = false;
+                    }
+                    // Disable options based on selected methodology
+                    if (methodologySelect.value === 'Experimental Research' || methodologySelect.value === 'Theoretical Research') {
+                        disableTypesOptions(typeSelect, ['Mobile App Development', 'Website Development', 'Game Development']);
+                    }
+                }
+                function disableTypesOptions(select, optionsToDisable) {
+                    for (let i = 0; i < select.options.length; i++) {
+                        if (optionsToDisable.includes(select.options[i].value)) {
+                            select.options[i].disabled = true;
+                        }
+                    }
+                }
 
             </script>
 
@@ -225,7 +244,7 @@
             <div class="footer-column">
                 <h3>Learn More</h3>
                 <ul>
-                    <li><a href="#">FAQ</a></li>
+                    <li><a th:href="@{/faq}">FAQ</a></li>
                     <li><a href="#">Terms of Use</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                 </ul>

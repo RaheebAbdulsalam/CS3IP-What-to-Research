@@ -20,9 +20,12 @@
   <!--Font Awesome-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css">
 
+
+
   <!--CSS link-->
   <link rel="stylesheet" th:href="@{/css/style.css}">
   <link rel="stylesheet" th:href="@{/css/form.css}">
+
 
 </head>
 
@@ -58,17 +61,32 @@
         <li><a th:href="@{/#how-it-works}" class="navbar-link">How It Works</a></li>
         <li><a th:href="@{/#feature}" class="navbar-link">Features</a></li>
         <li><a th:href="@{/#contact}" class="navbar-link">Contact</a></li>
+        <li><a sec:authorize="isAuthenticated()" th:href="@{/research/research-form}" class="navbar-link">Search</a></li>
         <!--Space-->
         <li></li>
         <li></li>
 
-        <!----Sign-up,and Login----->
-        <li sec:authorize="isAnonymous()"><a th:href="@{/login}" class="navbar-link loginLink"
-                                             style="color: black;margin-bottom: 10px;">Log
-          in</a></li>
-        <li sec:authorize="isAnonymous()"><a th:href="@{/register}" class="navbar-link loginLink"
-                                             style="color: black; ">Sign Up</a></li>
+        <!------------------------------Drop Down menu when logged in-------------------------------->
+        <div sec:authorize="isAuthenticated()" class="dropdown-menu">
+          <button class="dropButton" style="color: white">
+            <ion-icon name="person-circle-outline" style="font-size: 2em;"></ion-icon>
+          </button>
+          <div class="dropdown-content">
+            <a sec:authorize="isAuthenticated()" th:href="@{/profile}"> My Profile</a>
+            <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin}">Admin Panel</a>
+            <a>
+              <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}">
+                <button type="submit" class="navbar-link"
+                        style="color: var(--black); display: flex; align-items: center;">
+                  <ion-icon name="log-out-outline" style="margin-right: 5px;"></ion-icon>
+                  Logout
+                </button>
+              </form>
+            </a>
+          </div>
+        </div>
 
+        <li><a sec:authorize="isAuthenticated()" th:href="@{/shortlist}" class="navbar-link"><ion-icon name="heart-outline" style="font-size: 30px"></ion-icon></a></li>
       </ul>
     </nav>
 
@@ -84,29 +102,30 @@
 
 <!-------------------------------------End of Header---------------------------------------------->
 
-
-
-<!-- Main Content -->
-
 <section class="section bg-image" aria-label="home">
+  <div class="container">
+    <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Specialisation</th>
+        <th>Contact</th>
 
-  <div class="login-container">
-    <div class="wrapper">
-      <div class="title">Edit Email</div>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="supervisor : ${supervisors}" >
 
-      <form th:action="@{/#}" method="post">
-        <div class="field">
-          <input type="email" name="newEmail" th:value="${user.email}" required>
-          <label>Email Address</label>
-        </div>
-        <div class="field">
-          <input type="submit">
-        </div>
-      </form>
+        <td><strong th:text="${supervisor.name}"></strong></td>
+        <td th:text="${supervisor.specialisation}"></td>
+        <td>  <a th:href="'mailto:' + ${supervisor.email}" th:text="${supervisor.email}"></a></td>
+      </tr>
+      </tbody>
+    </table>
 
-    </div>
   </div>
 </section>
+
 
 <!--------------------------------------#FOOTER----------------------------------------->
 <footer class="footer">
@@ -122,7 +141,7 @@
       <div class="footer-column">
         <h3>Learn More</h3>
         <ul>
-          <li><a href="#">FAQ</a></li>
+          <li><a th:href="@{/faq}">FAQ</a></li>
           <li><a href="#">Terms of Use</a></li>
           <li><a href="#">Privacy Policy</a></li>
         </ul>
@@ -148,14 +167,16 @@
     &copy; 2024 Raheeb Abdulsalam. All rights reserved.
   </p>
 </footer>
-
-
 <!--------------------------js link----------------------------------------->
-<script th:src="@{js/script.js}"></script>
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
+
+
 
 <!--- ionicon for the icons in the website-->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
 
 </html>
+

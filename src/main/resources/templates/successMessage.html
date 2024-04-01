@@ -22,7 +22,6 @@
 
     <!--CSS link-->
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/form.css}">
 
 </head>
 
@@ -62,13 +61,36 @@
                 <li></li>
                 <li></li>
 
-                <!----Sign-up,and Login----->
+                <!----Sign-up, Login, Logout----->
                 <li sec:authorize="isAnonymous()"><a th:href="@{/login}" class="navbar-link loginLink"
                                                      style="color: black;margin-bottom: 10px;">Log
                     in</a></li>
                 <li sec:authorize="isAnonymous()"><a th:href="@{/register}" class="navbar-link loginLink"
                                                      style="color: black; ">Sign Up</a></li>
 
+                <!------------------------------Drop Down menu when logged in-------------------------------->
+                <div sec:authorize="isAuthenticated()" class="dropdown-menu">
+                    <button class="dropButton" style="color: white">
+                        <ion-icon name="person-circle-outline" style="font-size: 2em;"></ion-icon>
+                    </button>
+                    <div class="dropdown-content">
+                        <a sec:authorize="isAuthenticated()" th:href="@{/profile}"> My Profile</a>
+                        <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin}">Admin Panel</a>
+                        <a>
+                            <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}">
+                                <button type="submit" class="navbar-link"
+                                        style="color: black; display: flex; align-items: center;">
+                                    <ion-icon name="log-out-outline" style="margin-right: 5px;"></ion-icon>
+                                    Logout
+                                </button>
+                            </form>
+                        </a>
+                    </div>
+                </div>
+
+                <li><a sec:authorize="isAuthenticated()" th:href="@{/shortlist}" class="navbar-link">
+                    <ion-icon name="heart-outline" style="font-size: 30px"></ion-icon>
+                </a></li>
             </ul>
         </nav>
 
@@ -85,37 +107,14 @@
 <!-------------------------------------End of Header---------------------------------------------->
 
 
+<!-------------------Main Content--------------------->
 
-<!-- Main Content -->
-
-<section class="section bg-image" aria-label="home">
-
-    <!-- Login Page -->
-    <div class="login-container">
-        <div class="wrapper">
-            <div class="title">Login</div>
-            <form th:action="@{/login}" method="post">
-                <p th:if="${param.error}" class="error">Invalid username or password.</p>
-                <div class="field">
-                    <input type="email" name="email" required>
-                    <label>Email Address</label>
-                </div>
-                <div class="field">
-                    <input type="password" name="password" required>
-                    <label>Password</label>
-                </div>
-                <div class="content">
-                    <div class="checkbox">
-                        <input type="checkbox" id="remember-me">
-                        <label for="remember-me">Remember me</label>
-                    </div>
-
-                </div>
-                <div class="field">
-                    <input type="submit" value="Login">
-                </div>
-                <div class="signup-link">Don't have an account yet? <a th:href="@{/register}">Sign up</a></div>
-            </form>
+<section id=home class="section intro bg-image" aria-label="home">
+    <div class="success-card-container">
+        <div class="success-card">
+            <ion-icon class="success" name="checkmark-circle-outline"></ion-icon>
+            <h1 class="success-title">Thank you</h1>
+            <p style="text-align: center">We received your query;<br/> we will be in touch shortly!</p>
         </div>
     </div>
 </section>
@@ -145,11 +144,12 @@
                 <p>Aston University, Aston St, Birmingham B4 7ET, United Kingdom</p>
                 <br>
                 <div class="social-icons">
-                    <div class="social-icons">
-                        <a href="https://www.facebook.com/astonuniversity" class="social-icon"><i class='bx bxl-facebook-square'></i></a>
-                        <a href="https://www.instagram.com/astonuniversity?igsh=bm1raG5kaXN2bTh0" class="social-icon"> <i class='bx bxl-instagram-alt'></i></a>
-                        <a href="https://www.linkedin.com/school/aston-university/mycompany/verification/" class="social-icon"><i class='bx bxl-linkedin-square'></i></a>
-                    </div>
+                    <a href="https://www.facebook.com/astonuniversity" class="social-icon"><i
+                            class='bx bxl-facebook-square'></i></a>
+                    <a href="https://www.instagram.com/astonuniversity?igsh=bm1raG5kaXN2bTh0" class="social-icon"> <i
+                            class='bx bxl-instagram-alt'></i></a>
+                    <a href="https://www.linkedin.com/school/aston-university/mycompany/verification/"
+                       class="social-icon"><i class='bx bxl-linkedin-square'></i></a>
                 </div>
             </div>
 
@@ -160,14 +160,12 @@
         &copy; 2024 Raheeb Abdulsalam. All rights reserved.
     </p>
 </footer>
-
-
 <!--------------------------js link----------------------------------------->
 <script th:src="@{js/script.js}"></script>
 
-<!--- ionicon for the icons in the website-->
+<!--- ion-icon for the icons in the website-->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
 
 </html>

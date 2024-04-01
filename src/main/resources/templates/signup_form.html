@@ -92,10 +92,10 @@
     <div class="login-container">
         <div class="wrapper">
             <div class="title">Sign Up</div>
-            <form th:action="@{/process_register}" th:object="${user}" method="post">
+            <form th:action="@{/process_register}" th:object="${user}" method="post" id="signupForm">
 
                 <!--Error Message----->
-                <p class="error" id="error-message" th:if="${errorMessage}" th:text="${errorMessage}"></p>
+                <p class="error" id="error-message"  th:if="${errorMessage}" th:text="${errorMessage}"></p>
 
                 <!-------FirstName-------->
                 <div class="field-container">
@@ -113,7 +113,6 @@
                 <div class="field">
                     <input type="text" name="studentNumber" id="studentNumber" th:field="*{studentNumber}" required>
                     <label for="studentNumber">Student Number</label>
-<!--                    <div class="error-message" id="studentNumberError" style="color: red;"></div>-->
                 </div>
 
                 <div class="field">
@@ -159,7 +158,7 @@
             <div class="footer-column">
                 <h3>Learn More</h3>
                 <ul>
-                    <li><a href="#">FAQ</a></li>
+                    <li><a th:href="@{/faq}">FAQ</a></li>
                     <li><a href="#">Terms of Use</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                 </ul>

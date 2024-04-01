@@ -8,20 +8,23 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service class for managing programming skill levels.
+ */
 @Service
 public class SkillLevelService {
 
     @Autowired
     private SkillLevelRepository skillLevelRepository;
 
-
+    /**
+     * Retrieves all programming skill levels.
+     *
+     * @return A list of all programming skill levels.
+     */
     public List<SkillLevel> getAllLevels() {
         return skillLevelRepository.findAll();
     }
 
-
-    public SkillLevel getLevelById(Integer id) {
-        return skillLevelRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Skill not found with id: " + id));
-    }
 
 }

@@ -15,6 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+
+/**
+ * RESTful Controller for controlling shortlisted projects.
+ */
 @RestController
 @RequestMapping("/shortlist")
 public class ShortListController {
@@ -22,13 +26,15 @@ public class ShortListController {
     @Autowired
     private ShortListService shortListService;
 
+
+    /**
+     * Retrieves the shortlist page displaying the user's favorite projects.
+     *
+     * @param authentication The authentication object representing the user who is logged-in.
+     * @return A ModelAndView object for the shortlist page view.
+     */
     @GetMapping
     public ModelAndView getShortListPage(Authentication authentication) {
-        // Users must log in to access their shortlist - return to login page
-        if (authentication == null) {
-            return new ModelAndView("redirect:/login");
-        }
-
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
         List<ShortList> favouriteProjects = shortListService.getFavouriteProjects(userDetails.getUser());
 
@@ -37,6 +43,14 @@ public class ShortListController {
         return modelAndView;
     }
 
+
+    /**
+     * Adds a project to the user's shortlist.
+     *
+     * @param projectId      The ID of the project to be added.
+     * @param authentication The authentication object representing the user who is logged-in.
+     * @return A ResponseEntity indicating the success or failure of adding the project to the shortlist.
+     */
     @PostMapping
     public ResponseEntity<String> addToShortList(@RequestParam("projectId") Integer projectId, Authentication authentication) {
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
@@ -49,14 +63,28 @@ public class ShortListController {
     }
 
 
-    @PostMapping("/{itemId}")
-    public ResponseEntity<?> removeFromShortList(@PathVariable Integer itemId, Authentication authentication, HttpServletResponse response) {
+    /**
+     * Removes a project from the user's shortlist.
+     *
+     * @param projectId          The ID of the project to be removed from the shortlist.
+     * @param authentication  The authentication object representing the user who is logged-in.
+     * @param response        The HttpServletResponse object for redirecting to the shortlist page.
+     * @return A ResponseEntity indicating the success of removing the project from the shortlist.
+     */
+    @PostMapping("/{projectId}")
+    public ResponseEntity<?> removeFromShortList(@PathVariable Integer projectId, Authentication authentication, HttpServletResponse response) {
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-        shortListService.removeShortListProject(userDetails.getUser(), itemId);
+        shortListService.removeShortListProject(userDetails.getUser(), projectId);
         response.setHeader("Location", "/shortlist");
         return ResponseEntity.status(HttpStatus.FOUND).build();
     }
 
+    /**
+     * Retrieves the detail view of a specific project.
+     *
+     * @param id The ID of the project.
+     * @return A ModelAndView object for the project detail page view.
+     */
     @GetMapping("/display/{id}")
     public ModelAndView getProjectDetail(@PathVariable("id") Integer id) {
         ModelAndView mav = new ModelAndView("/projectDetail");

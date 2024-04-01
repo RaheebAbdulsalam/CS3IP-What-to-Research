@@ -94,6 +94,8 @@
         <li><a th:href="@{/#how-it-works}" class="navbar-link">How It Works</a></li>
         <li><a th:href="@{/#feature}" class="navbar-link">Features</a></li>
         <li><a th:href="@{/#contact}" class="navbar-link">Contact</a></li>
+        <li><a sec:authorize="isAuthenticated()" th:href="@{/research/research-form}" class="navbar-link">Search</a></li>
+        <li><a sec:authorize="isAuthenticated()" th:href="@{/supervisors}" class="navbar-link">Supervisors</a></li>
         <!--Space-->
         <li></li>
         <li></li>
@@ -140,15 +142,16 @@
 
   <div class="container project-detail" th:each="project : ${project}">
 
-    <div style="display: inline-flex; align-items: center; cursor: pointer;" onclick="goBack()">
-      <ion-icon name="play-back-outline" style="color: var(--white); font-size: 30px;"></ion-icon>
-      <span style="color: var(--white); margin-left: 5px;">Back</span>
-    </div>
-    <script>
-      function goBack() {
-        window.history.back();
-      }
-    </script>
+    <!-- Back Button -->
+<!--    <div style="display: inline-flex; align-items: center; cursor: pointer;" onclick="goBack()">-->
+<!--      <ion-icon name="play-back-outline" style="color: var(&#45;&#45;white); font-size: 30px;"></ion-icon>-->
+<!--      <span style="color: var(&#45;&#45;white); margin-left: 5px;">Back</span>-->
+<!--    </div>-->
+<!--    <script>-->
+<!--      function goBack() {-->
+<!--        window.history.back();-->
+<!--      }-->
+<!--    </script>-->
 
 
 
@@ -212,7 +215,7 @@
       <div class="footer-column">
         <h3>Learn More</h3>
         <ul>
-          <li><a href="#">FAQ</a></li>
+          <li><a th:href="@{/faq}">FAQ</a></li>
           <li><a href="#">Terms of Use</a></li>
           <li><a href="#">Privacy Policy</a></li>
         </ul>

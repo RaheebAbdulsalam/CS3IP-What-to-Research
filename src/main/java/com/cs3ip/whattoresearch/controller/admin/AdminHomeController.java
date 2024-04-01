@@ -11,14 +11,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 
-
+/**
+ * RESTful Controller for controlling admin dashboard.
+ */
 @RestController
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminHomeController {
 
     @Autowired
     private UserRepository userRepository;
 
+
+    /**
+     * Retrieves the admin dashboard page.
+     *
+     * @param principal The Principal object representing the logged-in admin.
+     * @return A ModelAndView object for the admin dashboard page view.
+     */
     @GetMapping
     public ModelAndView getAdminDashboardPage(Principal principal) {
         ModelAndView mav = new ModelAndView("admin/adminProfile");

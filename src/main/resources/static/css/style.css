@@ -718,8 +718,34 @@ input[type="submit"]:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/************************************LOGIN AND SIGNUP PAGE ***********************************/
+/************************************SUCCESS MESSAGE ***********************************/
+.success-title {
+  color: #442b66;
+  font-weight: 900;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
 
+.success-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+}
+
+.success-card {
+  background: white;
+  padding: 60px;
+  border-radius: 4px;
+  box-shadow: 0 2px 3px #C8D0D8;
+}
+
+.success {
+  font-size: 100px;
+  display: block;
+  margin: 0 auto;
+  color: #7e3d91;
+}
 
 /************************************  FOOTER--------------***************************************/
 
@@ -930,184 +956,5 @@ input[type="submit"]:hover {
 }
 
 
-
-
-
-
-/*!**************************************----------RESPONSIVE DESIGN------------*******************************************************\*/
-
-/*!************************ Screens larger than 575px *****************************!*/
-
-/*@media (min-width: 575px) {*/
-/*  .container {*/
-/*    max-width: 540px;*/
-/*    width: 100%;*/
-/*    margin-inline: auto;*/
-/*  }*/
-
-/*}*/
-
-/*!************************* Screens larger than 768px ***************************************!*/
-
-/*@media screen and (max-width: 768px) {*/
-/*  .footer-items {*/
-/*    flex-direction: column;*/
-/*  }*/
-
-/*  .footer-column {*/
-/*    flex-basis: 100%;*/
-/*  }*/
-/*}*/
-
-
-/*@media  (min-width: 768px) {*/
-/*  :root {*/
-/*    --section-padding: 120px;*/
-/*  }*/
-
-/*  .container {*/
-/*    max-width: 720px;*/
-/*  }*/
-
-/*  .explanation-list{*/
-/*    grid-template-columns: 1fr 1fr;*/
-/*  }*/
-
-/*  .header .btn {*/
-/*    display: block;*/
-/*    margin-inline-start: auto;*/
-/*    padding: 8px 20px;*/
-/*  }*/
-
-/*  .header.active .btn {*/
-/*    background-color: var(--violet);*/
-/*    border-color: var(--violet);*/
-/*    color: var(--white);*/
-/*  }*/
-
-/*  .intro-content {*/
-/*    max-width: 85%;*/
-/*    margin-inline: auto;*/
-/*  }*/
-
-/*  .intro-text {*/
-/*    --fs-5: 2rem;*/
-/*  }*/
-
-/*  .explanation .section-title {*/
-/*    max-width: 30ch;*/
-/*    margin-inline: auto;*/
-/*  }*/
-
-/*  .features .container {*/
-/*    grid-template-columns: 1fr 0.7fr;*/
-/*    align-items: center;*/
-/*  }*/
-
-/*}*/
-
-/*!************* Screens larger than 992px **************************!*/
-
-/*@media (min-width: 992px) {*/
-/*  .container {*/
-/*    max-width: 960px;*/
-/*  }*/
-
-/*  .open-button,*/
-/*  .navbar>*:not(.navbar-items),*/
-/*  .overlay {*/
-/*    display: none;*/
-/*  }*/
-
-/*  .navbar,*/
-/*  .navbar.active {*/
-/*    all: unset;*/
-/*    display: block;*/
-/*    margin-inline: auto 24px;*/
-/*  }*/
-
-/*  .navbar-items {*/
-/*    display: flex;*/
-/*    gap: 30px;*/
-/*  }*/
-
-/*  .navbar-link {*/
-/*    color: var(--white);*/
-/*    transition: var(--transition);*/
-/*  }*/
-
-/*  .navbar-link:is(:hover, :focus-visible) {*/
-/*    opacity: 0.7;*/
-/*  }*/
-
-/*  .header.active .navbar-link {*/
-/*    color: var(--purple-haze);*/
-/*  }*/
-
-/*  .header.active .navbar-link:is(:hover, :focus-visible) {*/
-/*    opacity: 1;*/
-/*    color: var(--violet);*/
-/*  }*/
-
-/*  .header .btn {*/
-/*    margin-inline-start: 0;*/
-/*  }*/
-
-/*  .intro {*/
-/*    padding-block-start: calc(var(--section-padding) + 50px);*/
-/*    text-align: left;*/
-/*  }*/
-
-/*  .intro .container {*/
-/*    grid-template-columns: 1fr 0.8fr;*/
-/*    align-items: center;*/
-/*  }*/
-
-/*  .intro-content {*/
-/*    max-width: unset;*/
-/*    margin-inline: 0;*/
-/*  }*/
-
-/*  .btn-wrapper {*/
-/*    justify-content: flex-start;*/
-/*  }*/
-
-/*  .footer .explanation-list {*/
-/*    grid-template-columns: repeat(4, 1fr);*/
-/*  }*/
-
-/*}*/
-
-
-/*!************* Screens larger than 1200px *************!*/
-
-/*@media (min-width: 1200px) {*/
-
-/*  .container {*/
-/*    max-width: 1140px;*/
-/*  }*/
-
-/*  .intro-text {*/
-/*    padding-inline-end: 100px;*/
-/*  }*/
-
-/*  .explanation .explanation-list {*/
-/*    grid-template-columns: repeat(4, 1fr);*/
-/*  }*/
-
-/*}*/
-
-
-/*!*******************Screens larger than 1400px *******************************!*/
-
-/*@media (min-width: 1400px) {*/
-
-/*  .container {*/
-/*    max-width: 1320px;*/
-/*  }*/
-
-/*}*/
-
-/*******************Responsive Tables *******************************/
 
 
