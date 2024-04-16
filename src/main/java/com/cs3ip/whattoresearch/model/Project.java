@@ -5,10 +5,13 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
+/**
+ * The Entity class representing a project in the application.
+ */
+
 @Entity
 @Table(name = "project")
 public class Project {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -28,14 +31,6 @@ public class Project {
     private SkillLevel programmingSkill;
 
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "project_supervisor",
-//            joinColumns = @JoinColumn(name = "project_id"),
-//            inverseJoinColumns = @JoinColumn(name = "supervisor_id")
-//    )
-//    private List<Supervisor> supervisor;
-
     @ManyToOne
     @JoinColumn(name = "Supervisor_ID")
     private Supervisor supervisor;
@@ -48,7 +43,6 @@ public class Project {
     )
     private List<Language> preferredLanguages;
 
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JsonManagedReference
     @JoinTable(
@@ -58,7 +52,7 @@ public class Project {
     private List<Type> types;
 
 
-    // Getters and setters
+    // Getters and Setters
     public Integer getId() {
         return id;
     }

@@ -79,7 +79,7 @@
                         <a>
                             <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}">
                                 <button type="submit" class="navbar-link"
-                                        style="color: black; display: flex; align-items: center;">
+                                        style="color: var(--black); display: flex; align-items: center;">
                                     <ion-icon name="log-out-outline" style="margin-right: 5px;"></ion-icon>
                                     Logout
                                 </button>
@@ -104,8 +104,7 @@
 
 <!-------------------------------------End of Header---------------------------------------------->
 
-
-<!-------------------Main Content--------------------->
+<!---------------------------------------------- Main Content ----------------------------------------------------------->
 <main>
     <article>
 
@@ -134,7 +133,7 @@
 
                             <li class="slider-item">
                                 <figure class="img-holder" style="--width: 575; --height: 550;">
-                                    <img th:src="@{/images/student_idea.jpg}" src="#" alt="slide 1"
+                                    <img th:src="@{/images/Slide 1.jpg}" src="#" alt="slide 1"
                                          class="img-cover">
                                 </figure>
                             </li>
@@ -142,7 +141,7 @@
                             <li class="slider-item">
                                 <div class="intro-card">
                                     <figure class="img-holder" style="--width: 575; --height: 550;">
-                                        <img th:src="@{/images/student 2.jpg}" src="#" alt="slide 2"
+                                        <img th:src="@{/images/Slide 2.jpg}" src="#" alt="slide 2"
                                              class="img-cover">
                                     </figure>
                                 </div>
@@ -150,13 +149,13 @@
 
                             <li class="slider-item">
                                 <figure class="img-holder" style="--width: 575; --height: 550;">
-                                    <img th:src="@{/images/student 4.jpg}" src="#" alt="slide 3" class="img-cover">
+                                    <img th:src="@{/images/Slide 3.jpg}" src="#" alt="slide 3" class="img-cover">
                                 </figure>
                             </li>
 
                             <li class="slider-item">
                                 <figure class="img-holder" style="--width: 575; --height: 550;">
-                                    <img th:src="@{/images/student 6.jpg}" src="#" alt="slide 4" class="img-cover">
+                                    <img th:src="@{/images/Slide 4.jpg}" src="#" alt="slide 4" class="img-cover">
                                 </figure>
                             </li>
 
@@ -208,7 +207,7 @@
                             <h3 class="h4 card-title">Complete Form</h3>
                             <p class="card-text">
                                 Fill out a form with your preferences, interests, and academic background to help us
-                                personalize recommendations for you.
+                                personalise recommendations for you.
                             </p>
                         </div>
                     </li>
@@ -220,9 +219,8 @@
                             </div>
                             <h3 class="h4 card-title">Search for Project</h3>
                             <p class="card-text">
-                                Utilize our search feature to explore potential research or project topics that align
-                                with
-                                your interests and goals.
+                                Utilise our search feature to explore potential research or project topics that align
+                                with your interests and goals.
                             </p>
                         </div>
                     </li>
@@ -232,9 +230,9 @@
                             <div class="card-icon">
                                 <i class='bx bx-check-circle'></i>
                             </div>
-                            <h3 class="h4 card-title">Finalize Selection</h3>
+                            <h3 class="h4 card-title">Finalise Selection</h3>
                             <p class="card-text">
-                                Once you've found a suitable project topic, finalize your selection and begin working on
+                                Once you've found a suitable project topic, finalise your selection and begin working on
                                 your final-year project with confidence.
                             </p>
                         </div>
@@ -251,7 +249,7 @@
             <div class="container">
 
                 <figure class="features-banner">
-                    <img th:src="@{/images/student 8.jpg}" src="#" width="800" height="580" alt="features banner"
+                    <img th:src="@{/images/Features.jpg}" src="#" width="800" height="580" alt="features banner"
                          style=" border-radius: 15%; width: 100%;">
                 </figure>
 
@@ -275,8 +273,7 @@
 
                                 <p class="accordion-content">
                                     Our primary focus is on assisting students in the crucial task of selecting a
-                                    suitable
-                                    and personally resonant topic for their final-year projects.
+                                    suitable and personally resonant topic for their final-year projects.
                                 </p>
 
                             </div>
@@ -290,12 +287,12 @@
                                         <ion-icon name="chevron-down-outline" aria-hidden="true"
                                                   class="down"></ion-icon>
 
-                                        <span class="span h5">Personalized Recommendations</span>
+                                        <span class="span h5">Personalised Recommendations</span>
                                     </button>
                                 </h3>
 
                                 <p class="accordion-content">
-                                    We go beyond conventional approaches by providing personalized recommendations for
+                                    We go beyond conventional approaches by providing personalised recommendations for
                                     potential research or project topics within the expansive field of Computer Science.
                                 </p>
 
@@ -336,9 +333,8 @@
                                 </h3>
 
                                 <p class="accordion-content">
-                                    Through innovative technology and personalized support, we strive to make the
-                                    research
-                                    topic selection process more accessible, rewarding, and aligned with each student's
+                                    Through innovative technology and personalised support, we strive to make the
+                                    research topic selection process more accessible, rewarding, and aligned with each student's
                                     individual interests and goals.
                                 </p>
 

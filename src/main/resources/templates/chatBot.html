@@ -24,7 +24,6 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/form.css}">
 
-
 </head>
 
 <body>
@@ -102,22 +101,22 @@
 
 <!-------------------------------------End of Header---------------------------------------------->
 
+<!---------------------------------------------- Main Content ----------------------------------------------------------->
 
-<!-- Main Content -->
 <section class="section bg-image" aria-label="home">
 
-    <div class="container" style=" background: linear-gradient(-135deg, #c850c0, #4158d0); padding: 30px 10px; border: 1px solid #ccc;
+    <div class="container" style=" background:  linear-gradient(-135deg, var(--purple-haze), var(--light-purple)); padding: 30px 10px; border: 1px solid #ccc;
   border-radius: 7px;">
-        <h2 style="color: white; text-align: center">ChatGPT Search</h2>
+        <h2 style="color: white; text-align: center">AI ChatBot</h2>
         <br>
         <br>
         <form id="chatForm">
-            <label for="query" style="color: white">Enter your question:</label><br>
+            <label for="query" style="color: var(--purple-haze);font-weight: bold">Enter your question:</label><br>
             <input type="text" id="query" name="query" required
                    value="Could you suggest some compelling topics for final year projects in Computer Science?"><br>
             <input type="submit" value="Search">
         </form>
-        <label for="response" style="color: white">Response:</label><br>
+        <label for="response" style="color: var(--purple-haze);font-weight: bold">Response:</label><br>
         <div id="response" class="answer"></div>
     </div>
 
@@ -131,7 +130,6 @@
                     document.getElementById("response").innerHTML = "<p>" + data + "</p>";
                 });
         });
-
 
     </script>
 </section>

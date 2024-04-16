@@ -72,7 +72,9 @@ public class WebSecurityConfig {
                 .requestMatchers("/profile").authenticated()
                 .requestMatchers("/research/research-form").authenticated()
                 .requestMatchers("/research/search").authenticated()
+                .requestMatchers("/research/all-projects").authenticated()
                 .requestMatchers("/research/display/{id}").authenticated()
+                .requestMatchers("api/v1/chat-bot").authenticated()
                 // ONLY ADMINS CAN ACCESS ADMIN PAGES
                 .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
                 .anyRequest().permitAll()

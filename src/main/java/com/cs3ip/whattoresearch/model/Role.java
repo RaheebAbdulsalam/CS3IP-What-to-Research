@@ -2,6 +2,10 @@ package com.cs3ip.whattoresearch.model;
 
 import jakarta.persistence.*;
 
+/**
+ * The Entity class representing a user role in the application.
+ */
+
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -28,7 +32,7 @@ public class Role {
     }
 
 
-    // getters and setters
+    // Getters and Setters
     public Integer getId() {
         return id;
     }

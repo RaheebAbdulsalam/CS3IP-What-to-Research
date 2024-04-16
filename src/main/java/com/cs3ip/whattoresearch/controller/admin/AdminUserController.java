@@ -16,7 +16,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin/user")
 public class AdminUserController {
-
     @Autowired
     private UserService userService;
 
@@ -61,7 +60,6 @@ public class AdminUserController {
         userService.updateUser(id, user);
         return new RedirectView("/admin/user");
     }
-
 
     /**
      * Removes a user.

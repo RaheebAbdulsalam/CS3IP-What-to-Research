@@ -2,6 +2,9 @@ package com.cs3ip.whattoresearch.model;
 
 import jakarta.persistence.*;
 
+/**
+ * The Entity class representing a project methodology in the application.
+ */
 @Entity
 @Table(name = "project_methodology")
 public class Methodology {
@@ -12,6 +15,8 @@ public class Methodology {
 
     @Column(name = "methodology_type", nullable = false)
     private String methodology_type;
+
+    // Getters and Setters
 
     public Integer getId() {
         return id;

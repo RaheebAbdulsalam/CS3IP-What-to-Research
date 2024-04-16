@@ -136,25 +136,11 @@
 
 <!-------------------------------------End of Header---------------------------------------------->
 
-<!-- Main Content -->
+<!---------------------------------------------- Main Content ----------------------------------------------------------->
 
 <section class="section bg-image" aria-label="home">
 
   <div class="container project-detail" th:each="project : ${project}">
-
-    <!-- Back Button -->
-<!--    <div style="display: inline-flex; align-items: center; cursor: pointer;" onclick="goBack()">-->
-<!--      <ion-icon name="play-back-outline" style="color: var(&#45;&#45;white); font-size: 30px;"></ion-icon>-->
-<!--      <span style="color: var(&#45;&#45;white); margin-left: 5px;">Back</span>-->
-<!--    </div>-->
-<!--    <script>-->
-<!--      function goBack() {-->
-<!--        window.history.back();-->
-<!--      }-->
-<!--    </script>-->
-
-
-
 
     <div id="shortlist-success-message" style="display: none; color: var(--light-purple);">You have successfully saved this project.</div>
     <div class="project-header">
@@ -193,9 +179,6 @@
     <div class="btn-wrapper">
       <a class="btn btn-primary" th:href="'mailto:' + ${project.supervisor.email}">Contact Supervisor</a>
     </div>
-
-
-
 
   </div>
 </section>

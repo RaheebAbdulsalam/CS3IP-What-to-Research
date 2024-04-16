@@ -4,9 +4,9 @@ package com.cs3ip.whattoresearch.model;
 import jakarta.persistence.*;
 
 /**
- * The Entity class represents a contact us message in the system.
- * It is mapped to the "messages" table in the database.
+ * The Entity class representing a contact us message in the application.
  */
+
 @Entity
 @Table(name = "messages")
 public class Contact {
@@ -24,6 +24,7 @@ public class Contact {
     @Column(name = "message", nullable = false, length = 500)
     private String message;
 
+    // Getters and Setters
 
     public Long getId() {
         return id;

@@ -93,7 +93,7 @@
                         <a>
                             <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}">
                                 <button type="submit" class="navbar-link"
-                                        style="color: black; display: flex; align-items: center;">
+                                        style="color:var(--black); display: flex; align-items: center;">
                                     <ion-icon name="log-out-outline" style="margin-right: 5px;"></ion-icon>
                                     Logout
                                 </button>
@@ -120,12 +120,12 @@
 
 <!-------------------------------------End of Header---------------------------------------------->
 
+<!---------------------------------------------- Main Content ----------------------------------------------------------->
 
-<!-------------------Main Content--------------------->
 <main>
     <article>
 
-        <!------------------------ #FEATURES ----------------------------------------->
+        <!------------------------ FAQ ----------------------------------------->
 
         <section id="feature" class="section features intro bg-image">
             <div class="container">
@@ -269,7 +269,6 @@
 
             </div>
         </section>
-
 
     </article>
 </main>

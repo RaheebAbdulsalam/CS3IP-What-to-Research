@@ -1,12 +1,14 @@
 package com.cs3ip.whattoresearch.model;
 
-
 import jakarta.persistence.*;
+
+/**
+ * The Entity class representing a supervisor in the application.
+ */
 
 @Entity
 @Table(name = "supervisors")
 public class Supervisor {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -19,6 +21,8 @@ public class Supervisor {
 
     @Column(nullable = false, length = 45)
     private String specialisation;
+
+    // Getters and Setters
 
     public Integer getId() {
         return id;

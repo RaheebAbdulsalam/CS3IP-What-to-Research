@@ -1,6 +1,5 @@
 package com.cs3ip.whattoresearch.service;
 
-import com.cs3ip.whattoresearch.exception.ResourceNotFoundException;
 import com.cs3ip.whattoresearch.model.Methodology;
 import com.cs3ip.whattoresearch.repository.MethodologyRepository;
 import org.springframework.beans.factory.annotation.Autowired;

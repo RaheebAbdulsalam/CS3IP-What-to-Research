@@ -1,6 +1,5 @@
 package com.cs3ip.whattoresearch.controller;
 
-
 import com.cs3ip.whattoresearch.model.Project;
 import com.cs3ip.whattoresearch.model.ShortList;
 import com.cs3ip.whattoresearch.security.CustomUserDetails;
@@ -22,10 +21,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/shortlist")
 public class ShortListController {
-
     @Autowired
     private ShortListService shortListService;
-
 
     /**
      * Retrieves the shortlist page displaying the user's favorite projects.
@@ -42,7 +39,6 @@ public class ShortListController {
         modelAndView.addObject("favouriteProjects", favouriteProjects);
         return modelAndView;
     }
-
 
     /**
      * Adds a project to the user's shortlist.
@@ -61,7 +57,6 @@ public class ShortListController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to add project to shortlist.");
         }
     }
-
 
     /**
      * Removes a project from the user's shortlist.

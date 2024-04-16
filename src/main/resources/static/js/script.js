@@ -1,6 +1,8 @@
+let projectCounter = 5;
+
 /**************** Function to add event listeners to multiple elements  *******************/
 function addEventOnElements(elements, eventType, callback) {
-    elements.forEach(function(element) {
+    elements.forEach(function (element) {
         element.addEventListener(eventType, callback);
     });
 }
@@ -19,9 +21,11 @@ addEventOnElements(navToggle, "click", toggleNavigation);
 
 /************* Active header to change background colour when scrolling down the page *************/
 const header = document.querySelector("[custom-header]");
+
 function changeHeader() {
     header.classList.toggle("active", window.scrollY > 100);
 }
+
 window.addEventListener("scroll", changeHeader);
 
 /**************************** Image Slider ************************************/
@@ -41,6 +45,7 @@ function setUpSlider(currentSlider) {
         currentSlidePos = (currentSlidePos + 1) % sliderContainer.childElementCount;
         moveSliderItem();
     }
+
     sliderNextBtn.addEventListener("click", slideNext);
 
     // Handle previous slide
@@ -48,6 +53,7 @@ function setUpSlider(currentSlider) {
         currentSlidePos = (currentSlidePos - 1 + sliderContainer.childElementCount) % sliderContainer.childElementCount;
         moveSliderItem();
     }
+
     sliderPrevBtn.addEventListener("click", slidePrev);
 
     // Hide navigation buttons if there's only one slide
@@ -64,10 +70,10 @@ document.querySelectorAll("[slider]").forEach(setUpSlider);
 const accordions = document.querySelectorAll("[accordion]");
 let lastActiveAccordion = accordions[0];
 
-accordions.forEach(function(currentAccordion) {
+accordions.forEach(function (currentAccordion) {
     const accordionBtn = currentAccordion.querySelector("[accordion-btn]");
 
-    accordionBtn.addEventListener("click", function() {
+    accordionBtn.addEventListener("click", function () {
         if (lastActiveAccordion && lastActiveAccordion !== currentAccordion) {
             lastActiveAccordion.classList.remove("expanded");
         }
@@ -109,18 +115,20 @@ studentNumberInput.addEventListener('focus', function () {
 
 /************ Function to check if both passwords are the same **************/
 function checkPasswords(event) {
-
     const password = document.getElementsByName('password')[0].value;
     const confirmPassword = document.getElementsByName('confirmPassword')[0].value;
+    const errorMessageElement = document.getElementById('error-message');
 
     if (password !== confirmPassword) {
-        event.preventDefault(); // Prevent form submission
-        alert('Those Passwords did not match! Please try again');
+        event.preventDefault();
+        errorMessageElement.textContent = 'Passwords do not match! Please try again';
+    } else {
+        errorMessageElement.textContent = '';
     }
 }
-    const signupForm = document.getElementById('signupForm');
-    signupForm.addEventListener('submit', checkPasswords);
 
+const signupForm = document.getElementById('signupForm');
+signupForm.addEventListener('submit', checkPasswords);
 
 
 /*********************** Add Project to the shortlist *********************/
@@ -131,7 +139,7 @@ function addToShortlist() {
     let http = new XMLHttpRequest();
     http.open('POST', '/shortlist', true);
 
-    http.onload = function() {
+    http.onload = function () {
         if (http.status === 200) {
             // Display the success message
             document.getElementById('shortlist-success-message').style.display = 'block';
@@ -142,6 +150,89 @@ function addToShortlist() {
 
     http.send(formData);
 }
+
+
+/*********************** Validation for the Research Form *********************/
+function updateProjectTypeOptions() {
+    let methodologySelect = document.getElementById('project-methodology');
+    let typeSelect = document.getElementById('project-type');
+    // Enable all options
+    for (let i = 0; i < typeSelect.options.length; i++) {
+        typeSelect.options[i].disabled = false;
+    }
+    // Disable options based on selected methodology
+    if (methodologySelect.value === 'Experimental Research' || methodologySelect.value === 'Theoretical Research') {
+        disableTypesOptions(typeSelect, ['Mobile App Development', 'Website Development', 'Game Development']);
+    }
+
+}
+
+// Disable languages based on selected project type
+function updateLanguageOptions() {
+    let typeSelect = document.getElementById('project-type').value;
+    enableLanguages(['java', 'python', 'javascript', 'c#', 'c', 'c++']);
+    if (typeSelect === 'Mobile App Development') {
+        disableLanguages(['python', 'c', 'c++']);
+    }
+    if (typeSelect === 'Website Development') {
+        disableLanguages(['c', 'c++']);
+    }
+    if (typeSelect === 'Data Science' || typeSelect === 'Machine Learning') {
+        disableLanguages(['java', 'javascript', 'c#', 'c', 'c++']);
+    }
+    if (typeSelect === 'Game Development') {
+        disableLanguages(['java', 'python', 'javascript', 'c']);
+    }
+    if (typeSelect === 'Robotics') {
+        disableLanguages(['java', 'javascript', 'c#']);
+    }
+}
+
+
+function disableTypesOptions(select, optionsToDisable) {
+    for (let i = 0; i < select.options.length; i++) {
+        if (optionsToDisable.includes(select.options[i].value)) {
+            select.options[i].disabled = true;
+        }
+    }
+}
+
+function disableLanguages(languages) {
+    languages.forEach(function (language) {
+        let checkbox = document.getElementById(language);
+        if (checkbox) {
+            checkbox.disabled = true;
+        }
+    });
+}
+
+function enableLanguages(languages) {
+    languages.forEach(function (language) {
+        let checkbox = document.getElementById(language);
+        if (checkbox) {
+            checkbox.disabled = false;
+        }
+    });
+}
+
+// Load more projects when user clicks load more button
+function loadMoreProjects() {
+    const projects = document.querySelectorAll('.project-row');
+    const maxIndex = Math.min(projectCounter + 5, projects.length);
+
+    for (let i = projectCounter; i < maxIndex; i++) {
+        projects[i].style.display = '';
+    }
+
+    projectCounter = maxIndex;
+
+    if (projectCounter === projects.length) {
+        document.getElementById('load-more-projects').style.display = 'none';
+    }
+}
+
+
+
 
 
 

@@ -16,10 +16,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin/supervisors")
 public class AdminSupervisorController {
-
     @Autowired
     private SupervisorService supervisorService;
-
 
     /**
      * Retrieves the admin supervisor page displaying a list of supervisors.
@@ -33,7 +31,6 @@ public class AdminSupervisorController {
         mav.addObject("supervisors", supervisors);
         return mav;
     }
-
 
     /**
      * Retrieves the page for adding a new supervisor.
@@ -58,7 +55,6 @@ public class AdminSupervisorController {
         supervisorService.addSupervisor(supervisor);
         return new RedirectView("/admin/supervisors");
     }
-
 
     /**
      * Removes a supervisor.

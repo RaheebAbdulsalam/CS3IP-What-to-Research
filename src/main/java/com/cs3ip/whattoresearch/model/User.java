@@ -5,6 +5,10 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * The Entity class representing a user in the application.
+ */
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -37,7 +41,8 @@ public class User {
     private Set<Role> roles= new HashSet<>();
 
 
-    // getters and setters methods
+    // Getters and Setters
+    
     public Integer getId() {
         return id;
     }

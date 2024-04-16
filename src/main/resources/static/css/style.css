@@ -6,6 +6,7 @@
   --dark-purple: #1d072a;
   --light-purple: #d5b5ff;
   --white: #ffffff;
+  --black:#000000;
   --gray: #595959;
   --dark-gray:#1F23290C;
   --light-gray: #FFFFFFB2;
@@ -20,7 +21,7 @@
   /********* transition *****************/
   --transition: 0.25s ease;
 }
-/**************************************************************************************************/
+
 
 *,
 *::before,
@@ -73,7 +74,7 @@ ion-icon {
 
 
 html {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Arial', sans-serif;
   font-size: 10px;
   scroll-behavior: smooth;
 }
@@ -331,7 +332,6 @@ body.nav-active {
 }
 
 .dropdown-menu:hover .dropdown-content {display: block;}
-
 
 /************************------------ HOME SECTION----------****************************************/
 
@@ -598,8 +598,9 @@ tr {
 
 th,
 td {
-  text-align: left;
-  padding: 8px;
+  text-align: center;
+  justify-content: center;
+  padding: 4px;
 }
 
 th {
@@ -692,7 +693,7 @@ input[type="text"] {
 }
 
 input[type="submit"] {
-  background-color: #c298c9;
+  background-color: var(--purple-haze);
   color: var(--white);;
   padding: 12px 20px;
   border: none;
@@ -718,6 +719,12 @@ input[type="submit"]:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.empty-results{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+}
 /************************************SUCCESS MESSAGE ***********************************/
 .success-title {
   color: #442b66;
@@ -797,7 +804,7 @@ input[type="submit"]:hover {
 
 
 
-/**************************************----------RESPONSIVE DESIGN------------*******************************************************/
+/**************----------RESPONSIVE DESIGN------------**********************/
 /* Screens larger than 575px */
 @media (min-width: 575px) {
   .container {

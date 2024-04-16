@@ -75,7 +75,7 @@
                         <a>
                             <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}">
                                 <button type="submit" class="navbar-link"
-                                        style="color: black; display: flex; align-items: center;">
+                                        style="color: var(--black); display: flex; align-items: center;">
                                     <ion-icon name="log-out-outline" style="margin-right: 5px;"></ion-icon>
                                     Logout
                                 </button>
@@ -100,13 +100,12 @@
 
 <!-------------------------------------End of Header---------------------------------------------->
 
-
-<!-- Main Content -->
+<!---------------------------------------------- Main Content ----------------------------------------------------------->
 <section class="section bg-image" aria-label="home" >
 
-    <div class="login-container">
+    <div class="form-container">
         <div class="wrapper">
-            <div class="title">User Profile</div>
+            <div class="title">Select Your Preferences</div>
 
             <form th:action="@{/research/search}" method="post" class="form" id="researchForm">
 
@@ -121,7 +120,7 @@
 
                 <div class="form-group">
                     <label for="project-type">Preferred Research Type</label>
-                    <select id="project-type" name="projectType" required>
+                    <select id="project-type" name="projectType" required onchange="updateLanguageOptions()">
                         <option value="Mobile App Development">Mobile App Development</option>
                         <option value="Website Development">Website Development</option>
                         <option value="Game Development">Game Development</option>
@@ -158,10 +157,10 @@
 
                     <div class="checkbox-group">
                         <input type="checkbox" id="c++" name="favLanguage" value="C++" class="fav-language-checkbox">
-                        <label for="c++">C+</label>
+                        <label for="c++">C++</label>
                     </div>
 
-                    <div id="favLanguageError" class="text-danger" style="display: none; color: #6e03a2">Please select at least one programming language.</div>
+                    <div id="favLanguageError" class="text-danger">Please select at least one programming language.</div>
                 </div>
 
 
@@ -185,46 +184,16 @@
                     </div>
                 </div>
 
+                <br>
+
                 <div class="field">
                     <input type="submit" value="Search">
                 </div>
             </form>
 
-
-            <!-- Check that at least one programming language is checked -->
-            <script>
-                document.getElementById('researchForm').addEventListener('submit', function(event) {
-                    let checkboxes = document.querySelectorAll('.fav-language-checkbox');
-                    let checked = Array.prototype.slice.call(checkboxes).some(function(checkbox) {
-                        return checkbox.checked;
-                    });
-                    if (!checked) {
-                        event.preventDefault();
-                        document.getElementById('favLanguageError').style.display = 'block';
-                    }
-                });
-
-                function updateProjectTypeOptions() {
-                    let methodologySelect = document.getElementById('project-methodology');
-                    let typeSelect = document.getElementById('project-type');
-                    // Enable all options
-                    for (let i = 0; i < typeSelect.options.length; i++) {
-                        typeSelect.options[i].disabled = false;
-                    }
-                    // Disable options based on selected methodology
-                    if (methodologySelect.value === 'Experimental Research' || methodologySelect.value === 'Theoretical Research') {
-                        disableTypesOptions(typeSelect, ['Mobile App Development', 'Website Development', 'Game Development']);
-                    }
-                }
-                function disableTypesOptions(select, optionsToDisable) {
-                    for (let i = 0; i < select.options.length; i++) {
-                        if (optionsToDisable.includes(select.options[i].value)) {
-                            select.options[i].disabled = true;
-                        }
-                    }
-                }
-
-            </script>
+            <div class="btn-wrapper" style="justify-content: center;">
+                <a class="btn btn-primary" th:href="@{/research/all-projects}" style="background: linear-gradient(-135deg, #1d072a, #d5b5ff); color: white;">Browse All Projects</a>
+            </div>
 
         </div>
     </div>
@@ -273,7 +242,30 @@
 
 
 <!--------------------------js link----------------------------------------->
+
+<script>
+    window.addEventListener('load', function() {
+        updateProjectTypeOptions();
+        updateLanguageOptions();
+    });
+
+    <!-- Check that at least one programming language is checked -->
+    function checkLanguageSelected(event) {
+        let checkboxes = document.querySelectorAll('.fav-language-checkbox');
+        let checked = Array.prototype.slice.call(checkboxes).some(function(checkbox) {
+            return checkbox.checked;
+        });
+        if (!checked) {
+            event.preventDefault();
+            document.getElementById('favLanguageError').style.display = 'block';
+        }
+    }
+    // Add event listener to form submission
+    document.getElementById('researchForm').addEventListener('submit', checkLanguageSelected);
+
+</script>
 <script type="text/javascript" th:src="@{/js/script.js}"></script>
+
 
 <!--- ionicon for the icons in the website-->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

@@ -20,9 +20,12 @@
   <!--Font Awesome-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css">
 
+
+
   <!--CSS link-->
   <link rel="stylesheet" th:href="@{/css/style.css}">
   <link rel="stylesheet" th:href="@{/css/form.css}">
+
 
 </head>
 
@@ -59,6 +62,7 @@
         <li><a th:href="@{/#feature}" class="navbar-link">Features</a></li>
         <li><a th:href="@{/#contact}" class="navbar-link">Contact</a></li>
         <li><a sec:authorize="isAuthenticated()" th:href="@{/research/research-form}" class="navbar-link">Search</a></li>
+        <li><a sec:authorize="isAuthenticated()" th:href="@{/supervisors}" class="navbar-link">Supervisors</a></li>
         <!--Space-->
         <li></li>
         <li></li>
@@ -100,34 +104,51 @@
 <!-------------------------------------End of Header---------------------------------------------->
 
 <!---------------------------------------------- Main Content ----------------------------------------------------------->
-
-<section class="section bg-image" aria-label="home" >
-
-  <div class="form-container">
-    <div class="wrapper">
-      <div class="title">Change Password</div>
-      <br>
-      <p th:text="${message}" style="text-align: center; color: mediumpurple"></p>
-      <form th:action="@{/change-password}" th:object="${user}" method="post">
-
-        <!-------Password-------->
-        <div class="field-container">
-          <div class="field">
-            <input type="password" name="password" th:field="*{password}" required>
-            <label>Password</label>
+<section class="section bg-image" aria-label="home">
+  <div class="container">
+    <table>
+      <thead>
+      <tr>
+        <th>Project Title</th>
+        <th>Type</th>
+        <th>Methodology</th>
+        <th>Recommended Languages</th>
+        <th>Supervisor</th>
+        <th>Details</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="project, projectIndex : ${projects}" class="project-row" th:style="${projectIndex.index} < 5 ? '' : 'display:none'">
+        <td><strong th:text="${project.projectTitle}"></strong></td>
+        <td th:each="type : ${project.types}" th:text="${type.name}"></td>
+        <td th:each="methodology:${project.projectMethodology}" th:text="${methodology.methodology_type}"></td>
+        <td>
+          <span th:each="language, iterStat : ${project.preferredLanguages}" th:text="${iterStat.first} ? ${language.language} : ${', ' + language.language}"></span>
+        </td>
+        <td th:each="supervisor : ${project.supervisor}" th:text="${supervisor.name}"></td>
+        <td>
+          <div class="btn-wrapper">
+            <a class="btn btn-primary" target="_blank" th:href="@{/research/display/{id}(id=${project.id})}" style="background: linear-gradient(-135deg, #1d072a, #d5b5ff);color: white ">Details</a>
           </div>
-        </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
 
-        <br>
+    <!-- Button to load more projects -->
+    <div class="btn-wrapper" id="load-more-projects">
+      <button class="btn btn-primary" onclick="loadMoreProjects()" style="background: linear-gradient(-135deg, #1d072a, #d5b5ff);color: white">Load More Projects</button>
+    </div>
 
-        <div class="field">
-          <input type="submit" value="Save">
-        </div>
-
-      </form>
+    <!-- Button to discover AI projects -->
+    <div class="btn-wrapper">
+      <span style="color: var(--white)">Not happy with the provided projects? </span>
+      <a class="btn btn-primary" th:href="@{/api/v1/chat-bot}">Discover AI Projects</a>
     </div>
   </div>
 </section>
+
+
 
 <!--------------------------------------#FOOTER----------------------------------------->
 <footer class="footer">
@@ -169,8 +190,6 @@
     &copy; 2024 Raheeb Abdulsalam. All rights reserved.
   </p>
 </footer>
-
-
 <!--------------------------js link----------------------------------------->
 <script type="text/javascript" th:src="@{/js/script.js}"></script>
 
@@ -181,3 +200,4 @@
 </body>
 
 </html>
+

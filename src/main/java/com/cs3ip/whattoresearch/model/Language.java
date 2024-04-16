@@ -2,11 +2,12 @@ package com.cs3ip.whattoresearch.model;
 
 import jakarta.persistence.*;
 
-
+/**
+ * The Entity class representing a programming language in the application.
+ */
 @Entity
 @Table(name = "language")
 public class Language {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -14,18 +15,7 @@ public class Language {
     @Column(nullable = false)
     private String language;
 
-    // Constructors, getters, and setters
-
-
-    public Language(Integer id, String language) {
-        this.id = id;
-        this.language = language;
-    }
-
-
-    public Language() {
-
-    }
+    // Getters and Setters
 
     public Integer getId() {
         return id;

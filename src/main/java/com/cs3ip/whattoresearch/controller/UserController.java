@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import java.security.Principal;
 
 
@@ -24,7 +23,6 @@ public class UserController {
     private UserService service;
     @Autowired
     private UserRepository userRepo;
-
 
     /**
      * Displays the user registration form.

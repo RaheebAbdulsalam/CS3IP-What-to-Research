@@ -3,7 +3,10 @@ package com.cs3ip.whattoresearch.controller;
 
 import com.cs3ip.whattoresearch.model.Project;
 import com.cs3ip.whattoresearch.service.ProjectFilterService;
+import com.cs3ip.whattoresearch.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,6 +23,9 @@ public class ProjectController {
 
     @Autowired
     private ProjectFilterService projectFilterService;
+
+    @Autowired
+    private ProjectService projectService;
 
     /**
      * Retrieves the research form page view.
@@ -64,6 +70,35 @@ public class ProjectController {
         mav.addObject("project", project);
         return mav;
     }
+
+    /**
+     * Retrieves the all projects page displaying a list of all projects.
+     *
+     * @return A ModelAndView object for the all projects page view.
+     */
+
+    @GetMapping("all-projects")
+    public ModelAndView getAllProjectsPage() {
+        ModelAndView mav = new ModelAndView("all-projects");
+        List<Project> projects = projectService.getAllProjects();
+        mav.addObject("projects", projects);
+        return mav;
+    }
+
+    /**
+     * Retrieves all projects.
+     *
+     * @return A ResponseEntity containing a list of projects.
+     */
+    @GetMapping("/projects-list")
+    public ResponseEntity<List<Project>> getAllProjects() {
+        List<Project> projects = projectService.getAllProjects();
+        if (projects.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(projects, HttpStatus.OK);
+    }
+
 
 }
 

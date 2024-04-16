@@ -3,16 +3,11 @@ package com.cs3ip.whattoresearch.controller;
 import com.cs3ip.whattoresearch.model.Contact;
 import com.cs3ip.whattoresearch.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.security.Principal;
 
 /**
  * RESTful controller for Home Page.
@@ -45,7 +40,6 @@ public class HomeController {
         contactRepository.save(contact);
         return new ModelAndView("successMessage");
     }
-
 
     /**
      * Displays the FAQ page view.

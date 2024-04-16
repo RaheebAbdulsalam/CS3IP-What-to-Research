@@ -7,33 +7,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import com.cs3ip.whattoresearch.model.Role;
 import com.cs3ip.whattoresearch.model.User;
 import com.cs3ip.whattoresearch.repository.RoleRepository;
 import com.cs3ip.whattoresearch.repository.UserRepository;
 import com.cs3ip.whattoresearch.service.UserService;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-public class UserServiceTest {
-
+@ExtendWith(MockitoExtension.class)
+public class UserTest {
     @Mock
     private UserRepository userRepository;
-
     @Mock
     private RoleRepository roleRepository;
-
     @InjectMocks
     private UserService userService;
-
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
     public void testSaveWithDefaultRole() {
@@ -122,11 +115,7 @@ public class UserServiceTest {
     public void testEmailDoesNotExist() {
         String email = "raheeb@gmail.com";
         when(userRepository.findByEmail(email)).thenReturn(null);
-
         boolean result = userService.emailExists(email);
-
         assertFalse(result);
     }
 }
-
-

@@ -3,6 +3,10 @@ package com.cs3ip.whattoresearch.model;
 
 import jakarta.persistence.*;
 
+/**
+ * The Entity class representing a user shortlist in the application.
+ */
+
 @Entity
 @Table(name = "short-list")
 public class ShortList {
@@ -18,13 +22,14 @@ public class ShortList {
     @JoinColumn(name = "user_id")
     private Integer userId;
 
-
     public ShortList() {}
 
     public ShortList(Integer userId, Project project) {
         this.userId = userId;
         this.project=project;
     }
+
+    // Getters and Setters
 
     public Integer getId() {
         return id;

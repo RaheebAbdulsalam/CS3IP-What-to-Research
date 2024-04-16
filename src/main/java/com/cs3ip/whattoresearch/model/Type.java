@@ -3,14 +3,15 @@ package com.cs3ip.whattoresearch.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+/**
+ * The Entity class representing a project type in the application.
+ */
 @Entity
 @Table(name = "type")
 public class Type {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -24,6 +25,8 @@ public class Type {
     public Type(String name) {
         this.name = name;
     }
+
+    // Getters and Setters
 
     public Integer getId() {
         return id;
