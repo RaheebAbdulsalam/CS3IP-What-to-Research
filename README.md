@@ -23,7 +23,7 @@ You will also need to download an open-source software package that provides a l
 
 1. Open the command prompt or terminal on your computer, and navigate to the directory where you want to clone the repository.This can be done by typing "cd" followed by the path of the directory you want to navigate to. For example, if you want to navigate to the "Documents" folder, type "cd Documents" and press Enter.
 2. Copy the URL of the repository you want to clone from GitHub. You can find the URL on the repository's page by clicking the green "Code" button as shown below.
-  <img src="" width:100  style="max-width=%100">
+  <img src="https://github.com/RaheebAbdulsalam/CS3IP-What-to-Research/assets/99501966/b42f1006-b256-4802-b5b2-808d49adbdca" width:100  style="max-width=%100">
 3. In the command prompt or terminal, enter the following command: git clone (repository URL), replace (repository URL) with the URL of the repository you have copied, and press enter to run the command, and Git will begin cloning the repository to your local machine.
 
 <h3> Database Configration:</h3>
@@ -32,7 +32,7 @@ You will also need to download an open-source software package that provides a l
 
 3. To create a new database, click on the "New" button in the left-hand sidebar to create a new database. Enter a name for the database and select create.
 
-4. Configure the database connection properties in the application.properties as shown below <img src="" width:100 style="max-width=%100">
+4. Configure the database connection properties in the application.properties as shown below <img src="https://github.com/RaheebAbdulsalam/CS3IP-What-to-Research/assets/99501966/db2b5cbd-68d4-4d97-9dde-76587c15cf98" width:100 style="max-width=%100">
 
 5. You can replace what_to_research_db, myusername, and mypassword with the actual values for your database.
 
@@ -44,7 +44,7 @@ You will also need to download an open-source software package that provides a l
 2. Navigate to the directory where the Spring Boot project is located, select it and click ok.
 3. Once the project is loaded, navigate to the main class of your Spring Boot application.  
 4. Right-click on the main class, select the correct Run Configuration, and IntelliJ IDEA will build the application and start it.
- <img src="" width:100  style="max-width=%50">
+ <img src="https://github.com/RaheebAbdulsalam/CS3IP-What-to-Research/assets/99501966/210bb20b-b42d-4c7a-9ea5-119c0968e7e9" width:100  style="max-width=%50">
 
 <h3> Access the application: </h3>
 
