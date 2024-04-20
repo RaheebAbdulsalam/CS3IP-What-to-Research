@@ -36,7 +36,7 @@ You will also need to download an open-source software package that provides a l
 
 5. You can replace what_to_research_db, myusername, and mypassword with the actual values for your database.
 
-6. You will also have to replace the API KEY with your actual API key which you can get from: https://openai.com/blog/openai-api
+6. You will also have to replace the API KEY with your actual API key which you can get from: https://platform.openai.com/api-keys
  
 <h3> Run the application:</h3>
   
