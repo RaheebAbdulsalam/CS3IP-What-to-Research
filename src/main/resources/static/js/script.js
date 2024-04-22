@@ -83,34 +83,30 @@ accordions.forEach(function (currentAccordion) {
     });
 });
 
-/***************** In the sign-up form to limit the student number to 9 digits *********************/
+/***************** In the sign-up form to only accepts numeric and to limit the student number to 9 digits *********************/
 const studentNumberInput = document.getElementById('studentNumber');
-const errorElement = document.getElementById('studentNumberError');
+const errorMessage = document.getElementById('studentNumberError');
 
-studentNumberInput.addEventListener('input', function (event) {
-    let inputValue = event.target.value;
-    // Remove non-numeric characters
-    inputValue = inputValue.replace(/\D/g, '');
-    // Limit to 9 digits
-    inputValue = inputValue.slice(0, 9);
+// Function to handle student number input
+function validateStudentNumber(event) {
+    // Get the input value and filter it
+    let inputValue = event.target.value.replace(/\D/g, '').slice(0, 9);
     // Update the input value
     event.target.value = inputValue;
-
-    // Validate minimum length
+    let errorMessageText = '';
     if (inputValue.length < 9) {
-        errorElement.textContent = 'Student number must be at least 9 digits.';
-        studentNumberInput.setCustomValidity('Student number must be at least 9 digits.');
-    } else {
-        errorElement.textContent = '';
-        studentNumberInput.setCustomValidity('');
+        errorMessageText = 'Student number must be 9 digits.';
     }
-});
-
-// Add an event listener to reset the error when the field is focused
-studentNumberInput.addEventListener('focus', function () {
-    errorElement.textContent = '';
+    errorMessage.textContent = errorMessageText;
+    studentNumberInput.setCustomValidity(errorMessageText);
+}
+// Function to reset error message
+function resetErrorMessage() {
+    errorMessage.textContent = '';
     studentNumberInput.setCustomValidity('');
-});
+}
+studentNumberInput.addEventListener('input', validateStudentNumber);
+studentNumberInput.addEventListener('focus', resetErrorMessage);
 
 
 /************ Function to check if both passwords are the same **************/
@@ -167,7 +163,7 @@ function updateProjectTypeOptions() {
 
 }
 
-// Disable languages based on selected project type
+                      /******** Disable languages based on selected project type ********/
 function updateLanguageOptions() {
     let typeSelect = document.getElementById('project-type').value;
     enableLanguages(['java', 'python', 'javascript', 'c#', 'c', 'c++']);
@@ -215,7 +211,7 @@ function enableLanguages(languages) {
     });
 }
 
-// Load more projects when user clicks load more button
+/*********************** Load more projects when user clicks load more button *********************/
 function loadMoreProjects() {
     const projects = document.querySelectorAll('.project-row');
     const maxIndex = Math.min(projectCounter + 5, projects.length);
