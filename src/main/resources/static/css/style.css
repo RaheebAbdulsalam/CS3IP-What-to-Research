@@ -580,6 +580,9 @@ body.nav-active {
 .contact-form form .btn{
   margin-top: 2rem;
   cursor:pointer ;
+  background: linear-gradient(-135deg, var(--dark-purple), var(--light-purple));
+  color: white;
+  border: 1px solid white;
 }
 
 /*******************-----------TABLES--------------*******************************/
@@ -592,8 +595,8 @@ table {
 }
 
 tr {
-  border-bottom: 1px solid #dddddd;
-  background-color: #f3f3f3;
+  border-bottom: 1px solid var(--light-gray);
+  background-color: var(--white);
 }
 
 th,
@@ -608,6 +611,8 @@ th {
   color: var(--white);;
   border-radius: 6px;
   text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 
