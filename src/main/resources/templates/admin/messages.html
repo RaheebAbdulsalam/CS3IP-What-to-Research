@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
     <!-- favicon -->
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 
-    <title>Admin Panel</title>
+    <title>What to Research</title>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- CSS -->
     <link th:href="@{/css/admin.css}" rel="stylesheet"/>
 
@@ -31,7 +27,8 @@
             </li>
             <li>
                 <a th:href="@{/}" href="#">
-                    <span class="icon"><ion-icon name="arrow-back-circle-outline"></ion-icon></ion-icon></span>
+                    <span class="icon"><ion-icon name="arrow-back-circle-outline"></ion-icon>
+                        </ion-icon></span>
                     <span class="title">Back</span>
                 </a>
             </li>
@@ -76,7 +73,7 @@
     </div>
     <!----------------------------- Side Nav bar Ends ------------------------------------------>
 
-    <!--     Main Section -->
+    <!---------------------------------------------- Main Content ----------------------------------------------------------->
 
     <div class="main">
         <br>
@@ -85,8 +82,7 @@
         <br>
         <br>
 
-
-        <div class="cardBox" style="height: 1000px; padding-left: 50px;">
+        <div class="cardBox">
             <div class="container">
                 <div class="row">
                     <h1>Messages List</h1>
@@ -97,7 +93,6 @@
                     <table>
                         <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Show</th>
@@ -106,7 +101,6 @@
                         </thead>
                         <tbody>
                         <tr th:each="message : ${messages}">
-                            <td th:text="${message.id}"></td>
                             <td th:text="${message.name}"></td>
                             <td th:text="${message.email}"></td>
 
@@ -140,6 +134,5 @@
 <!-- Ionic Icons -->
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
 
 </html>
