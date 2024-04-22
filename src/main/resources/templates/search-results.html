@@ -106,12 +106,16 @@
 <!---------------------------------------------- Main Content ----------------------------------------------------------->
 <section class="section bg-image" aria-label="home">
     <div class="container">
-
                                        <!-- Reset Button-->
             <div style="display: inline-flex; align-items: center; cursor: pointer;">
               <a th:href="@{/research/research-form}"> <ion-icon name="refresh-circle-outline" style="color: var(--white); font-size: 30px;"></ion-icon></a>
                 <span style="color: var(--white); margin-left: 5px; font-size: 20px">Reset</span>
             </div>
+
+        <br>
+        <br>
+
+        <h2 class="h2 section-title" th:if="${not #lists.isEmpty(projects)}" style="color: white">Explore Your Results</h2>
 
         <!-- Check if there are projects -->
         <div class="empty-results" th:if="${#lists.isEmpty(projects)}" >
@@ -153,6 +157,9 @@
         <div class="btn-wrapper" id="load-more-projects" th:if="${not #lists.isEmpty(projects)}">
             <button class="btn btn-primary" onclick="loadMoreProjects()" style="background: linear-gradient(-135deg, #1d072a, #d5b5ff);color: white">Load More Projects</button>
         </div>
+
+        <br>
+        <br>
 
         <div class="btn-wrapper" th:if="${not #lists.isEmpty(projects)}">
             <span style="color: var(--white)">Not happy with the provided projects? </span>
