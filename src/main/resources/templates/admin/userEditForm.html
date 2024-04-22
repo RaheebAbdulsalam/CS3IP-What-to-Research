@@ -4,14 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
   <!-- favicon -->
   <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 
-  <title>Admin Panel</title>
+  <title>What to Research</title>
 
-  <!-- Google Font-->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- CSS -->
   <link th:href="@{/css/admin.css}" rel="stylesheet"/>
 
@@ -74,7 +71,7 @@
   </div>
   <!----------------------------- Side Nav bar Ends ------------------------------------------>
 
-  <!--     Main Section -->
+  <!---------------------------------------------- Main Content ----------------------------------------------------------->
 
   <div class="main">
     <div class="topBar">
@@ -85,7 +82,7 @@
       <br>
       <br>
 
-      <div class="cardBox" style="height: 1000px; padding-left: 50px;">
+      <div class="cardBox" >
         <div class="container">
           <div class="row">
             <h1>Edit Project</h1>
@@ -93,8 +90,8 @@
             <div class="form">
 
 
-              <form  th:object="${user}" th:action="@{/admin/user/edit/{id}(id=${user.id})}" method="post"
-                     enctype="multipart/form-data">
+              <form th:object="${user}" th:action="@{/admin/user/edit/{id}(id=${user.id})}" method="post"
+                    enctype="multipart/form-data">
 
                 <div>
                   <label>First Name:</label>
